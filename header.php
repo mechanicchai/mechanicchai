@@ -9,13 +9,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
-    <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet" type="text/css" href="css/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/all.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-
     <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -36,8 +29,7 @@
                     <a href="#" class="text-white" style="display: block; padding-top: 5px"><i class="fas fa-shopping-cart"></i></a>
                 </div>
                 <div class="col-6 text-right">
-                    <a href="Pages/Registration/signin.html" class="btn btn-primary btn-sm px-4"><i class="fas fa-user"></i> <span class="hide-con">Sign In</span></a>
-                    <a href="pages/Registration/User/signup.html" class="btn btn-outline-primary btn-sm px-4"><i class="fas fa-user-plus"></i> <span class="hide-con">Sign Up</span></a>
+                    <?php echo get_template_part( 'template-parts/mc', 'login-button' ); ?>
                 </div>
             </div>
         </div>
