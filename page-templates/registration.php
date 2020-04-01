@@ -25,6 +25,13 @@ get_header();
                 <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="User Name" type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-building"></i> </span>
                     </div>
                     <select class="form-control" name="mc_reg_location">
@@ -43,12 +50,15 @@ get_header();
                         <option>Rampura</option>
                     </select>
                 </div> <!-- form-group end.// -->
-                <div class="form-group input-group">
+                
+                <!-- <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
                     <input name="mc_reg_email" class="form-control" placeholder="Email address" type="email">
-                </div> <!-- form-group// -->
+                </div>  -->
+                <!-- form-group// -->
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
