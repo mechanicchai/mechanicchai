@@ -27,8 +27,10 @@ if ( ! function_exists( 'mc_scripts' ) ) {
 		wp_enqueue_script( 'wp-util' );
 
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/main.js' );
-		wp_enqueue_script( 'fontawesome-scripts', get_template_directory_uri() . '/js/all.min.js', array(), '5.12.1', true );
-		wp_enqueue_script( 'bootstrap-scripts', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.4.1', true );
+		wp_enqueue_script( 'modernizr-script', get_template_directory_uri() . '/js/vendor/modernizr-3.8.0.min.js', array(), '5.12.1', true );
+		wp_enqueue_script( 'fontawesome-script', get_template_directory_uri() . '/js/all.min.js', array(), '5.12.1', true );
+		wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.4.1', true );
+		wp_enqueue_script( 'plugin-script', get_template_directory_uri() . '/js/plugins.js', array(), '4.4.1', true );
 		wp_enqueue_script( 'mc-scripts', get_template_directory_uri() . '/js/main.js', array(), $js_version, true );
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );

@@ -11,9 +11,14 @@ function mc_rest_user_endpoints($request) {
     'methods' => 'POST',
     'callback' => 'mc_rest_user_endpoint_handler',
   ));
+
+  register_rest_route('wp/v2', 'users/login', array(
+    'methods' => 'GET',
+    'callback' => 'mc_rest_login_endpoint_handler',
+  ));
+
 }
 add_action('rest_api_init', 'mc_rest_user_endpoints');
-
 
 $args2 = array(
     'type'             => 'string', // Validate and sanitize the meta value as a string.
@@ -110,5 +115,49 @@ function mc_rest_user_endpoint_handler($request = null) {
         $error->add(406, __("Email already exists, please try 'Reset Password'", 'wp-rest-user'), array('status' => 400));
         return $error;
     }
+    return new WP_REST_Response($response, 123);
+}
+
+
+function mc_rest_login_endpoint_handler($request = null) {
+    $response = array();
+    $parameters = $request->get_json_params();
+    
+    $username = sanitize_text_field($parameters['username']);
+    $password = sanitize_text_field($parameters['password']);
+
+    $error = new WP_Error();
+    if (empty($username)) {
+        $error->add(400, __("Username field 'username' is required.", 'wp-rest-user'), array('status' => 400));
+        return $error;
+    }
+
+    if (empty($password)) {
+        $error->add(404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400));
+        return $error;
+    }
+
+
+    $user_id = username_exists($username);
+    if( !$user_id ) {
+        $error->add(406, __("This user is not exists", 'wp-rest-user'), array('status' => 400));
+        return $error;   
+    }else {
+        $user = get_user_by( 'login', $username );
+        
+        if ( $user && wp_check_password( '123', $user->data->user_pass, $user->ID ) ) {
+           $users = wp_remote_get('http://mechanicchai.test/wp-json/wp/v2/user/'. $user->ID );
+            
+            
+
+           return $users;
+           
+        } else {
+            $error->add(406, __("The Password is not correct", 'wp-rest-user'), array('status' => 401));
+            return $error;
+        }
+    }
+
+
     return new WP_REST_Response($response, 123);
 }

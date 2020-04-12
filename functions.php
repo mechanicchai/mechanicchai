@@ -10,8 +10,8 @@ defined('ABSPATH') || exit;
 
 $mc_includes = array(
     // '/theme-settings.php',                  // Initialize theme default settings.
-    // '/setup.php',                           // Theme setup and custom theme supports.
-    // '/widgets.php',                         // Register widget area.
+    '/setup.php',                           // Theme setup and custom theme supports.
+    '/widgets.php',                         // Register widget area.
     '/enqueue.php',                         // Enqueue scripts and styles.
     // '/template-tags.php',                   // Custom template tags for this theme.
     // '/pagination.php',                      // Custom pagination for this theme.
@@ -27,7 +27,8 @@ $mc_includes = array(
     '/modules.php',                         // Common module functions.
     // '/metaboxes.php',                        //Custom metaboxes function
     // '/short-codes.php',                        //Custom Short Codes Function
-    // '/post-type.php',                        // Custom Post type
+    // '/post-type.php',                        // Custom Post type      
+    '/custom-fields.php',                       // Custom fields functions                    
     '/forms.php'                                // form submit functions
 );
 

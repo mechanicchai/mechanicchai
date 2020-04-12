@@ -1529,9 +1529,23 @@ button:hover {
     margin-left: 4px;
 }
 
-.new_footer_top .f-title {
+.new_footer_top .widget_nav_menu h3 {
+    font-size: 18px;
+    font-weight: 600;
     margin-bottom: 30px;
     color: #263b5e;
+}
+
+.new_footer_top .widget_nav_menu ul{
+    margin-bottom: 20px;
+    padding-left: 0;
+    list-style: none;
+}
+.new_footer_top .widget_nav_menu ul li{
+    margin-bottom: 11px;
+}
+.new_footer_top .widget_nav_menu ul li a{ 
+    color: #6a7695;
 }
 
 .f_600 {
