@@ -145,12 +145,13 @@ function mc_rest_login_endpoint_handler($request = null) {
     }else {
         $user = get_user_by( 'login', $username );
         
-        if ( $user && wp_check_password( '123', $user->data->user_pass, $user->ID ) ) {
-           $users = wp_remote_get('http://mechanicchai.test/wp-json/wp/v2/user/'. $user->ID );
-            
-            
+        if ( $user && wp_check_password( $password, $user->data->user_pass, $user->ID ) ) {
+           
+            $activated_user_id = $user->ID;
 
-           return $users;
+           $response = array(
+               'user_id' => $activated_user_id
+           );
            
         } else {
             $error->add(406, __("The Password is not correct", 'wp-rest-user'), array('status' => 401));
