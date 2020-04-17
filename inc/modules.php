@@ -162,3 +162,44 @@ function mc_rest_login_endpoint_handler($request = null) {
 
     return new WP_REST_Response($response, 123);
 }
+
+/**
+ * MC page head section
+ * 
+ * @param string
+ * @param string
+ * 
+ */
+function mc_get_quote_button( $link = '', $title = 'Get a Quote' ) {
+    echo sprintf( '<a href="%s" class="btn btn-primary btn-lg px-5">%s</a>', $link, $title );
+}
+
+ /**
+ * MC page head section
+ * 
+ * @param string
+ * @param string
+ * 
+ */
+function mc_page_head_section( $title = '', $subtitle = '' ) { 
+
+    if( empty( $title ) || empty( $subtitle ) ) {
+        return;
+    }
+    ?>
+    <div class="head-section text-center">
+        <div class="head-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php echo sprintf('<h2>%s</h2>', esc_html__( $title, 'mechanic' ) ); ?>
+                        <?php echo sprintf('<p>%s</p>', esc_html__( $subtitle, 'mechanic' ) ); ?>
+                        <?php mc_get_quote_button(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+}

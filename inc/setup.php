@@ -69,6 +69,7 @@ if ( ! function_exists( 'mc_setup' ) ) {
 		 * Adding Image Size
 		 */
 		add_image_size( "logo-size", 144, 144, true );
+		add_image_size( "about-post-thumbnail", 315, 340, true );
 
 		/*
 		 * Adding support for Widget edit icons in customizer
