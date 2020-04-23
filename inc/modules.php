@@ -13,7 +13,7 @@ function mc_rest_user_endpoints($request) {
   ));
 
   register_rest_route('wp/v2', 'users/login', array(
-    'methods' => 'GET',
+    'methods' => 'POST',
     'callback' => 'mc_rest_login_endpoint_handler',
   ));
 
