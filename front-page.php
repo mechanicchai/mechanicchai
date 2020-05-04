@@ -11,10 +11,7 @@
                             <a href="Pages/Registration/User/service.html" class="btn btn-primary btn-lg px-5">Get a Quote</a>
                         </div>
                         <div class="col-md-6 text-center">
-                            <div class="call-now">
-                                <h3>call now<br><strong><i class="fas fa-phone-alt"></i> +88737989</strong></h3>
-                                <p><i class="fab fa-google-play"></i> Download the app from Google Play</p>
-                            </div>
+                            <?php echo get_template_part( 'template-parts/mc', 'call-now' ); ?>
                         </div>
                     </div>
                 </div>

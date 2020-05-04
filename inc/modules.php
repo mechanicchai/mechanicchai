@@ -66,14 +66,30 @@ function mc_rest_user_endpoint_handler($request = null) {
         return $error;
     }
 
-    // if (empty($email)) {
-    //     $error->add(401, __("Email field 'email' is required.", 'wp-rest-user'), array('status' => 400));
-    //     return $error;
-    // }
+    if (empty($email)) {
+        $error->add(401, __("Email field 'email' is required.", 'wp-rest-user'), array('status' => 400));
+        return $error;
+    }
+
     if (empty($password)) {
         $error->add(404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400));
         return $error;
     }
+
+    $user = get_users(
+        array(
+            'meta_key' => 'phone',
+            'meta_value' => $phone,
+            'number' => 1,
+            'count_total' => false
+        )
+    );
+
+    if ( !empty( $user ) ) {
+        $error->add(404, __("This phone number already have an account.", 'wp-rest-user'), array('status' => 400));
+        return $error;
+    }
+
     // if (empty($role)) {
     //  $role = 'subscriber';
     // } else {
@@ -202,4 +218,67 @@ function mc_page_head_section( $title = '', $subtitle = '' ) {
     </div>
 
     <?php
+}
+
+//  Save the phone number field in the database when the user registers into the website
+add_action( 'woocommerce_created_customer', 'wooc_save_extra_register_fields', 10, 3 );
+function wooc_save_extra_register_fields( $customer_id ) {
+    if (isset($_POST['wooc_user_phone'])) {
+        update_user_meta( $customer_id, 'wooc_user_phone', sanitize_text_field( $_POST['wooc_user_phone'] ) );
+    }else {
+        echo 'no update user meta';
+    }
+}
+
+
+// Now we need to edit the WordPress authentication process so we can tell it to login the user with his phone number or any custom field
+
+function wooc_get_users_by_phone($phone_number){
+
+    // //echo $phone_number;
+    // $user =  get_user_by('email','qqq@gmail.com');
+    // echo $user_id = $user->ID;
+
+    // $c_user = get_user_meta( $user_id, 'wooc_user_phone' );
+    // echo '<pre>';
+    // print_r( $c_user );
+    // echo '</pre>';
+    
+    $user_query = new WP_User_Query( array(
+        'meta_key' => 'wooc_user_phone',
+        'meta_value' => $phone_number,
+        'compare'=> '='
+    ));
+
+
+    // $user = get_users(
+    //     array(
+    //         'meta_key' => 'wooc_user_phone',
+    //         'meta_value' => $phone_number,
+    //         'number' => 1,
+    //         'count_total' => false
+    //     )
+    // );
+
+    return $user_query->get_results();
+    // return $user;
+}
+
+// Then we check if the email and username doesn’t exist in the authentication process, that’s how we know the user might have written his phone number, so we search for him by his phone number and return the user.
+add_filter('authenticate','wooc_login_with_phone',10,3);
+function wooc_login_with_phone($user, $username, $password ) {
+    $phone_number = $username;
+    if($phone_number != '') {
+        $users_with_phone = wooc_get_users_by_phone($phone_number);
+        
+        if(empty($users_with_phone)){
+            return $user;
+        }
+        $phone_user = $users_with_phone[0];
+            
+        if ( wp_check_password( $password, $phone_user->user_pass, $phone_user->ID ) ){
+            return $phone_user;
+        }
+    }
+    return $user;
 }

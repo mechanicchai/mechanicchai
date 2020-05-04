@@ -96,6 +96,13 @@ textarea {
     resize: vertical;
 }
 
+/*
+ * Iframe
+ */
+iframe {
+    width: 100%;
+}
+
 /* ==========================================================================
    Browser Upgrade Prompt
    ========================================================================== */
@@ -910,6 +917,69 @@ h2.ssb-title {
 .contact-page{
     padding: 80px 0px;
 }
+.gform_wrapper {
+    margin-top: 0 !important;
+}
+.gform_wrapper .gform_heading{
+    display: none;
+}
+.gform_wrapper ul.gform_fields li.gfield {
+    padding-right: 0 !important;
+    margin-top: 22px !important;
+}
+.gform_wrapper ul.gform_fields li.gfield:first-child {
+    margin-top: 0 !important;
+}
+body .gform_wrapper .top_label div.ginput_container {
+    margin-top: 0 !important;
+}
+.gform_wrapper li input {
+    margin-top: 0 !important;
+}
+.gform_wrapper .top_label input.medium, .gform_wrapper .top_label select.medium,
+.gform_wrapper textarea.medium {
+    display: block;
+    width: 100% !important;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem !important;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.gform_footer {
+    padding-top: 8px !important;
+}
+.gform_wrapper .gform_footer input[type=submit] {
+    width: 100% !important;
+    color: #fff;
+    background-color: #57BE8F;
+    border-color: #57BE8F;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2rem!important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.contact-content p {
+    font-size: 16px;
+}
+.contact-content p b,.contact-content p strong {
+    font-weight: 700;
+}
+.map p {
+    margin: 0;
+    color: #fff;
+    background-color: #57BE8F;
+    border-color: #57BE8F;
+}
+
 /*=======================Contact======================*/
 
 

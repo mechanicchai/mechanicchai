@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
     <section class="content">
-        <div class="head-section">
+        <!-- <div class="head-section">
             <div class="head-wrap">
                 <div class="container">
                     <div class="row">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--   slider     -->
 
         <!--slide end-->
@@ -27,7 +27,7 @@
 
 
         <!--   service     -->
-        <div class="service">
+        <!-- <div class="service">
             <div class="container">
                 <h2>Why Choose Us?</h2>
                 <div class="row">
@@ -84,10 +84,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!--    about sec    -->
-        <section class="about-sec">
+        <!-- <section class="about-sec">
             <div class="row">
                 <div class="col-md-6">
                     <div class="about-bg">
@@ -114,11 +114,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!--    about sec    -->
 
         <!--     service sec   -->
-        <section class="service-sec">
+        <!-- <section class="service-sec">
             <div class="container">
                 <h2 class="py-4">Our Services</h2>
                 <p>Mechanic Chai will provide various mechanical/technical services which is given below:</p>
@@ -197,20 +197,20 @@
                 </div>
                 <a href="#" class="btn btn-primary btn-lg px-5 my-5">Read More</a>
             </div>
-        </section>
+        </section> -->
         <!--     service sec   -->
 
-        <div class="register-as text-center">
+        <!-- <div class="register-as text-center">
             <div class="reg-as-wrap">
                 <div class="container">
                     <a href="#" class="btn btn-primary btn-lg px-5">Register as User</a>
                     <a href="#" class="btn btn-outline-primary btn-lg px-5">Register as Agent</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--     service sec   -->
 
-        <div class="pricing">
+        <!-- <div class="pricing">
             <div class="container mb-5 mt-5">
                 <h3 class="text-center py-5">Our Package Plans</h3>
                 <div class="pricing card-deck flex-column flex-md-row mb-3">
@@ -278,10 +278,10 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
         <!--    subscribe    -->
-        <div class="subscriber text-center">
+        <!-- <div class="subscriber text-center">
             <div class="sub-wrap">
                 <div class="container">
                     <h3>Subscribe</h3>
@@ -292,11 +292,11 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--    subscribe    -->
 
         <!--    rating    -->
-        <div class="rating-sec">
+        <!-- <div class="rating-sec">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -477,7 +477,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--    rating    -->
 
     </section>

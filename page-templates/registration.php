@@ -97,6 +97,4 @@ get_header();
 </div> <!--container end.//-->
 <!--  content  -->
 
-<?php
-get_footer();
-?>
+<?php get_footer(); ?>

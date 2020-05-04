@@ -13,7 +13,7 @@
 </head>
 
 <?php wp_head(); ?>
-<body>
+<body <?php echo body_class(); ?>>
     <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->

@@ -93,6 +93,9 @@ if ( ! function_exists( 'mc_setup' ) ) {
 
 		// Add support for responsive embedded content.
 		add_theme_support( 'responsive-embeds' );
+
+		// Add woocommerce support
+		add_theme_support( 'woocommerce' );
 	}
 }
 
