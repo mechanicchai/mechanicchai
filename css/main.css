@@ -1490,6 +1490,16 @@ button:hover {
 }
 /*=======================service======================*/
 
+.mc-service-brand {
+    display: none;
+}
+.mc-service-model {
+    display: none;
+}
+.mc-active {
+    display: block;
+}
+
 
 
 /*footer style*/
