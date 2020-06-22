@@ -26,7 +26,10 @@ if ( ! function_exists( 'mc_scripts' ) ) {
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'wp-util' );
 
+		
+
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/main.js' );
+
 		wp_enqueue_script( 'modernizr-script', get_template_directory_uri() . '/js/vendor/modernizr-3.8.0.min.js', array(), '5.12.1', true );
 		wp_enqueue_script( 'fontawesome-script', get_template_directory_uri() . '/js/all.min.js', array(), '5.12.1', true );
 		wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.4.1', true );
@@ -40,3 +43,15 @@ if ( ! function_exists( 'mc_scripts' ) ) {
 } // endif function_exists( 'mc_scripts' ).
 
 add_action( 'wp_enqueue_scripts', 'mc_scripts' );
+
+
+if ( ! function_exists( 'mc_admin_scripts' ) ) {
+	function mc_admin_scripts() {
+		// Get the theme data.
+		$the_theme     = wp_get_theme();
+		$theme_version = $the_theme->get( 'Version' );
+		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/admin.js' );
+		wp_enqueue_script( 'mc-admin-scripts', get_template_directory_uri() . '/js/admin.js', array(), $js_version, true );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'mc_admin_scripts' );

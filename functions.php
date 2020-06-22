@@ -25,7 +25,7 @@ $mc_includes = array(
     // '/wp-admin.php',                        // /wp-admin/ related functions
     // '/deprecated.php',                      // Load deprecated functions.
     '/modules.php',                         // Common module functions.
-    // '/metaboxes.php',                        //Custom metaboxes function
+    '/metaboxes.php',                        //Custom metaboxes function
     // '/short-codes.php',                        //Custom Short Codes Function
     // '/post-type.php',                        // Custom Post type      
     '/custom-fields.php',                       // Custom fields functions                    
