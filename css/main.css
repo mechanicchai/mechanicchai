@@ -967,6 +967,22 @@ body .gform_wrapper .top_label div.ginput_container {
     border-radius: 2rem!important;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.mc-submit-form-wrapper .gravity-form {
+    float: right;
+    margin-left: 10px;
+    display: none;
+}
+.service-checkout-form_wrapper.gform_wrapper .gform_footer input[type=submit] {
+    width: auto !important;
+    padding: 5px 20px !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+}
+.service-checkout-form_wrapper.gform_wrapper .gform_footer {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 .contact-content p {
     font-size: 16px;
 }

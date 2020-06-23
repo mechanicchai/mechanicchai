@@ -147,7 +147,19 @@ get_header();
                                 <select class="form-control mc-service-types">
                                     <option value="0">All</option>
                                     <?php
-                                    $post_id = 66;
+                                    //get random servive post id
+                                    $args = array( 
+                                        'orderby' => 'desc',
+                                        'posts_per_page' => '1', 
+                                        'post_type' => 'service',
+                                        'meta_query' => [
+                                            'key'     => 'mc_service_type',
+                                            'value'   => '1',
+                                            'compare' => '=',
+                                        ]
+                                    );
+                                    $posts = get_posts( $args );
+                                    $post_id = $posts[0]->ID;
                                     if (get_post_status($post_id)) {
                                         $all_service_type_options = get_post_meta($post_id, 'mc_service_type_all_options', true);
 
@@ -207,8 +219,9 @@ get_header();
                                         ?>
                                                 <tr data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
                                                     <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
-                                                    <td data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
+                                                    <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
                                                     <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
+                                                    
                                                 </tr>
                                         <?php
                                             }
@@ -248,7 +261,7 @@ get_header();
                                 ?>
                                         <tr>
                                             <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
-                                            <td data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
+                                            <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
                                             <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
                                         </tr>
                                 <?php
@@ -314,49 +327,24 @@ get_header();
                         <div class="card-title text-center">Order Overview</div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h3>Corolla G</h3>
-                                <h5>Toyota - 2016</h5>
+                                <h3 class="mc-checkout-brand">Corolla G</h3>
+                                <h5><span class="mc-checkout-model">Toyota</span> <span class="mc-checkout-year">- 2016</span></h5>
                             </div>
                             <div class="col-md-6 text-right">
                                 <h3>Appointment Date/Time</h3>
-                                <h5>1st April 2020</h5>
+                                <h5 class="mc-checkout-appoint-date">1st April 2020</h5>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-12">
                                 <h3>Services</h3>
-                                <table class="table table-hover mt-4">
+                                <table class="table table-hover mt-4 mc-checkout-services-list">
                                     <tbody>
                                         <tr>
                                             <td data-id="1">ABS Speed Sensor Replacement</td>
                                             <td data-cost="780">780Tk</td>
                                             <td class="text-right"><a class="btn btn-primary btn-sm">Cancel</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td data-id="2">Wheel Speed Sensor Replacement</td>
-                                            <td data-cost="1280">1200Tk</td>
-                                            <td class="text-right"><a class="btn btn-primary btn-sm">Cancel</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td data-id="3">Brake Drum Replacement</td>
-                                            <td data-cost="540">540Tk</td>
-                                            <td class="text-right"><a class="btn btn-primary btn-sm">Cancel</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td data-id="4">Brake Caliper Replacement</td>
-                                            <td data-cost="340">340Tk</td>
-                                            <td class="text-right"><a class="btn btn-primary btn-sm">Cancel</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td data-id="5">Brake Hose Replacement</td>
-                                            <td data-cost="540">540Tk</td>
-                                            <td class="text-right"><a class="btn btn-primary btn-sm">Cancel</a></td>
-                                        </tr>
-                                        <tr style="font-weight: bolder">
-                                            <td class="text-right">Total Payable =</td>
-                                            <td data-cost="3160">3160Tk</td>
-                                            <td class="text-right"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -387,12 +375,17 @@ get_header();
                     </div>
                 </div>
             </div>
-            <div style="overflow:auto;">
+            <div class="mc-submit-form-wrapper" style="overflow:auto;">
                 <div style="float:right;">
                     <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                     <button type="button" id="nextBtn" onclick="nextPrev(1)">Order</button>
+                    <div class="gravity-form">
+                        <?php echo do_shortcode('[gravityform id="1"]'); ?>
+                    </div>
                 </div>
+                
             </div>
+
             <!-- Circles which indicates the steps of the form: -->
 
         </form>

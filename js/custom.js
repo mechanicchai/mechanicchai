@@ -27,8 +27,9 @@
             $('.mc-main-services').on('click', app.selectServices);
             $(document).on('change', '.mc-service-brand.mc-active' , app.changeModelByBrand);
             $(document).on('change', '.mc-service-types', app.changeServicesByType);
-            $('.mc-add-service-cart-btn').on('click', app.servicesAddToCart);
             $(document).on('click', '#nextBtn', app.getServiceDatas);
+            $(document).on('click', '#prevBtn', app.showNextBtn);
+            $('.mc-add-service-cart-btn').on('click', app.servicesAddToCart);
             
         },
         selectServices: function(e) {
@@ -116,10 +117,20 @@
             }
 
             var service_title = $(this).parents('tr').find('.mc-service-title').text();
-            app.cart_array.push(service_title);
+            var id = $(this).parents('tr').find('.mc-service-title').data('id');
+            var cost = $(this).parents('tr').find('.mc-service-cost').data('cost');
+            var service_cart = {
+                name: service_title,
+                id: id,
+                price: cost,
+            }
+            app.cart_array.push(service_cart);
             console.log(app.cart_array);
 
             $(this).addClass('mc-cart-active');
+
+            //update local storage
+            app.updateLocalStorage();
         },
         getServiceDatas: function(e) {
             e.preventDefault();
@@ -154,6 +165,11 @@
             app.service_info.time = time ? time : service_data.info.time;
             app.service_info.user = user ? user : service_data.info.user;
 
+            if( $('.service-review').is('.active') ) {
+                $('#nextBtn').hide();
+                $('.mc-submit-form-wrapper .gravity-form').show();
+            }
+
             //update local storate
             app.updateLocalStorage();
 
@@ -162,8 +178,7 @@
         },
         updateServiceDom: function() {
             var service_data = app.getLocalStorage();
-            console.log(service_data);
-
+            
             var location = service_data.info.location ? service_data.info.location : '';
             var address = service_data.info.address ? service_data.info.address : '';
             var name = service_data.info.name ? service_data.info.name : '';
@@ -229,10 +244,29 @@
             $('.mc-service-year').val(year);            
 
             //update checkout dom
+            $('.mc-checkout-brand').text( app.capitalize(brand) );
+            $('.mc-checkout-model').text( app.capitalize(model) );
+            if( year ) {
+                $('.mc-checkout-year').text( " - " + year );
+            }else {
+                $('.mc-checkout-year').text( "" );
+            }
+            $('.mc-checkout-appoint-date').text( app.formateDate(date) );
             $('.service-checkout-location').text( location );
             $('.service-checkout-address').text( address );
             $('.service-checkout-name').text( name );
             $('.service-checkout-number').text( number );
+
+            if( service_data.services ) {
+                var services = service_data.services;
+                // services.each(function() {
+    
+                // });
+            }
+
+            $('.mc-checkout-services-list tr').each(function() {
+
+            });
 
             //update form dom
             $('.service-info-name').val(name);
@@ -246,6 +280,23 @@
             $('.service-info-date').val(date);
             $('.service-info-time').val(time);
 
+        },
+        showNextBtn: function() {
+            $('#nextBtn').show();
+            $('.mc-submit-form-wrapper .gravity-form').hide();
+        },
+        formateDate: function(date) {
+            var d = new Date(date);
+            var year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+            var month = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+            var day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+            var full_date = day + '-' + month + '-' + year;
+            return full_date;
+        },
+        capitalize: function(word) {
+            var caps = word.charAt(0).toUpperCase() + word.slice(1);
+            return caps;
         },
         getLocalStorage: function() {
             // Get the existing data
@@ -261,7 +312,7 @@
             var service_data = {
                 'categories': app.cart_categories,
                 'info': app.service_info,
-                'services': ''
+                'services': app.cart_array
             };
             localStorage.setItem("service_data", JSON.stringify(service_data));
         }

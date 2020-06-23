@@ -16,6 +16,16 @@ function mc_rest_user_endpoints($request) {
     'methods' => 'POST',
     'callback' => 'mc_rest_login_endpoint_handler',
   ));
+  
+  register_rest_route('wp/v2', 'service-categories', array(
+    'methods' => 'GET',
+    'callback' => 'mc_rest_service_category_api',
+  ));
+
+  register_rest_route('wp/v2', 'service-post-meta-by-id', array(
+    'methods' => 'POST',
+    'callback' => 'mc_rest_service_posts_meta_by_id',
+  ));
 
 }
 add_action('rest_api_init', 'mc_rest_user_endpoints');
@@ -134,6 +144,70 @@ function mc_rest_user_endpoint_handler($request = null) {
     return new WP_REST_Response($response, 123);
 }
 
+function mc_rest_service_category_api($request = null) {
+    $categories = mc_get_all_parent_categories('service_category');
+
+    $brands = [];
+    $models = [];
+    foreach ($categories as $category) {
+        $cat_id = $category->term_id;
+        $brands_as_child_categories = get_categories(array(
+            'parent' => $cat_id,
+            'taxonomy' => 'service_category'
+        ));
+
+        if( $brands_as_child_categories ) {
+            array_push( $brands, $brands_as_child_categories );
+
+            
+            foreach ($brands_as_child_categories as $brand) {
+                $models_as_child_categories = get_categories(array(
+                    'parent' => $brand->term_id,
+                    'taxonomy' => 'service_category'
+                ));
+
+                if( $models_as_child_categories ) {
+                    array_push( $models, $models_as_child_categories );
+                }
+            }
+
+            
+        }
+    }    
+
+    $response['categories'] = $categories;
+    $response['brands'] = $brands;
+    $response['models'] = $models;
+    $response['code'] = 200;
+    
+    return new WP_REST_Response($response, 123);
+}
+
+function mc_rest_service_posts_meta_by_id( $request = null ) {
+    $response = array();
+    $parameters = $request->get_json_params();
+
+
+    if( empty($parameters) ) {
+        $response['msg'] = 'post_id is missing';
+        $response['code'] = 422;
+        
+    }else {
+        if (get_post_status($parameters['post_id'])) {
+            $all_service_type_options = get_post_meta( absint($parameters['post_id']), 'mc_service_type_all_options', true);
+            $service_main_type = get_post_meta($parameters['post_id'], 'mc_service_type', true);
+        }
+
+        $response['service_types']['repair']['value'] = "1"; 
+        $response['service_types']['repair']['types'] = $all_service_type_options; 
+        $response['service_types']['diagnosis']['value'] = "0"; 
+        $response['current_type'] = $service_main_type; 
+        $response['code'] = 200;
+    }
+    
+    return new WP_REST_Response($response, 123);
+
+}
 
 function mc_rest_login_endpoint_handler($request = null) {
     $response = array();
