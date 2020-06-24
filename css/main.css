@@ -318,6 +318,10 @@ header {
     color: #fff;
 }
 
+.random-class{
+	display: block;
+}
+
 .btn-twitter {
     background-color: #42AEEC;
     color: #fff;
