@@ -28,8 +28,3 @@ if( !function_exists('mc_get_all_parent_categories') ) {
     }
 }
 
-
-
-
-?>
-
