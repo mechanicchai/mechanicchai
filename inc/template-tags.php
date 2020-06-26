@@ -28,6 +28,17 @@ if( !function_exists('mc_get_all_parent_categories') ) {
     }
 }
 
+// get all service locations
+if( !function_exists( 'get_service_locations' ) ) {
+    function get_service_locations() {
+        if( function_exists( 'get_field' ) ) {
+            $locations = get_field( 'location_names', 'option' );
+
+            return $locations;
+        }
+    }
+}
+
 
 
 
