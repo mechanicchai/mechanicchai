@@ -117,6 +117,23 @@ iframe {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #57BE8F;
+    border-radius: 30px;
+    border: none;
+}
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited{
+    border-color: #57BE8F;
+    border-radius: 30px;
+    color: #57BE8F;
+    border: none;
+}
+.btn-outline-primary:hover{
+    background-color: #57BE8F;
+    color: #fff;
+    border: none;
+}
+
 .top-bar {
     background-color: #15150E;
 }
@@ -699,6 +716,9 @@ h2.ssb-title {
 /*register as*/
 
 /*pricing*/
+.pricing{
+    display: none;
+}
 .card-pricing.popular {
     z-index: 1;
     border: 3px solid #15150E;
@@ -718,6 +738,7 @@ h2.ssb-title {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    display: none;
 }
 
 .sub-wrap {
