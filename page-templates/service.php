@@ -288,11 +288,21 @@ get_header();
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Location</label>
                                 <select class="form-control service-info-location" id="exampleFormControlSelect1">
-                                    <option>Badda</option>
-                                    <option>Rampura</option>
-                                    <option>Gulshan</option>
-                                    <option>Banani</option>
-                                    <option>Mohakhali</option>
+                                    <?php
+                                        $locations = get_service_locations();
+                                        if( $locations ) {
+                                            if( is_array( $locations ) ) {
+                                                foreach( $locations as $location ) {
+                                                    $location_name = $location['location_name'];
+
+                                                    if( $location_name ) { ?>
+                                                        <option><?php echo esc_html__( $location_name, 'mechanic' ); ?></option>
+                                                        <?php 
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
