@@ -1442,7 +1442,7 @@ button:hover {
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-  background-color: #4CAF50;
+  background-color: #57BE8F;
 }
 
 .tabs {
@@ -1546,8 +1546,16 @@ button:hover {
 .new_footer_area {
     background: #fbfbfd;
 }
-
-
+.new_footer_area ul li{
+    list-style: none;
+}
+.new_footer_area a{
+    color: #000;
+    
+}
+.new_footer_area a:hover{
+    color: #57BE8F;
+}
 .new_footer_top {
     padding: 40px 0px 270px;
     position: relative;
@@ -1578,23 +1586,23 @@ button:hover {
 
 
 .new_footer_top .f_widget.about-widget .f_list li a:hover {
-    color: #57BE8F;
+    color: #57BE8F!important;
 }
 
 .new_footer_top .f_widget.about-widget .f_list li {
-    margin-bottom: 11px;
+    margin-bottom: 11px!important;
 }
 
 .f_widget.about-widget .f_list li:last-child {
-    margin-bottom: 20px;
+    margin-bottom: 20px!important;
 }
 
 .f_widget.about-widget .f_list li {
-    margin-bottom: 15px;
+    margin-bottom: 15px!important;
 }
 
 .f_widget.about-widget .f_list {
-    margin-bottom: 20px;
+    margin-bottom: 20px!important;
 }
 
 .new_footer_top .f_social_icon a {
