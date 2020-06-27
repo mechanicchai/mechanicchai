@@ -117,6 +117,19 @@ iframe {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #57BE8F;
+    border-radius: 30px;
+    border-color: #57BE8F;
+}
+.btn-outline-primary{
+    border-color: #57BE8F;
+    border-radius: 30px;
+    color: #57BE8F;
+}
+.btn-outline-primary:hover{
+    background-color: #57BE8F;
+}
 .top-bar {
     background-color: #15150E;
 }
@@ -698,6 +711,9 @@ h2.ssb-title {
 /*register as*/
 
 /*pricing*/
+.pricing{
+    display: none;
+}
 .card-pricing.popular {
     z-index: 1;
     border: 3px solid #15150E;
@@ -717,6 +733,7 @@ h2.ssb-title {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    display: none;
 }
 
 .sub-wrap {
@@ -1353,7 +1370,11 @@ p {
 }
 .se-services a{
     display: block;
+    border-radius: 30px;
+    background-color: #eee;
+    border-color: #57BE8F;
 }
+
 #regForm {
   background-color: #ffffff;
   margin: 20px auto;
@@ -1361,7 +1382,7 @@ p {
 
 .step-group{
     position: absolute;
-    top: 190px;
+    top: 150px;
     left: 0;
     width: 100%;
 }
@@ -1409,6 +1430,8 @@ button:hover {
   opacity: 0.5;
   width: 24%;
   font-size: 14px;
+  padding: 10px;
+  border-radius: 30px;
 }
 .step-group .step>.count{
     display: none;
@@ -1416,6 +1439,9 @@ button:hover {
 
 .step.active {
   opacity: 1;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0px 0px 3px #eee;
 }
 
 /* Mark the steps that are finished and valid: */
@@ -1538,7 +1564,9 @@ button:hover {
     position: relative;
     overflow-x: hidden;
 }
-
+.new_footer_top ul{
+    padding-left: 0px;
+}
 .new_footer_area .footer_bottom {
     padding-top: 5px;
     padding-bottom: 50px;
