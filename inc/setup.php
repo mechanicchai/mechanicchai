@@ -29,6 +29,8 @@ if ( ! function_exists( 'mc_setup' ) ) {
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
+		// Add woocommerce support
+		add_theme_support( 'woocommerce' );
 
 		/*
 		 * Let WordPress manage the document title.
