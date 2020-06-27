@@ -20,7 +20,7 @@ $mc_includes = array(
     // '/customizer.php',                      // Customizer additions.
     // '/custom-comments.php',                 // Custom Comments file.
     // '/jetpack.php',                         // Load Jetpack compatibility file.
-    // '/class-wp-bootstrap-navwalker.php',    // Load custom WordPress nav walker. Trying to get deeper navigation?
+    '/class-wp-bootstrap-navwalker.php',    // Load custom WordPress nav walker. Trying to get deeper navigation?
     // '/editor.php',                          // Load Editor functions.
     // '/wp-admin.php',                        // /wp-admin/ related functions
     // '/deprecated.php',                      // Load deprecated functions.
