@@ -186,11 +186,13 @@ header {
     }
 
     .navbar .dropdown-menu {
-        width: 100%;
-        left: 0;
-        right: 0;
         /*  height of nav-item  */
         top: 53px;
+        width: auto !important;
+        top: 70px;
+        position: absolute;
+        left: auto;
+        right: auto;
     }
 
     /* shows the dropdown menu on hover */
@@ -1484,7 +1486,6 @@ button:hover {
   padding: 1em 0.5em;
   border: 1px solid #ddd;
 }
-
 
 
 .tab-button-outer {

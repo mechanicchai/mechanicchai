@@ -9,6 +9,9 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
+<?php
+    do_action( 'woocommerce_register_form' ); 
+?>
 <!--  content  -->
 <div class="container-fluid my-2">
     <div class="card bg-light signup">

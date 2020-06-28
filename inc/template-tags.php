@@ -38,9 +38,3 @@ if( !function_exists( 'get_service_locations' ) ) {
         }
     }
 }
-
-
-
-
-?>
-
