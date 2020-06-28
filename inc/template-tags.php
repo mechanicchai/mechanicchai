@@ -67,3 +67,38 @@ if( !function_exists( 'mc_get_service_types' ) ) {
         return $repair_service;
     }
 }
+
+// get json token
+if( !function_exists( 'mc_get_jwt_token' ) ) {
+    function mc_get_jwt_token() {
+
+        $headers = array( 
+            'Content-Type' => 'application/json'
+        );
+
+        $token_url = get_home_url() .'/wp-json/jwt-auth/v1/token';
+
+        //token arguments array
+        $params = array( 
+            'username' => "nayan",  
+            'password' => "123",  
+        );
+
+        //Send request
+        $response = wp_remote_request( $token_url,
+            array(
+                'method'  => 'POST',
+                'body'    => json_encode( $params ),
+                'headers' => $headers
+            )
+        );
+
+        // Check the response code.
+        if ( wp_remote_retrieve_response_code( $response ) != 200 || ( empty( wp_remote_retrieve_body( $response ) ) ) ){
+            // If not a 200, HTTP request failed.
+            die( 'There was an error attempting to access the API.' );
+        }else {
+            return json_decode($response['body'])->token;
+        }
+    }
+}

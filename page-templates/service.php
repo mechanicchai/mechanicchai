@@ -147,7 +147,7 @@ get_header();
                                 <select class="form-control mc-service-types">
                                     <option value="0">All</option>
                                     <?php
-                                    //get random servive post id
+                                    //get random service post id
                                     $args = array( 
                                         'orderby' => 'desc',
                                         'posts_per_page' => '1', 
