@@ -1787,6 +1787,22 @@ h6 {
 
 /*************footer End*****************/
 
+/****************User Dashboard start************************/
+.top-bar span.user-name{
+    color: #fff;
+}
+.dashboard ul.nav-tabs{
+    background-color: #eee;
+}
+.dashboard ul.nav-tabs li{
+    width: 100%;
+}
+.dashboard ul.nav-tabs li a{
+    padding: 10px;
+    display: block;
+}
+
+/****************User Dashboard start************************/
 
 /* ==========================================================================
    Helper classes
