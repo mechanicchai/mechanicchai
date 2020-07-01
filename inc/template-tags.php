@@ -102,3 +102,54 @@ if( !function_exists( 'mc_get_jwt_token' ) ) {
         }
     }
 }
+
+/**
+ * Generate Random String form email
+ */
+if( !function_exists( 'mc_generate_random_email' ) ) {
+
+    function mc_generate_random_email($length = 30) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString . '@gmail.com';
+    }
+}
+
+
+/**
+ * Get users by their role
+ */
+if( !function_exists( 'mc_get_users_by_role' ) ) {
+    function mc_get_users_by_role($role = 'author', $orderby = 'user_nicename', $order = 'ASC') {
+        $args = array(
+            'role'    => $role,
+            'orderby' => $orderby,
+            'order'   => $order
+        );
+    
+        $users = get_users( $args );
+    
+        return $users;
+    }
+}
+
+/**
+ * Get smsapi data
+ */
+if( !function_exists( "mc_get_sms_api_data" ) ) {
+    function mc_get_sms_api_data() {
+        $sms_api = [];
+        if( function_exists('get_field') ) {
+            $sms_api_key = get_field( 'sms_api_key', 'option' );
+            $sms_sender_id = get_field( 'sms_sender_id', 'option' );
+
+            $sms_api = [ 'api_key' => trim($sms_api_key), 'sender_id' => trim($sms_sender_id) ];
+        }
+
+        return $sms_api;
+    }
+}

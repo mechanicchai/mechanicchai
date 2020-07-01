@@ -7,6 +7,11 @@
  */
 
 function mc_rest_user_endpoints($request) {
+  register_rest_route('wp/v2', 'smsapi', array(
+    'methods' => 'GET',
+    'callback' => 'mc_rest_sms_api_data',
+  ));
+  
   register_rest_route('wp/v2', 'users/register', array(
     'methods' => 'POST',
     'callback' => 'mc_rest_user_endpoint_handler',
@@ -58,89 +63,126 @@ $args3 = array(
  
 register_meta( 'user', 'phone', $args3 );
 
+
+function mc_rest_sms_api_data( $request = null ) {
+    $sms_api = mc_get_sms_api_data();
+
+    $response = array();
+
+    $error = new WP_Error();
+    if (empty($sms_api)) {
+        $error->add(400, __("Nothing Found!", 'wp-rest-user'), array('status' => 404));
+        return $error;
+    }else {
+        $response['data'] = $sms_api;
+        $response['code'] = 200;
+        $response['message'] = 'SMS Api data found!';
+    }
+
+    return new WP_REST_Response($response, 123);
+}
+
+/**
+ * User Registration API callback
+ * @api {post} /users/register Request user register
+ * @apiGroup User
+ *
+ * @apiParam {String} mc_user_name User full name.
+ * @apiParam {String} mc_user_location User location.
+ * @apiParam {String} mc_user_phone User login phone.
+ * @apiParam {String} mc_user_password User login password.
+ * @apiParam {String} mc_user_role User role.
+ */
 function mc_rest_user_endpoint_handler($request = null) {
     $response = array();
     $parameters = $request->get_json_params();
     
-    $username = sanitize_text_field($parameters['username']);
-    $password = sanitize_text_field($parameters['password']);
-    $full_name = !empty($parameters['meta']['fullname']) ? sanitize_text_field($parameters['meta']['fullname']) : '';
-    $location = !empty($parameters['meta']['location']) ? sanitize_text_field($parameters['meta']['location']) : '';
-    $phone = !empty($parameters['meta']['phone']) ? sanitize_text_field($parameters['meta']['phone']) : '';
-    //$email = sanitize_text_field($parameters['email']);
-    // $role = sanitize_text_field($parameters['role']);
+    //all parameters
+    $name = sanitize_text_field($parameters['mc_user_name']);
+    $location = sanitize_text_field($parameters['mc_user_location']);
+    $phone = sanitize_text_field($parameters['mc_user_phone']);
+    $password = sanitize_text_field($parameters['mc_user_password']);
+    $role = sanitize_text_field($parameters['mc_user_role']);
+    $email = mc_generate_random_email();
 
-    $error = new WP_Error();
-    if (empty($username)) {
-        $error->add(400, __("Username field 'username' is required.", 'wp-rest-user'), array('status' => 400));
-        return $error;
-    }
-
-    if (empty($email)) {
-        $error->add(401, __("Email field 'email' is required.", 'wp-rest-user'), array('status' => 400));
-        return $error;
-    }
-
-    if (empty($password)) {
-        $error->add(404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400));
-        return $error;
-    }
-
+    // get user with phone if exists
+    $mc_user_phone_key = 'mc_user_phone';
     $user = get_users(
         array(
-            'meta_key' => 'phone',
+            'meta_key' => $mc_user_phone_key,
             'meta_value' => $phone,
             'number' => 1,
             'count_total' => false
         )
     );
+    
 
-    if ( !empty( $user ) ) {
-        $error->add(404, __("This phone number already have an account.", 'wp-rest-user'), array('status' => 400));
+    //error init
+    $error = new WP_Error();
+
+    //user name validate check
+    if (empty($name)) {
+        $error->add(404, __("User Full Name field is empty. Fieldname: 'mc_user_name'.", 'mechanic'), array('status' => 404));
+        return $error;
+    }   
+
+    //user phone validate check
+    if (empty($phone)) {
+        $error->add(404, __("User phone field is empty. Fieldname: 'mc_user_phone'.", 'mechanic'), array('status' => 404));
+        return $error;
+    }
+    
+    if( count($user) > 0 ) {
+        $error->add(400, __("User phone already exist. Please register with another phone number.", 'mechanic'), array('status' => 400));
         return $error;
     }
 
-    // if (empty($role)) {
-    //  $role = 'subscriber';
-    // } else {
-    //     if ($GLOBALS['wp_roles']->is_role($role)) {
-    //      // Silence is gold
-    //     } else {
-    //    $error->add(405, __("Role field 'role' is not a valid. Check your User Roles from Dashboard.", 'wp_rest_user'), array('status' => 400));
-    //    return $error;
-    //     }
-    // }
-    $user_id = username_exists($username);
-    if (!$user_id) {
-        $user_id = wp_create_user($username, $password, $email);
-        if (!is_wp_error($user_id)) {
+    //user password validate check
+    if (empty($password)) {
+        $error->add(404, __("User password field is empty. Fieldname: 'mc_user_password'.", 'mechanic'), array('status' => 404));
+        return $error;
+    }   
 
-            //update fullname            
-            update_user_meta($user_id, 'fullname', $full_name);
+    //user email validate check
+    if (empty($email)) {
+        $error->add(404, __("Email is empty.", 'mechanic'), array('status' => 404));
+        return $error;
+    }elseif( email_exists($email) ) {
+        $error->add(400, __("This Email has already an account.", 'mechanic'), array('status' => 400));
+        return $error;
+    }
 
-            //update location
-            update_user_meta($user_id, 'location', $location);
-            
-            //update phone
-            update_user_meta($user_id, 'phone', $phone);
+    $user_data = array(
+        'user_login' => $name,
+        'user_pass'  => $password,
+        'user_email' => $email,
+        'role'       => $role ? $role : 'subscriber'
+    );
 
-            $user = get_user_by('id', $user_id);
-            // $user->set_role($role);
-            $user->set_role('subscriber');
-            // WooCommerce specific code
-            if (class_exists('WooCommerce')) {
-                $user->set_role('customer');
-            }
-            // Ger User Data (Non-Sensitive, Pass to front end.)
-            $response['code'] = 200;
-            $response['message'] = __("User '" . $username . "' Registration was Successful", "wp-rest-user");
-        } else {
-            return $user_id;
-        }
+    //insert user process
+    $user_id = wp_insert_user( $user_data );
+    if( is_wp_error( $user_id ) ) {
+        $err_msg = 'Error on user creation: ' . $user_id->get_error_message();
+        $error->add(404, __( $err_msg , 'mechanic'), array('status' => 404));
+        return $error;
     } else {
-        $error->add(406, __("Email already exists, please try 'Reset Password'", 'wp-rest-user'), array('status' => 400));
-        return $error;
+        do_action('user_register', $user_id);
+
+        //update user fullname
+        update_user_meta( $user_id, 'mc_user_name', $name );
+        update_user_meta( $user_id, 'mc_user_location', $location );
+        update_user_meta( $user_id, 'mc_user_phone', $phone );
+        update_user_meta( $user_id, 'mc_user_role', $role );
+
+        //update user email
+        $user_data = wp_update_user( array( 'ID' => $user_id, 'user_email' => $email ) );
+
+        $response['user_id'] = $user_id;
+        $response['message'] = 'User successfully registered.';
+
     }
+
+  
     return new WP_REST_Response($response, 123);
 }
 
@@ -209,49 +251,67 @@ function mc_rest_service_posts_meta_by_id( $request = null ) {
 
 }
 
+
+/**
+ * User login API callback
+ * @api {post} /users/login Request User login
+ * @apiGroup User
+ *
+ * @apiParam {String} phone User login phone.
+ * @apiParam {String} password User login password.
+ */
 function mc_rest_login_endpoint_handler($request = null) {
     $response = array();
     $parameters = $request->get_json_params();
     
-    $username = sanitize_text_field($parameters['username']);
+    $phone = sanitize_text_field($parameters['phone']);
     $password = sanitize_text_field($parameters['password']);
 
     $error = new WP_Error();
-    if (empty($username)) {
-        $error->add(400, __("Username field 'username' is required.", 'wp-rest-user'), array('status' => 400));
+
+    if (empty($phone)) {
+        $error->add(404, __("Phone field is empty.", 'mechanic'), array('status' => 404));
         return $error;
     }
 
     if (empty($password)) {
-        $error->add(404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400));
+        $error->add(404, __("Password field 'password' is required.", 'mechanic'), array('status' => 400));
         return $error;
-    }
-
-
-    $user_id = username_exists($username);
-    if( !$user_id ) {
-        $error->add(406, __("This user is not exists", 'wp-rest-user'), array('status' => 400));
-        return $error;   
     }else {
-        $user = get_user_by( 'login', $username );
-        
-        if ( $user && wp_check_password( $password, $user->data->user_pass, $user->ID ) ) {
-           
-            $activated_user_id = $user->ID;
+        // get user with phone if exists
+        $mc_user_phone_key = 'mc_user_phone';
+        $user = get_users(
+            array(
+                'meta_key' => $mc_user_phone_key,
+                'meta_value' => $phone,
+                'number' => 1,
+                'count_total' => false
+            )
+        );
 
-           $response = array(
-               'user_id' => $activated_user_id
-           );
-           
-        } else {
+        if( count($user) == 0 ) {
+            $error->add(400, __("User not exist. Please register first to login.", 'mechanic'), array('status' => 400));
+            return $error;
+        }
+
+        $user_encryted_pass = $user[0]->data->user_pass;
+
+        if ( $user && wp_check_password( $password, $user_encryted_pass, $user[0]->ID ) ) {
+            $response['user_id'] = $user[0]->ID;
+            $response['phone'] = $phone;
+            $response['code'] = '202';
+            $response['msg'] = 'User login credentials matched.';
+        }else {
             $error->add(406, __("The Password is not correct", 'wp-rest-user'), array('status' => 401));
             return $error;
         }
     }
 
-
     return new WP_REST_Response($response, 123);
 }
+
+
+
 
 /**
  * MC page head section
@@ -356,3 +416,60 @@ function wooc_login_with_phone($user, $username, $password ) {
     }
     return $user;
 }
+
+
+/**
+ * Woocommerce Functions
+ * 
+ */
+
+ 
+if( !function_exists( 'mc_woocommerce_extra_register_fields' ) ) {
+    function mc_woocommerce_extra_register_fields() {?>
+        <p class="form-row form-row-wide">
+            <label for="reg_mc_wc_user_phone"><?php _e( 'Phone', 'woocommerce' ); ?></label>
+            <input type="text" class="input-text" name="mc_wc_user_phone" id="reg_mc_wc_user_phone" value="<?php //esc_attr_e( $_POST['billing_phone'] ); ?>" />
+        </p>
+        <p class="form-row form-row-first">
+            <label for="reg_mc_wc_full_name"><?php _e( 'First name', 'woocommerce' ); ?><span class="required">*</span></label>
+            <input type="text" class="input-text" name="mc_wc_full_name" id="reg_mc_wc_full_name" value="<?php if ( ! empty( $_POST['mc_wc_full_name'] ) ) esc_attr_e( $_POST['mc_wc_full_name'] ); ?>" />
+        </p>
+        <p class="form-row form-row-last">
+            <label for="reg_billing_last_name"><?php _e( 'Last name', 'woocommerce' ); ?><span class="required">*</span></label>
+            <input type="text" class="input-text" name="billing_last_name" id="reg_billing_last_name" value="<?php if ( ! empty( $_POST['billing_last_name'] ) ) esc_attr_e( $_POST['billing_last_name'] ); ?>" />
+        </p>
+        <div class="clear"></div>
+        <?php
+    }
+}
+// add_action( 'woocommerce_register_form', 'mc_woocommerce_extra_register_fields' );
+
+
+/**
+ * register fields Validating.
+ * 
+ * @since 1.0.0
+ * @version 1.0.0
+ * @author Nazrul Islam Nayan
+ * @copyright mechanicchai.com
+ * @param username - username
+ * @param email - email of user
+ * @param validation_errors - validation errors
+ */
+if( !function_exists( 'mc_woocommerce_validate_extra_register_fields' ) ) {
+    function mc_woocommerce_validate_extra_register_fields( $username, $email, $validation_errors ) {
+
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
+        
+        // if ( isset( $_POST['billing_first_name'] ) && empty( $_POST['billing_first_name'] ) ) {
+        //        $validation_errors->add( 'billing_first_name_error', __( '<strong>Error</strong>: First name is required!', 'woocommerce' ) );
+        // }
+        // if ( isset( $_POST['billing_last_name'] ) && empty( $_POST['billing_last_name'] ) ) {
+        //        $validation_errors->add( 'billing_last_name_error', __( '<strong>Error</strong>: Last name is required!.', 'woocommerce' ) );
+        // }
+        //    return $validation_errors;
+    }
+}
+add_action( 'woocommerce_register_post', 'mc_woocommerce_validate_extra_register_fields', 15, 3 );
