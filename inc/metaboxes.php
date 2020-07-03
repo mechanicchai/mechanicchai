@@ -29,16 +29,12 @@ function mc_save_postmeta( $post_id, $post, $is_update ) {
     
 
     //default array for services types
-    $mc_service_types = [
-        '1' => 'Brake', 
-        '2' => 'Engine', 
-        '3' => 'Body/Chasis', 
-        '4' => 'Fuel/Gas', 
-        '5' => 'Tire/Rim', 
-    ];
-
-    $mc_service_types = apply_filters( 'mc_get_service_type_options', $mc_service_types );
-    update_post_meta( $post_id, 'mc_service_type_all_options', is_array($mc_service_types) ? $mc_service_types : [] );
+    $repair_service_types = mc_get_service_types();
+    if( $repair_service_types ) {
+        if( is_array( $repair_service_types ) ) {
+            update_post_meta( $post_id, 'mc_service_type_all_options', $repair_service_types ? $repair_service_types : [] );
+        }
+    }
 }
 
 add_action( 'save_post', 'mc_save_postmeta', 10, 3 );
@@ -74,26 +70,25 @@ function mc_post_controls_metabox( $post ) {
         </div>
 
         <div class="service-type-child" style="padding-left: 30px;">
-            <p>
-                <input type="radio" name="mc_service_type_option" class="post-format" value="1" <?php checked( get_post_meta( $post->ID, 'mc_service_type_option', true ), '1' ); ?>>
-                <label for="mc_service_type_option" class="post-format-icon"><b><?php echo esc_html__( 'Brake', 'mechanic' ) ?></b></label>
-            </p>
-            <p>
-                <input type="radio" name="mc_service_type_option" class="post-format" value="2" <?php checked( get_post_meta( $post->ID, 'mc_service_type_option', true ), '2' ); ?>>
-                <label for="mc_service_type_option" class="post-format-icon"><b><?php echo esc_html__( 'Engine', 'mechanic' ) ?></b></label>
-            </p>
-            <p>
-                <input type="radio" name="mc_service_type_option" class="post-format" value="3" <?php checked( get_post_meta( $post->ID, 'mc_service_type_option', true ), '3' ); ?>>
-                <label for="mc_service_type_option" class="post-format-icon"><b><?php echo esc_html__( 'Body/Chasis', 'mechanic' ) ?></b></label>
-            </p>
-            <p>
-                <input type="radio" name="mc_service_type_option" class="post-format" value="4" <?php checked( get_post_meta( $post->ID, 'mc_service_type_option', true ), '4' ); ?>>
-                <label for="mc_service_type_option" class="post-format-icon"><b><?php echo esc_html__( 'Fuel/Gas', 'mechanic' ) ?></b></label>
-            </p>
-            <p>
-                <input type="radio" name="mc_service_type_option" class="post-format" value="5" <?php checked( get_post_meta( $post->ID, 'mc_service_type_option', true ), '5' ); ?>>
-                <label for="mc_service_type_option" class="post-format-icon"><b><?php echo esc_html__( 'Tire/Rim', 'mechanic' ) ?></b></label>
-            </p>
+            <?php
+                $repair_service_types = mc_get_service_types();
+                if( $repair_service_types ) {
+                    if( is_array( $repair_service_types ) ) {
+                        foreach( $repair_service_types as $repair_service_type ) {
+                            $service_repair_id = $repair_service_type['id'];
+                            $service_repair_type = $repair_service_type['name'];
+
+                            if( $service_repair_type ) { ?>
+                                <p>
+                                    <input type="radio" name="mc_service_type_option" class="post-format" value="<?php echo $service_repair_id; ?>" <?php checked( get_post_meta( $post->ID, 'mc_service_type_option', true ), $service_repair_id ); ?>>
+                                    <label for="mc_service_type_option" class="post-format-icon"><b><?php echo esc_html__( $service_repair_type, 'mechanic' ) ?></b></label>
+                                </p>
+                                <?php 
+                            }
+                        }
+                    }
+                }
+            ?>
         </div>
 	</div>
 	<?php

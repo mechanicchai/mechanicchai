@@ -147,7 +147,7 @@ get_header();
                                 <select class="form-control mc-service-types">
                                     <option value="0">All</option>
                                     <?php
-                                    //get random servive post id
+                                    //get random service post id
                                     $args = array( 
                                         'orderby' => 'desc',
                                         'posts_per_page' => '1', 
@@ -162,10 +162,10 @@ get_header();
                                     $post_id = $posts[0]->ID;
                                     if (get_post_status($post_id)) {
                                         $all_service_type_options = get_post_meta($post_id, 'mc_service_type_all_options', true);
-
-                                        foreach ($all_service_type_options as $key => $service_type_meta) { ?>
-                                            <option value="<?php echo $key; ?>"><?php echo $service_type_meta; ?></option>
-                                    <?php
+                                        
+                                        foreach ($all_service_type_options as $service_type_meta) { ?>
+                                            <option value="<?php echo $service_type_meta['id']; ?>"><?php echo esc_html__( $service_type_meta['name'], 'mechanic' ); ?></option>
+                                            <?php
                                         }
                                     }
                                     ?>
@@ -289,7 +289,7 @@ get_header();
                                 <label for="exampleFormControlSelect1">Location</label>
                                 <select class="form-control service-info-location" id="exampleFormControlSelect1">
                                     <?php
-                                        $locations = get_service_locations();
+                                        $locations = mc_get_service_locations();
                                         if( $locations ) {
                                             if( is_array( $locations ) ) {
                                                 foreach( $locations as $location ) {

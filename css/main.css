@@ -1386,7 +1386,7 @@ p {
 
 .step-group{
     position: absolute;
-    top: 150px;
+    top: 170px;
     left: 0;
     width: 100%;
 }
@@ -1490,14 +1490,32 @@ button:hover {
   padding: 1em 0.5em;
   border: 1px solid #ddd;
 }
-
-
 .tab-button-outer {
   display: none;
 }
 .tab-contents {
   margin-top: 20px;
 }
+
+/* Woocommerce Css */
+.mc-woocommerce-login-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.woocommerce .mc-woocommerce-login-wrapper .woocommerce-form-login .woocommerce-form-login__rememberme {
+    display: flex;
+    width: 150px;
+    justify-content: left;
+    align-items: center;
+}
+
+.woocommerce .mc-woocommerce-login-wrapper .woocommerce-form-login .woocommerce-form-login__rememberme span{
+    width: 110px;
+    display: inline-block;
+}
+
 @media screen and (min-width: 768px) {
   .tab-button-outer {
     position: relative;
