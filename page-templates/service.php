@@ -16,10 +16,10 @@ get_header();
 
         <form id="regForm" action="/action_page.php">
             <div class="step-group" style="text-align:center;">
-                <span class="step service-category"><span class="count">1st</span><span class="name">Category & Specification</span></span>
-                <span class="step service-select"><span class="count">2nd</span><span class="name">Service</span></span>
-                <span class="step service-info"><span class="count">3rd</span><span class="name">Address and Appointment Time/Date</span></span>
-                <span class="step service-review"><span class="count">4th</span><span class="name">Review & Book</span></span>
+                <span class="step service-category"><span class="count"><i class="fas fa-clone"></i></span><span class="name">Category & Specification</span></span>
+                <span class="step service-select"><span class="count"><i class="fas fa-cog"></i></span><span class="name">Service</span></span>
+                <span class="step service-info"><span class="count"><i class="fas fa-map-marker-alt"></i></span><span class="name">Address and Appointment Time/Date</span></span>
+                <span class="step service-review"><span class="count"><i class="fas fa-eye"></i></span><span class="name">Review & Book</span></span>
             </div>
             <h1>Answer a few simple questions to get a Service.</h1>
             <hr>
