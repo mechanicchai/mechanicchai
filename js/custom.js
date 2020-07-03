@@ -23,8 +23,10 @@
             if( jQuery.isEmptyObject(app.getLocalStorage()) ) {
                 app.updateLocalStorage();
             }
-
+            
             $('.mc-main-services').on('click', app.selectServices);
+            $(document).on('submit', '.mc-wc-register-form', app.saveRegisterAccountDatas);
+            $(document).on('submit', '.mc-register-otp-form', app.otpRegisterWooAccount);
             $(document).on('change', '.mc-service-brand.mc-active' , app.changeModelByBrand);
             $(document).on('change', '.mc-service-types', app.changeServicesByType);
             $(document).on('click', '#nextBtn', app.getServiceDatas);
@@ -315,7 +317,166 @@
                 'services': app.cart_array
             };
             localStorage.setItem("service_data", JSON.stringify(service_data));
+        },
+        saveRegisterAccountDatas: function(e) {
+            e.preventDefault();
+            var data = {};
+            data.name = $(this).find('input[name="mc_reg_full_name"]').val();
+            data.location = $(this).find('select[name="mc_reg_location"]').val();
+            data.mobile_first = $(this).find('select[name="mc_reg_mobile_first"]').val();
+            data.mobile_last = $(this).find('input[name="mc_reg_mobile_last"]').val();
+            data.mobile = data.mobile_first + '' + data.mobile_last; 
+            data.password = $(this).find('input[name="mc_reg_password"]').val();
+            data.re_password = $(this).find('input[name="mc_reg_re_password"]').val();
+
+            //when no field is empty
+            if( data.name !== '' || data.location !== '0' || data.password !== '' || data.mobile !== '' ) {
+                $('.mc-input-error').removeClass('mc-input-error');
+                $('.mc-form-error-msg').remove();
+            }
+
+            //when name is empty
+            if( data.name == null || data.name == '' ) {
+                var name_msg_div = $(this).find('input[name="mc_reg_full_name"]').parent();
+                $(this).find('input[name="mc_reg_full_name"]').addClass('mc-input-error');
+                if( $('.mc-form-name-field').length == '0' ) {
+                    $('<div></div>', {
+                        'class': 'mc-form-error-msg mc-form-name-field',
+                        text: "Name field should not be empty."
+    
+                    }).appendTo( name_msg_div );
+                }
+            }
+
+            //when location is empty
+            if( data.location == null || data.location == '0'  ) {
+                var location_msg_div = $(this).find('select[name="mc_reg_location"]').parent();
+                $(this).find('select[name="mc_reg_location"]').addClass('mc-input-error');
+                if( $('.mc-form-location-field').length == 0 ) {
+                    $('<div></div>', {
+                        'class': 'mc-form-error-msg mc-form-location-field',
+                        text: "Location field should not be empty."
+    
+                    }).appendTo( location_msg_div );
+                }
+                
+            }
+
+            if( data.mobile_last == null || data.name == '' ) {
+                var mobile_msg_div = $(this).find('input[name="mc_reg_mobile_last"]').parent();
+                $(this).find('input[name="mc_reg_mobile_last"]').addClass('mc-input-error');
+                if( $('.mc-form-mobile-field').length == 0 ) {
+                    $('<div></div>', {
+                        'class': 'mc-form-error-msg mc-form-mobile-field',
+                        text: "Mobile field should not be empty."
+    
+                    }).appendTo( mobile_msg_div );
+                }
+                
+            }
+
+            if( data.password == null || data.name == '' ) {
+                var password_msg_div = $(this).find('input[name="mc_reg_password"]').parent();
+                $(this).find('input[name="mc_reg_password"]').addClass('mc-input-error');
+                if( $('.mc-form-password-field').length == 0 ) {
+                    $('<div></div>', {
+                        'class': 'mc-form-error-msg mc-form-password-field',
+                        text: "Password field should not be empty."
+    
+                    }).appendTo( password_msg_div );
+                }
+                
+            }
+
+            //when confirm password does not matched
+            if( data.password !== data.re_password ) {
+                var re_password_msg_div = $(this).find('input[name="mc_reg_re_password"]').parent();
+                $(this).find('input[name="mc_reg_re_password"]').addClass('mc-input-error');
+                if( $('.mc-form-repassword-field').length == 0 ) {
+                    $('<div></div>', {
+                        'class': 'mc-form-error-msg mc-form-repassword-field',
+                        text: "Confirm password does not matched."
+    
+                    }).appendTo( re_password_msg_div );
+                }
+                
+            }
+
+            //set localstorage data
+            localStorage.setItem("register_form_data", JSON.stringify(data));
+
+            var reg_nonce = $('#_wpnonce').val();
+            var ajax_data = {
+                action: 'mc_send_otp_for_register_form',
+                reg_nonce: reg_nonce,
+                mobile: data.mobile
+            };
+            
+            //post otp code
+            $.post( my_ajax_object.ajax_url, ajax_data, function( msg ) {
+
+                // set otp to localstorage
+                if( msg.otp_code ) {
+                    localStorage.setItem("register_otp", msg.otp_code);
+                }
+
+            }, 'json').done(function(msg) {
+                
+                //when user is exists by this phone number
+                if( msg.user_exists ) {
+                    alert('This phone number already have an account.');
+                    
+                    setTimeout(() => {
+                        window.location.replace('/registration');
+                        localStorage.removeItem("register_otp");
+                        localStorage.removeItem("register_form_data");
+                    }, 1000);
+                }else{
+                    if( msg.otp_code ) {
+                        //add query param to current url
+                        const urlParams = new URLSearchParams(window.location.search);
+                        urlParams.set('otp', 'yes');
+                        window.location.search = urlParams;
+                    }
+                }
+            });
+        },
+        otpRegisterWooAccount: function(e) {
+            e.preventDefault();
+
+            var input_otp = $('input[name="mc_reg_otp_code"]').val();
+            var stored_otp = localStorage.getItem("register_otp");
+
+            // when otp matched
+            if( input_otp == stored_otp ) {
+                var data = localStorage.getItem("register_form_data");
+                data = JSON.parse(data);
+
+                var otp_reg_nonce = $('#woocommerce-otp-nonce').val();
+                var ajax_data = {
+                    action: 'mc_send_otp_send_register_data',
+                    otp_reg_nonce: otp_reg_nonce,
+                    data: {
+                        name: data.name,
+                        location: data.location,
+                        phone: data.mobile,
+                        password: data.password
+                    }
+                };
+
+                //post otp code
+                $.post( my_ajax_object.ajax_url, ajax_data, function( msg ) {
+                    console.log(msg);
+                }, 'json').done(function(msg) {
+                    window.location.replace('/');
+                    localStorage.removeItem("register_otp");
+                    localStorage.removeItem("register_form_data");
+                });
+            }else{
+                alert('OTP does not matched...');
+            }
         }
+
     };
 
     $(document).ready(app.init);
