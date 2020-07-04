@@ -473,3 +473,145 @@ if( !function_exists( 'mc_woocommerce_validate_extra_register_fields' ) ) {
     }
 }
 add_action( 'woocommerce_register_post', 'mc_woocommerce_validate_extra_register_fields', 15, 3 );
+
+
+/**
+ * Send OTP
+ *
+ * @param string $nonce
+ *	@return string
+ *
+ */
+if( !function_exists('mc_send_otp_for_register_form') ) {
+    function mc_send_otp_for_register_form() {
+        
+        if( isset($_POST['reg_nonce']) && wp_verify_nonce($_POST['reg_nonce'], 'woocommerce-register-nonce') ) {
+            
+            if( !isset($_POST['mobile']) ) {
+                return;
+            }else {
+                $mobile_number = $_POST['mobile'];
+            }
+
+            // get user with phone if exists
+            $mc_user_phone_key = 'mc_user_phone';
+            $user = get_users(
+                array(
+                    'meta_key' => $mc_user_phone_key,
+                    'meta_value' => $mobile_number,
+                    'number' => 1,
+                    'count_total' => false
+                )
+            );
+
+            if( count($user) > 0 ) {
+                $user_exists = true;
+            }
+
+            // generate random otp code
+            $digits = 4;
+            $otp_code = rand(pow(10, $digits-1), pow(10, $digits)-1);
+
+            // api data
+            $sms_api = mc_get_sms_api_data();
+             
+            // otp request
+            $url = "http://bulk.fmsms.biz/smsapi";
+            $data = [
+                "api_key" => $sms_api['api_key'],
+                "type" => "text",
+                "contacts" => $mobile_number,
+                "senderid" => $sms_api['sender_id'],
+                "msg" => "Your Registration OTP is ". $otp_code . ". by Mechanicchai.com",
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
+        }
+        
+        echo json_encode( array( 'result' => $response, 'otp_code' => $otp_code, 'user_exists' => $user_exists ), JSON_PRETTY_PRINT );
+        exit();	
+    }
+
+}
+add_action( 'wp_ajax_mc_send_otp_for_register_form', 'mc_send_otp_for_register_form' );
+add_action( 'wp_ajax_nopriv_mc_send_otp_for_register_form', 'mc_send_otp_for_register_form' );
+
+
+/**
+ * Send Register Form Data
+ *
+ * @param string $nonce
+ * @return string
+ *
+ */
+if( !function_exists('mc_send_otp_send_register_data') ) {
+    function mc_send_otp_send_register_data() {
+        $response = [];
+        if( isset($_POST['otp_reg_nonce']) && wp_verify_nonce($_POST['otp_reg_nonce'], 'woocommerce-otp') ) {
+            
+            if( isset($_POST['data']['name']) ) {
+                $name = $_POST['data']['name'];
+            }
+            if( isset($_POST['data']['location']) ) {
+                $location = $_POST['data']['location'];
+            }
+            if( isset($_POST['data']['phone']) ) {
+                $phone = $_POST['data']['phone'];
+            }
+            if( isset($_POST['data']['password']) ) {
+                $password = $_POST['data']['password'];
+            }
+
+            //generate random email 
+            $email = mc_generate_random_email();
+
+             // generate random otp code
+             $digits = 2;
+             $user_login = $name . rand(pow(10, $digits-1), pow(10, $digits)-1);
+
+            //user data
+            $user_data = array(
+                'user_login' => $user_login,
+                'user_pass'  => $password,
+                'user_email' => $email,
+                'role'       => 'customer'
+            );
+        
+            //insert user process
+            $user_id = wp_insert_user( $user_data );
+
+            if( is_wp_error( $user_id ) ) {
+                $response['message'] = 'Error on user creation: ' . $user_id->get_error_message();
+            } else {
+                do_action('user_register', $user_id);
+        
+                //update user fullname
+                update_user_meta( $user_id, 'mc_user_name', $name );
+                update_user_meta( $user_id, 'mc_user_location', $location );
+                update_user_meta( $user_id, 'mc_user_phone', $phone );
+                update_user_meta( $user_id, 'mc_user_role', 'customer' );
+        
+                //update user email
+                $user_data = wp_update_user( array( 'ID' => $user_id, 'user_email' => $email ) );
+        
+                $response['user_id'] = $user_id;
+                $response['message'] = 'User successfully registered.';
+        
+            }
+
+        }
+        
+        echo json_encode( array( 'result' => $response, 'name' => $name ), JSON_PRETTY_PRINT );
+        exit();	
+        
+    }
+
+}
+add_action( 'wp_ajax_mc_send_otp_send_register_data', 'mc_send_otp_send_register_data' );
+add_action( 'wp_ajax_nopriv_mc_send_otp_send_register_data', 'mc_send_otp_send_register_data' );

@@ -153,3 +153,17 @@ if( !function_exists( "mc_get_sms_api_data" ) ) {
         return $sms_api;
     }
 }
+
+/**
+ * Get and Parse current page url
+ */
+
+if( !function_exists( 'mc_parse_current_url' ) ) {
+    function mc_parse_current_url() {
+        global $wp;
+        $url = home_url( $wp->request );
+        $parse_url = parse_url($url);
+
+        return $parse_url;
+    }
+}

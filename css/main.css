@@ -63,6 +63,17 @@ hr {
     padding: 0;
 }
 
+.mc-input-error{
+    border: 2px solid #ff4444;
+}
+.mc-form-error-msg{
+    margin: 5px 0;
+    font-size: 12px;
+    display: block;
+    width: 100%;
+    color: #ff4444;
+}
+
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:

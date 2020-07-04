@@ -95,3 +95,4 @@ function plugin_install_count_shortcode( $atts ) {
 }
 add_shortcode( 'plugin_install_count', 'plugin_install_count_shortcode' );
 
+
