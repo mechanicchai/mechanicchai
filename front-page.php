@@ -8,7 +8,11 @@
                         <div class="col-md-6">
                             <h2>Welcome to<br><strong>Mechanic Chai</strong></h2>
                             <p>Mechanic Chai is Mechanical Service Providing Company...</p>
-                            <a href="Pages/Registration/User/service.html" class="btn btn-primary btn-lg px-5">Get a Quote</a>
+                            <?php
+                                mc_get_quote_button(
+                                    home_url('service'), 'Get a Service'
+                                );
+                            ?>
                         </div>
                         <div class="col-md-6 text-center">
                             <?php echo get_template_part( 'template-parts/mc', 'call-now' ); ?>

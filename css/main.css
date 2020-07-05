@@ -596,7 +596,9 @@ box-shadow: 0px 0px 3px #000;
 
 /*about section*/
 
-.about-sec {}
+.about-sec p{
+    text-align: justify;
+}
 
 .about-sec .about-bg {
     background-image: url(../img/plumbing-bg.jpg);
@@ -904,6 +906,9 @@ h2.ssb-title {
 .what-is-mc{
     padding: 50px 0px;
 }
+.what-is-mc p{
+    text-align: justify;
+}
 .abt-ico-holder{
     height: 100px ;
     width: 100px;
@@ -1039,6 +1044,9 @@ body .gform_wrapper .top_label div.ginput_container {
 /*=======================how it works======================*/
 .timeline-con{
     padding: 80px 0px;
+}
+.timeline-con p{
+    text-align: justify;
 }
 .timeline {
     list-style: none;
