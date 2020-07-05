@@ -176,7 +176,7 @@ if( !function_exists( 'mc_parse_current_url' ) ) {
 
 if( !function_exists( 'add_last_nav_item' ) ) {
     function add_last_nav_item($items) {
-        return $items .= '<li><a href="'. home_url('dashboard') .'" role="button" data-toggle="modal">Dashboard</a></li>';
+        return $items .= '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-116 nav-item"><a href="'. home_url('dashboard') .'" class="nav-link" role="button" data-toggle="modal">Dashboard</a></li>';
     }
 }
 add_filter( 'wp_nav_menu_items', 'add_last_nav_item' );
