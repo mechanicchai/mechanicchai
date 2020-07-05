@@ -40,11 +40,7 @@
                             <div class="service-content">
                                 <h3 class="title">Quality Service and Work</h3>
                                 <p class="description">Mechai chai will ensure the quality of service/product by doing 24/7 observation by Quality Control Team</p>
-                                <?php
-                                mc_get_quote_button(
-                                    home_url('about'), 'Read More'
-                                );
-                            ?>
+                                <a href="<?php echo home_url('about'); ?>" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
                     </div>
@@ -57,11 +53,7 @@
                             <div class="service-content">
                                 <h3 class="title">Well mannered and licenced tecnistian</h3>
                                 <p class="description">We will provide Professional and Licensed technicians who have experience in this field for a decade. Not only that they will be polite and well-mannered as well.</p>
-                                <?php
-                                mc_get_quote_button(
-                                    home_url('about'), 'Read More'
-                                );
-                            ?>
+                                <a href="<?php echo home_url('about'); ?>" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
                     </div>
@@ -74,11 +66,7 @@
                             <div class="service-content">
                                 <h3 class="title">Resonable<br>Price</h3>
                                 <p class="description">We care about your expenses, we are here to reduce the time and money for you as your assistant. We will provide you the best deal on Servicing and Spare Part Products at a very reasonable price. </p>
-                                <?php
-                                mc_get_quote_button(
-                                    home_url('about'), 'Read More'
-                                );
-                            ?></a>
+                                <a href="<?php echo home_url('about'); ?>" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
                     </div>
@@ -91,11 +79,7 @@
                             <div class="service-content">
                                 <h3 class="title">Anywhere anytime 24/7 Service</h3>
                                 <p class="description">Any kinds of mechanical/technical problems anytime anywhere. We are a call ahead of you. Just make a call and tell us your problem, a professional will be sent on location</p>
-                                <?php
-                                mc_get_quote_button(
-                                    home_url('about'), 'Read More'
-                                );
-                            ?>
+                                <a href="<?php echo home_url('about'); ?>" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
                     </div>
@@ -226,14 +210,10 @@
                 <div class="container">
                     <?php
                                 mc_get_quote_button(
-                                    home_url('registration'), 'Register as User'
+                                    home_url('about'), 'Read More'
                                 );
                             ?>
-                    <?php
-                                mc_get_quote_button(
-                                    home_url('vendor-registration'), 'Register as Vendor'
-                                );
-                            ?>
+                    <a href="<?php echo home_url('vendor-registration'); ?>" class="btn btn-outline-primary btn-lg px-5">Register as Agent</a>
                 </div>
             </div>
         </div>
