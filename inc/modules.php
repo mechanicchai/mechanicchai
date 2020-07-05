@@ -476,10 +476,77 @@ add_action( 'woocommerce_register_post', 'mc_woocommerce_validate_extra_register
 
 
 /**
+ * WP Customer Login
+ */
+if( !function_exists('mc_customer_process_login') ) {
+    function mc_customer_process_login() {
+		$nonce_value = wc_get_var( $_REQUEST['woocommerce-login-nonce'], wc_get_var( $_REQUEST['_wpnonce'], '' ) );
+
+		if ( isset( $_POST['login'], $_POST['mc_login_phone_number'], $_POST['mc_login_password'] ) && wp_verify_nonce( $nonce_value, 'woocommerce-login' ) ) {
+
+            $users = get_users(
+                array(
+                 'meta_key' => 'mc_user_phone',
+                 'meta_value' => $_POST['mc_login_phone_number'],
+                 'number' => 1,
+                 'count_total' => false
+                )
+            );
+
+            $username = $users[0]->data->user_login;
+
+			try {
+				$creds = array(
+					'user_login'    => trim( wp_unslash( $username ) ),
+					'user_password' => $_POST['mc_login_password'],
+                    'remember'      => true,
+                );
+
+				$validation_error = new WP_Error();
+				$validation_error = apply_filters( 'woocommerce_process_login_errors', $validation_error, $creds['user_login'], $creds['user_password'] );
+
+				if ( $validation_error->get_error_code() ) {
+					throw new Exception( '<strong>' . __( 'Error:', 'woocommerce' ) . '</strong> ' . $validation_error->get_error_message() );
+				}
+
+				if ( empty( $creds['user_login'] ) ) {
+					throw new Exception( '<strong>' . __( 'Error:', 'woocommerce' ) . '</strong> ' . __( 'Username is required.', 'woocommerce' ) );
+				}
+
+				// Perform the login.
+				$user = wp_signon( apply_filters( 'woocommerce_login_credentials', $creds ), is_ssl() );
+
+				if ( is_wp_error( $user ) ) {
+					$message = $user->get_error_message();
+					$message = str_replace( '<strong>' . esc_html( $creds['user_login'] ) . '</strong>', '<strong>' . esc_html( $creds['user_login'] ) . '</strong>', $message );
+					throw new Exception( $message );
+				} else {
+
+					if ( ! empty( $_POST['redirect'] ) ) {
+						$redirect = wp_unslash( $_POST['redirect'] );
+					} elseif ( wc_get_raw_referer() ) {
+						$redirect = wc_get_raw_referer();
+					} else {
+						$redirect = home_url();
+					}
+
+					wp_redirect( wp_validate_redirect( home_url() ) );
+					exit;
+				}
+			} catch ( Exception $e ) {
+				wc_add_notice( apply_filters( 'login_errors', $e->getMessage() ), 'error' );
+				do_action( 'woocommerce_login_failed' );
+			}
+		}
+    }
+}
+add_action( 'wp_loaded', 'mc_customer_process_login', 20 );
+
+/**
  * Send OTP
  *
  * @param string $nonce
- *	@return string
+ * @return string
  *
  */
 if( !function_exists('mc_send_otp_for_register_form') ) {
