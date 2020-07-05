@@ -344,7 +344,7 @@ function mc_page_head_section( $title = '', $subtitle = '' ) {
                     <div class="col-md-12">
                         <?php echo sprintf('<h2>%s</h2>', esc_html__( $title, 'mechanic' ) ); ?>
                         <?php echo sprintf('<p>%s</p>', esc_html__( $subtitle, 'mechanic' ) ); ?>
-                        <?php mc_get_quote_button(); ?>
+                        <?php mc_get_quote_button(home_url('service'), 'Get a Service'); ?>
                     </div>
                 </div>
             </div>
