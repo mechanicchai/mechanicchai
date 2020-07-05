@@ -61,7 +61,7 @@
                             </div>
                             <div class="service-content">
                                 <h3 class="title">Resonable<br>Price</h3>
-                                <p class="description">We care about your expenses, we are here to reduce the time and money for you as your assistant. We will find out every possible solution for your Home and Business. So that the yearly expenses of your can be reduced by 25%. We will provide you the best deal on Servicing and Spare Part Products at a very reasonable price. </p>
+                                <p class="description">We care about your expenses, we are here to reduce the time and money for you as your assistant. We will provide you the best deal on Servicing and Spare Part Products at a very reasonable price. </p>
                                 <a href="MobileAppDevelopment.html" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="service-content">
                                 <h3 class="title">Anywhere anytime 24/7 Service</h3>
-                                <p class="description">Any kinds of mechanical/technical problems anytime anywhere. We are a call ahead of you. Just make a call and tell us your problem, a professional will be sent on location or you can order a service/product from the service tab form web/app our support team will get a little confirmation from you and will send the technicians in your desired time/date.</p>
+                                <p class="description">Any kinds of mechanical/technical problems anytime anywhere. We are a call ahead of you. Just make a call and tell us your problem, a professional will be sent on location</p>
                                 <a href="ECommarce.html" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
