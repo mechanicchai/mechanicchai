@@ -174,9 +174,9 @@ if( !function_exists( 'mc_parse_current_url' ) ) {
  * Add dashboard menu item to nav menu
  */
 
-if( !function_exists( 'mc_parse_current_url' ) ) {
-function add_last_nav_item($items) {
-    return $items .= '<li><a href="'. home_url('dashboard') .'" role="button" data-toggle="modal">Dashboard</a></li>';
-  }
+if( !function_exists( 'add_last_nav_item' ) ) {
+    function add_last_nav_item($items) {
+        return $items .= '<li><a href="'. home_url('dashboard') .'" role="button" data-toggle="modal">Dashboard</a></li>';
+    }
 }
 add_filter( 'wp_nav_menu_items', 'add_last_nav_item' );
