@@ -210,7 +210,7 @@
                 <div class="container">
                     <?php
                                 mc_get_quote_button(
-                                    home_url('about'), 'Read More'
+                                    home_url('registration'), 'Register as User'
                                 );
                             ?>
                     <a href="<?php echo home_url('vendor-registration'); ?>" class="btn btn-outline-primary btn-lg px-5">Register as Agent</a>
