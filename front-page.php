@@ -35,7 +35,7 @@
                             </div>
                             <div class="service-content">
                                 <h3 class="title">Quality Service and Work</h3>
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in volutpat elit. Class aptent taciti.</p>
+                                <p class="description">Mechai chai will ensure the quality of service/product by doing 24/7 observation by Quality Control Team</p>
                                 <a href="WebDesigning.html" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="service-content">
                                 <h3 class="title">Well mannered and licenced tecnistian</h3>
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in volutpat elit. Class aptent taciti.</p>
+                                <p class="description">We will provide Professional and Licensed technicians who have experience in this field for a decade. Not only that they will be polite and well-mannered as well.</p>
                                 <a href="WebDevelopment.html" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="service-content">
                                 <h3 class="title">Resonable<br>Price</h3>
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in volutpat elit. Class aptent taciti.</p>
+                                <p class="description">We care about your expenses, we are here to reduce the time and money for you as your assistant. We will find out every possible solution for your Home and Business. So that the yearly expenses of your can be reduced by 25%. We will provide you the best deal on Servicing and Spare Part Products at a very reasonable price. </p>
                                 <a href="MobileAppDevelopment.html" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="service-content">
                                 <h3 class="title">Anywhere anytime 24/7 Service</h3>
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in volutpat elit. Class aptent taciti.</p>
+                                <p class="description">Any kinds of mechanical/technical problems anytime anywhere. We are a call ahead of you. Just make a call and tell us your problem, a professional will be sent on location or you can order a service/product from the service tab form web/app our support team will get a little confirmation from you and will send the technicians in your desired time/date.</p>
                                 <a href="ECommarce.html" class="read-more fas fa-eye" data-toggle="tooltip" title="Read More"></a>
                             </div>
                         </div>
@@ -311,15 +311,15 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="testimonial-wrapper">
-                                                <div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante, commodo iacul viverra.</div>
+                                                <div class="testimonial">My family has had two occasions to use this service. Both times the mechanics were on time, efficient, and knowledgeable. Great way to get many car repairs done!</div>
                                                 <div class="media">
                                                     <div class="media-left d-flex mr-3">
                                                         <img src="img/user-1.jpg" alt="">
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="overview">
-                                                            <div class="name"><b>Paula Wilson</b></div>
-                                                            <div class="details">Media Analyst / SkyNet</div>
+                                                            <div class="name"><b>Abdur Razzak</b></div>
+                                                            <div class="details">Businessman</div>
                                                             <div class="star-rating">
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -336,15 +336,15 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="testimonial-wrapper">
-                                                <div class="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra. Quis quam ut magna consequat faucibus, metus id mi gravida.</div>
+                                                <div class="testimonial">They do a great job. Very professional and on time and convenient, they come to you and work on your car. Very good price.</div>
                                                 <div class="media">
                                                     <div class="media-left d-flex mr-3">
                                                         <img src="img/user-2.jpg" alt="">
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="overview">
-                                                            <div class="name"><b>Antonio Moreno</b></div>
-                                                            <div class="details">Web Developer / SoftBee</div>
+                                                            <div class="name"><b>Asharful Khondokar Mehedy</b></div>
+                                                            <div class="details">Transporter</div>
                                                             <div class="star-rating">
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -365,15 +365,15 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="testimonial-wrapper">
-                                                <div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante, commodo iacul viverra.</div>
+                                                <div class="testimonial">I had my Rear Differential Gasket and Gear oil fluid replaced on My Allion G 2016 by Alim Mahmud today! He showed up early and was very professional and friendly. I hope this company realizes the dedication and service this man gives!! Thanks again Alim!!</div>
                                                 <div class="media">
                                                     <div class="media-left d-flex mr-3">
                                                         <img src="img/user-3.jpg" alt="">
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="overview">
-                                                            <div class="name"><b>Michael Holz</b></div>
-                                                            <div class="details">Web Developer / DevCorp</div>
+                                                            <div class="name"><b>Shah Faridul Azam</b></div>
+                                                            <div class="details">Rent a Car</div>
                                                             <div class="star-rating">
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -390,15 +390,15 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="testimonial-wrapper">
-                                                <div class="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra. Quis quam ut magna consequat faucibus, metus id mi gravida.</div>
+                                                <div class="testimonial">I googled a search to see comparable prices to the quote I got for replacing the spark plugs on my Toyota Axio. I found this amazing website! The mechanic comes to me at no extra charge! Unbelievable! They have an A rating on the Better Business Bureau. I'm definitely going to check this out and report back. Stay tune ...</div>
                                                 <div class="media">
                                                     <div class="media-left d-flex mr-3">
                                                         <img src="img/user-1.jpg" alt="">
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="overview">
-                                                            <div class="name"><b>Mary Saveley</b></div>
-                                                            <div class="details">Graphic Designer / MarsMedia</div>
+                                                            <div class="name"><b>Reegan Ahmed</b></div>
+                                                            <div class="details">Businessman</div>
                                                             <div class="star-rating">
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -415,60 +415,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item carousel-item">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="testimonial-wrapper">
-                                                <div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante, commodo iacul viverra.</div>
-                                                <div class="media">
-                                                    <div class="media-left d-flex mr-3">
-                                                        <img src="img/user-2.jpg" alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="overview">
-                                                            <div class="name"><b>Martin Sommer</b></div>
-                                                            <div class="details">SEO Analyst / RealSearch</div>
-                                                            <div class="star-rating">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="testimonial-wrapper">
-                                                <div class="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra. Quis quam ut magna consequat faucibus, metus id mi gravida.</div>
-                                                <div class="media">
-                                                    <div class="media-left d-flex mr-3">
-                                                        <img src="img/user-3.jpg" alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="overview">
-                                                            <div class="name"><b>John Williams</b></div>
-                                                            <div class="details">Web Designer / UniqueDesign</div>
-                                                            <div class="star-rating">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

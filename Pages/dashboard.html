@@ -253,10 +253,9 @@
                 <!-- required for floating -->
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs tabs-left mt-3 mb-3">
-                    <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li><br>
+                    <li class=""><a href="#profile" data-toggle="tab">Dashboard</a></li><br>
                     <li><a href="#orders" data-toggle="tab">Orders</a></li>
                     <li><a href="#vehicle" data-toggle="tab">My Vehicle</a></li>
-                    <li><a href="#service" data-toggle="tab">Take a Service</a></li>
                 </ul>
                 </div>
                 <div class="col-md-9">
@@ -268,62 +267,628 @@
                                     <div class="card p-3">
                                         <div class="box">
                                             <div class="img">
-                                                <img src="http://xho.to/ashik_profile.png">
+                                                <img src="../img/user.png">
                                             </div>
-                                            <h2 class="py-3">Ashiful Islam</h2>
-                                            <h4>Contact : +8801552565618</h4>
-                                            <h5>Location : Badda</h5>
-                                            <h6>Points Earned : 45pt</h6>
+                                            <h2 class="py-3">Rafel Chy</h2>
+                                            <h4><i class="fas fa-phone-alt"></i> Contact : <b>+8801552565618</b></h4><hr>
+                                            <h5><i class="fas fa-street-view"></i> Location : <b>Badda</b></h5><hr>
+                                            <h6><i class="fas fa-medal"></i> Points Earned : <b>45pt</b></h6><hr>
+                                            <h5>Progress to Next Level</h5>
+                                            <div class="progress">
+                                              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <h6>Silver > Gold</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-8 user-info">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>Department:</td>
-                        <td>Programming</td>
-                      </tr>
-                      <tr>
-                        <td>Hire date:</td>
-                        <td>06/23/2013</td>
-                      </tr>
-                      <tr>
-                        <td>Date of Birth</td>
-                        <td>01/24/1988</td>
-                      </tr>
-                   
-                             <tr>
-                        <td>Gender</td>
-                        <td>Female</td>
-                      </tr>
-                        <tr>
-                        <td>Home Address</td>
-                        <td>Kathmandu,Nepal</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
-                      </tr>
-                        <tr>
-                        <td>Phone Number</td>
-                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                        </td>
-                           
-                      </tr>
-                     
-                    </tbody>
-                  </table>
+                                    <div class="row">
+                                        <div class="col-12">
+                                        <div class="row pb-4">
+                                            <div class="col-4">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <h3>5</h3>
+                                                        <h6>Total Orders</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <h3>26,365Tk</h3>
+                                                        <h6>Total Expence</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <h3>Silver</h3>
+                                                        <h6>Customer Level</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="row pb-4">
+                                        <div class="col-12">
+                                        <div class="card">
+                                        <div class="card-body">
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                    <h5><i class="fas fa-stopwatch"></i> Pending Orders : 1</h5>
+                                                  <tr>
+                                                    <th>Total Service</th>
+                                                    <th>Total Payble</th>
+                                                    <th>Time Count</th>
+                                                    <th>Action</th>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>4</td>
+                                                    <td>3210Tk</td>
+                                                    <td>23h 32m 56s</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".bd-example-modal-lg" title="View Info"><i class="fas fa-eye"></i></button>
+
+                                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                          <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Order View</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                                <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Corolla G</h3>
+                                                                                <h5>Toyota - 2016</h5>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-right">
+                                                                                <h3>Appointment Date/Time</h3>
+                                                                                <h5>1st April 2020</h5>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-12">
+                                                                                <h3>Services</h3>
+                                                                                <table class="table table-hover mt-4">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>ABS Speed Sensor Replacement</td>
+                                                                                            <td>780Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Wheel Speed Sensor Replacement</td>
+                                                                                            <td>1200Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Drum Replacement</td>
+                                                                                            <td>540Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Caliper Replacement</td>
+                                                                                            <td>340Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Hose Replacement</td>
+                                                                                            <td>540Tk</td>
+                                                                                        </tr>
+                                                                                        <tr style="font-weight: bolder">
+                                                                                            <td class="text-right">Total Payable =</td>
+                                                                                            <td>3160Tk</td>
+                                                                                            <td class="text-right"></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Address</h3>
+                                                                                <p>Location : Rampura</p>
+                                                                                <p>Address : House : 29, Road : 11, DIT Road, Rampura</p>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-right">
+                                                                                <h3>Contact Info</h3>
+                                                                                <p>Name : Rafel Chy</p>
+                                                                                <p>Number : 01992969618</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Payment Method</h3>
+                                                                                <p>Cash on Delivery</p>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                                          Confirm
+                                                        </button>
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                          <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Order Confirmation</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                <form>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">Total Paid</label>
+                                                                    <input type="text" class="form-control" id="paid" placeholder="Taka">
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlTextarea1">Say somthing about our service</label>
+                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                  </div>
+                                                                    <div class="form-group">
+                                                                    <div class="rating">
+                                                                      <input type="radio" id="star10" name="rating" value="10" /><label for="star10" title="Rocks!">5 stars</label>
+                                                                      <input type="radio" id="star9" name="rating" value="9" /><label for="star9" title="Awesome">4 stars</label>
+                                                                      <input type="radio" id="star8" name="rating" value="8" /><label for="star8" title="Pretty good">3 stars</label>
+                                                                      <input type="radio" id="star7" name="rating" value="7" /><label for="star7" title="Not That Good">2 stars</label>
+                                                                      <input type="radio" id="star6" name="rating" value="6" /><label for="star6" title="Meh">1 star</label>
+                                                                    </div>
+                                                                    </div>
+                                                                </form>
+                                                              </div>
+                                                              <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Done</button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                    </td>
+
+
+                                                </tbody>
+                                              </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                        <div class="card">
+                                        <div class="card-body">
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                    <div class="row">
+                                                        <div class="col-10"><h5><i class="fas fa-info-circle"></i> Genaral Info</h5></div>
+                                                        <div class="col-2">
+                                                            <!-- Button trigger modal -->
+                                                            <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#exampleModal" title="Edit Info">
+                                                              <i class="fas fa-edit"></i>
+                                                            </button>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                              <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                  <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">User Info</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                      <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                  </div>
+                                                                  <div class="modal-body">
+                                                                    <form>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">Full Name</label>
+                                                                    <input type="text" class="form-control" id="name" value="Rafel Chy">
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label for="exampleFormControlInput1">Location</label>
+                                                                    <select class="form-control">
+                                                                        <option>Badda</option>
+                                                                        <option>Rampura</option>
+                                                                        <option>Banasree</option>
+                                                                        <option>Bashundhara</option>
+                                                                        <option>Khilkhet</option>
+                                                                      </select>      
+                                                                  </div>
+                                                                        <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">Email</label>
+                                                                    <input type="text" class="form-control" id="email" value="Rafelchy95@gmail.com">
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">Contact No</label>
+                                                                    <input type="text" class="form-control" id="number" value="+8801992969618">
+                                                                  </div>
+                                                                    <div class="form-group">
+                                                                    <div class="form-check">
+                                                                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                                      <label class="form-check-label" for="exampleRadios1">
+                                                                        Male
+                                                                      </label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                                                      <label class="form-check-label" for="exampleRadios2">
+                                                                        Female
+                                                                      </label>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlTextarea1">Address</label>
+                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="256, Katabon, Dhaka- 1205"></textarea>
+                                                                  </div>
+                                                                        <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">User Image</label>
+                                                                    <input type="file" class="form-control" id="user_img" value="">
+                                                                  </div>
+                                                                </form>
+                                                                  </div>
+                                                                  <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                  <tr>
+                                                    <td><i class="fas fa-envelope"></i> Email Address:</td>
+                                                    <td>Rafel Chy</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><i class="fas fa-venus-mars"></i> Gender</td>
+                                                    <td>Male</td>
+                                                  </tr>
+                                                    <tr>
+                                                    <td><i class="fas fa-map-marker-alt"></i> Home Address</td>
+                                                    <td>256, Katabon, Dhaka-1205</td>
+                                                  </tr>
+
+
+                                                </tbody>
+                                              </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="orders">Order List</div>
+                        <div class="tab-pane" id="orders">
+                            <div class="row pb-4">
+                                        <div class="col-12">
+                                        <div class="card">
+                                        <div class="card-body">
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                    <h5><i class="fas fa-stopwatch"></i> Total Orders : 3</h5>
+                                                  <tr>
+                                                    <th>Total Service</th>
+                                                    <th>Total Payble</th>
+                                                    <th>Status</th>
+                                                    <th>Time Count</th>
+                                                    <th>Action</th>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>4</td>
+                                                    <td>3210Tk</td>
+                                                    <td>Pending</td>
+                                                    <td>23h 32m 56s</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".order-list-order-view">View</button>
+
+                                                        <div class="modal fade order-list-order-view" tabindex="-1" role="dialog" aria-labelledby="order-list-order-view" aria-hidden="true">
+                                                          <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="order-list-order-view">Order View</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                                <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Corolla G</h3>
+                                                                                <h5>Toyota - 2016</h5>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-right">
+                                                                                <h3>Appointment Date/Time</h3>
+                                                                                <h5>1st April 2020</h5>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-12">
+                                                                                <h3>Services</h3>
+                                                                                <table class="table table-hover mt-4">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>ABS Speed Sensor Replacement</td>
+                                                                                            <td>780Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Wheel Speed Sensor Replacement</td>
+                                                                                            <td>1200Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Drum Replacement</td>
+                                                                                            <td>540Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Caliper Replacement</td>
+                                                                                            <td>340Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Hose Replacement</td>
+                                                                                            <td>540Tk</td>
+                                                                                        </tr>
+                                                                                        <tr style="font-weight: bolder">
+                                                                                            <td class="text-right">Total Payable =</td>
+                                                                                            <td>3160Tk</td>
+                                                                                            <td class="text-right"></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Address</h3>
+                                                                                <p>Location : Rampura</p>
+                                                                                <p>Address : House : 29, Road : 11, DIT Road, Rampura</p>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-right">
+                                                                                <h3>Contact Info</h3>
+                                                                                <p>Name : Rafel Chy</p>
+                                                                                <p>Number : 01992969618</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Payment Method</h3>
+                                                                                <p>Cash on Delivery</p>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#order-list-order-confirm">
+                                                          Confirm
+                                                        </button>
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="order-list-order-confirm" tabindex="-1" role="dialog" aria-labelledby="order-list-order-confirm" aria-hidden="true">
+                                                          <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="order-list-order-confirm">Order Confirmation</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                <form>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">Total Paid</label>
+                                                                    <input type="text" class="form-control" id="paid" placeholder="Taka">
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlTextarea1">Say somthing about our service</label>
+                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                  </div>
+                                                                    <div class="form-group">
+                                                                    <div class="rating">
+                                                                      <input type="radio" id="star10" name="rating" value="10" /><label for="star10" title="Rocks!">5 stars</label>
+                                                                      <input type="radio" id="star9" name="rating" value="9" /><label for="star9" title="Awesome">4 stars</label>
+                                                                      <input type="radio" id="star8" name="rating" value="8" /><label for="star8" title="Pretty good">3 stars</label>
+                                                                      <input type="radio" id="star7" name="rating" value="7" /><label for="star7" title="Not That Good">2 stars</label>
+                                                                      <input type="radio" id="star6" name="rating" value="6" /><label for="star6" title="Meh">1 star</label>
+                                                                    </div>
+                                                                    </div>
+                                                                </form>
+                                                              </div>
+                                                              <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Done</button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                    <td>9</td>
+                                                    <td>16,376Tk</td>
+                                                    <td>Done</td>
+                                                    <td>0h 0m 0s</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".order-list-order-view2">View</button>
+
+                                                        <div class="modal fade order-list-order-view2" tabindex="-1" role="dialog" aria-labelledby="order-list-order-view2" aria-hidden="true">
+                                                          <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="order-list-order-view2">Order View</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                                <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Corolla G</h3>
+                                                                                <h5>Toyota - 2016</h5>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-right">
+                                                                                <h3>Appointment Date/Time</h3>
+                                                                                <h5>1st April 2020</h5>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-12">
+                                                                                <h3>Services</h3>
+                                                                                <table class="table table-hover mt-4">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>ABS Speed Sensor Replacement</td>
+                                                                                            <td>780Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Wheel Speed Sensor Replacement</td>
+                                                                                            <td>1200Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Drum Replacement</td>
+                                                                                            <td>540Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Caliper Replacement</td>
+                                                                                            <td>340Tk</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Brake Hose Replacement</td>
+                                                                                            <td>540Tk</td>
+                                                                                        </tr>
+                                                                                        <tr style="font-weight: bolder">
+                                                                                            <td class="text-right">Total Payable =</td>
+                                                                                            <td>3160Tk</td>
+                                                                                            <td class="text-right"></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Address</h3>
+                                                                                <p>Location : Rampura</p>
+                                                                                <p>Address : House : 29, Road : 11, DIT Road, Rampura</p>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-right">
+                                                                                <h3>Contact Info</h3>
+                                                                                <p>Name : Rafel Chy</p>
+                                                                                <p>Number : 01992969618</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3>Payment Method</h3>
+                                                                                <p>Cash on Delivery</p>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#order-list-order-confirm">
+                                                          Confirm
+                                                        </button>
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="order-list-order-confirm2" tabindex="-1" role="dialog" aria-labelledby="order-list-order-confirm2" aria-hidden="true">
+                                                          <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="order-list-order-confirm2">Order Confirmation</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                <form>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlInput1">Total Paid</label>
+                                                                    <input type="text" class="form-control" id="paid" placeholder="Taka">
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label for="exampleFormControlTextarea1">Say somthing about our service</label>
+                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                  </div>
+                                                                    <div class="form-group">
+                                                                    <div class="rating">
+                                                                      <input type="radio" id="star10" name="rating" value="10" /><label for="star10" title="Rocks!">5 stars</label>
+                                                                      <input type="radio" id="star9" name="rating" value="9" /><label for="star9" title="Awesome">4 stars</label>
+                                                                      <input type="radio" id="star8" name="rating" value="8" /><label for="star8" title="Pretty good">3 stars</label>
+                                                                      <input type="radio" id="star7" name="rating" value="7" /><label for="star7" title="Not That Good">2 stars</label>
+                                                                      <input type="radio" id="star6" name="rating" value="6" /><label for="star6" title="Meh">1 star</label>
+                                                                    </div>
+                                                                    </div>
+                                                                </form>
+                                                              </div>
+                                                              <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Done</button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                              </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                        </div>
                         <div class="tab-pane" id="vehicle">Vehicle Profile</div>
-                        <div class="tab-pane" id="service">Service Screen</div>
                     </div>
                 </div>
             </div>
