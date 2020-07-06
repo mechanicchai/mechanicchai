@@ -74,6 +74,10 @@ hr {
     color: #ff4444;
 }
 
+.specify-service h3 {
+    font-size: 24px;
+}
+
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
