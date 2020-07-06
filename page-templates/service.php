@@ -34,9 +34,17 @@ get_header();
                             foreach ($categories as $category) {
                                 $cat_id = $category->term_id;
                                 $cat_name = $category->name;
+                                
+                                //category icon class
+                                if( function_exists('get_field') ) {
+                                    $category_icon_class =  get_field( 'category_field', 'category_' . $cat_id );
+                                }else {
+                                    $category_icon_class = '';
+                                }
+
                             ?>
                                 <div class="col-4 mt-2">
-                                    <a class="mc-main-services btn <?php echo ($cat_name == 'Car') ? 'btn-primary service-cat-active' : 'btn-secondary'; ?>" data-cat_id="<?php echo !empty($cat_id) ? $cat_id : ''; ?>" data-category="<?php echo strtolower($category->name); ?>"><i class="fas fa-car"></i><br><?php echo !empty($cat_name) ? $cat_name : ''; ?></a>
+                                    <a class="mc-main-services btn <?php echo ($cat_name == 'Car') ? 'btn-primary service-cat-active' : 'btn-secondary'; ?>" data-cat_id="<?php echo !empty($cat_id) ? $cat_id : ''; ?>" data-category="<?php echo strtolower($category->name); ?>"><i class="<?php echo $category_icon_class; ?>"></i><br><?php echo !empty($cat_name) ? $cat_name : ''; ?></a>
                                 </div>
                             <?php
                             }
