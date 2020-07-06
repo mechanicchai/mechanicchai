@@ -45,7 +45,7 @@ get_header();
 
                     </div>
                     <div class="col-md-4 specify-service">
-                        <h3>Specify Your Car</h3>
+                        <h3>Specify Your <span class="mc-title-category">Car</span></h3>
                         <form>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Brand</label>
@@ -216,8 +216,14 @@ get_header();
                                                     $cost = get_field('service_amount', $id);
                                                 }
 
+                                                //service category lists
+                                                $service_cat_list = get_the_terms( $id, 'service_category' );
+                                                $service_cat_list = ( $service_cat_list && is_array($service_cat_list) ) ? wp_list_pluck( $service_cat_list, 'slug' ) : array();
+                                                $service_category =  implode( ',', $service_cat_list );
+                                                
+
                                         ?>
-                                                <tr data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
+                                                <tr data-category="<?php echo $service_category; ?>" data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
                                                     <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                                     <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
                                                     <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
@@ -258,8 +264,13 @@ get_header();
                                         if( function_exists('get_field') ) {
                                             $cost = get_field('service_amount', $id);
                                         }
+
+                                        //service category lists
+                                        $service_cat_list = get_the_terms( $id, 'service_category' );
+                                        $service_cat_list = ( $service_cat_list && is_array($service_cat_list) ) ? wp_list_pluck( $service_cat_list, 'slug' ) : array();
+                                        $service_category =  implode( ',', $service_cat_list );
                                 ?>
-                                        <tr>
+                                        <tr data-category="<?php echo $service_category; ?>">
                                             <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                             <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
                                             <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>

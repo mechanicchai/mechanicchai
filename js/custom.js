@@ -51,6 +51,9 @@
 
             // change brand
             var current_category = $(this).data('category');
+            var current_category_text = $(this).text();
+            $('.mc-title-category').text( current_category_text );
+            
 
             $('.mc-service-brand').each(function(e) {
                 var brand_category = $(this).data('brand-category');
@@ -98,16 +101,33 @@
             var id = $(this).find('option:selected').attr('value');
             $('.mc-repair-services tr').each(function() {
                 var service_option_value = $(this).data('service-option');
-                if( service_option_value == id ) {
-                    $(this).show();
-                }else {
-                    $(this).hide();
-                }
+                var data_cat = $(this).data('category');
+                var service_data = app.getLocalStorage();
 
-                //when selected option 'All' show all options 
-                if( id == '0' ) {
-                    $(this).show();
+                if( data_cat == '' ) {
+                    $(this).hide();
+                }else {
+                    if( service_option_value == id ) {
+                        $(this).show();
+                    }else {
+                        $(this).hide();
+                    }
+
+                    var data_cat_arr = data_cat.split(',');
+                    var service_data_cat = service_data.categories.category;
+
+                    //when selected option 'All' show all options matched service category 
+                    if( id == '0' ) {
+                        $(this).show();
+
+                        if( !data_cat_arr.includes(service_data_cat) ) {
+                            $(this).hide();
+                        }
+                    }
                 }
+                
+
+                
             });
             
         },
@@ -143,6 +163,22 @@
             var brand = $('.mc-service-brand.mc-active').find('option:selected').data('brand');
             var model = $('.mc-service-model.mc-active').find('option:selected').data('model');
             var year = $('.mc-service-year').val();
+
+            // repair services matches category and show
+            $('.mc-repair-services tr').each(function(e) {
+                var data_cat = $(this).data('category');
+
+                if( data_cat !== '' ) {
+                    var data_cat_arr = data_cat.split(',');
+                    var service_data_cat = service_data.categories.category;
+
+                    if( !data_cat_arr.includes(service_data_cat) ) {
+                        $(this).hide();
+                    }
+                }else {
+                    $(this).hide();
+                }
+            });
             
 
             app.cart_categories.category = category ? category : service_data.categories.category;
