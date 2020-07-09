@@ -14,12 +14,9 @@
                         <div class="f_widget company_widget">
                             <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
                             <p>Don’t miss any offers of our upcoming services and events.!</p>
-                            <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
-                                <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
-                                <button class="btn btn-primary btn-sm mt-2 px-4" type="submit">Subscribe</button>
-                                <p class="mchimp-errmessage" style="display: none;"></p>
-                                <p class="mchimp-sucmessage" style="display: none;"></p>
-                            </form>
+                            <?php
+                                echo do_shortcode('[gravityform id="4"]');
+                            ?>
                         </div>
                     </div>
                 </div>
