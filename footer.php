@@ -15,7 +15,7 @@
                             <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
                             <p>Don’t miss any offers of our upcoming services and events.!</p>
                             <?php
-                                echo do_shortcode('[gravityform id="4"]');
+                                echo do_shortcode('[gravityform id="5"]');
                             ?>
                         </div>
                     </div>
