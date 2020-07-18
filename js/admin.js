@@ -7,7 +7,7 @@
         init: function () {
             app.onLoadServicesType();
             $('.mc_service_type').on('change', app.changeServicestype);
-            $(document).on('change', '', app.testDom);
+            $(document).on('change', '.create-element', app.testDom);
             $('.popular-category input[type="checkbox"]').on('change', app.changeChildCategorySelected);
 
         },
