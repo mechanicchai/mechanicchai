@@ -198,7 +198,6 @@ get_header();
                                         <?php
                                         $args = array(
                                             'post_type' => 'service',
-                                            'posts_per_page' => 30,
                                             'meta_query' => array(
                                                 array(
                                                     'key' => 'mc_service_type',
@@ -240,6 +239,7 @@ get_header();
                                                     
                                                 </tr>
                                         <?php
+                                            wp_reset_postdata();
                                             }
                                         }
                                         ?>
@@ -256,6 +256,7 @@ get_header();
                                 <?php
                                 $args = array(
                                     'post_type' => 'service',
+                                    'posts_per_page' => 30,
                                     'meta_query' => array(
                                         array(
                                             'key' => 'mc_service_type',
@@ -290,6 +291,7 @@ get_header();
                                             <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
                                         </tr>
                                 <?php
+                                    wp_reset_postdata();
                                     }
                                 }
                                 ?>
