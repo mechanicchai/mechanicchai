@@ -316,6 +316,7 @@ get_header();
                                         echo '<pre>';
                                         print_r($locations);
                                         echo '</pre>';
+                                        
                                 ?>
                                 <select class="form-control service-info-location" id="exampleFormControlSelect1">
                                     <?php
