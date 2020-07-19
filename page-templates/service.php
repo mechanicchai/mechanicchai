@@ -314,6 +314,7 @@ get_header();
                                 <select class="form-control service-info-location" id="exampleFormControlSelect1">
                                     <?php
                                         $locations = mc_get_service_locations();
+                                        
                                         if( $locations ) {
                                             if( is_array( $locations ) ) {
                                                 foreach( $locations as $location ) {
