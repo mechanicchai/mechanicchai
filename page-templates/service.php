@@ -311,13 +311,6 @@ get_header();
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Location</label>
-                                <?php
-                                        $locations = mc_get_service_locations();
-                                        echo '<pre>';
-                                        print_r($locations);
-                                        echo '</pre>';
-                                        
-                                ?>
                                 <select class="form-control service-info-location" id="exampleFormControlSelect1">
                                     <?php
                                         $locations = mc_get_service_locations();
