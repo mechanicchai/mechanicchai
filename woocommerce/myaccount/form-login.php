@@ -21,7 +21,6 @@ if (!defined('ABSPATH')) {
 }
 
 do_action('woocommerce_before_customer_login_form'); ?>
-
 <?php if ('yes' === get_option('woocommerce_enable_myaccount_registration')) : ?>
 		<?php
 		$parsed_url = mc_parse_current_url();
@@ -161,28 +160,29 @@ do_action('woocommerce_before_customer_login_form'); ?>
 								
 								<div class="form-group input-group">
 									<div class="input-group-prepend">
-										<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+										<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
 									</div>
-									<input name="" class="form-control" placeholder="user name" type="text">
+									<input name="mc_login_phone_number" class="form-control" placeholder="phone number" type="text">
 								</div> 
 
 								<div class="form-group input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 									</div>
-									<input class="woocommerce-Input woocommerce-Input--text input-text form-control" placeholder="password" type="password" name="password" id="password" autocomplete="current-password" />
+									<input class="woocommerce-Input woocommerce-Input--text input-text form-control" placeholder="password" type="password" name="mc_login_password" id="password" autocomplete="current-password" />
 								</div> 
 
 								<?php do_action('woocommerce_login_form'); ?>
 
 								<div class="form-group">
-									<?php wp_nonce_field('woocommerce-login', 'woocommerce-login-nonce'); ?>
-									<button type="submit" class="woocommerce-button button woocommerce-form-login__submit btn btn-primary btn-block" name="login" value="<?php esc_attr_e('Login', 'woocommerce'); ?>"><?php esc_html_e('Login', 'woocommerce'); ?></button>
+									<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
+									<button type="submit" class="btn btn-primary btn-block" name="login" value="<?php esc_attr_e('Login', 'woocommerce'); ?>"><?php esc_html_e('Login', 'woocommerce'); ?></button>
 								</div> 
 
 								<p class="text-center">Have an account? <a href="<?php echo home_url('/registration'); ?>">Signup</a> </p>
 								<?php do_action('woocommerce_login_form_end'); ?>
 							</form>
+							
 						</article>
 					</div> <!-- card.// -->
 			<?php
@@ -191,3 +191,4 @@ do_action('woocommerce_before_customer_login_form'); ?>
 		?>
 <?php endif; ?>
 <?php do_action('woocommerce_after_customer_login_form'); ?>
+<?php do_action( 'mc_login_form_submission' ); ?>

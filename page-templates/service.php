@@ -34,9 +34,17 @@ get_header();
                             foreach ($categories as $category) {
                                 $cat_id = $category->term_id;
                                 $cat_name = $category->name;
+                                
+                                //category icon class
+                                if( function_exists('get_field') ) {
+                                    $category_icon_class =  get_field( 'category_field', 'category_' . $cat_id );
+                                }else {
+                                    $category_icon_class = '';
+                                }
+
                             ?>
                                 <div class="col-4 mt-2">
-                                    <a class="mc-main-services btn <?php echo ($cat_name == 'Car') ? 'btn-primary service-cat-active' : 'btn-secondary'; ?>" data-cat_id="<?php echo !empty($cat_id) ? $cat_id : ''; ?>" data-category="<?php echo strtolower($category->name); ?>"><i class="fas fa-car"></i><br><?php echo !empty($cat_name) ? $cat_name : ''; ?></a>
+                                    <a class="mc-main-services btn <?php echo ($cat_name == 'Car') ? 'btn-primary service-cat-active' : 'btn-secondary'; ?>" data-cat_id="<?php echo !empty($cat_id) ? $cat_id : ''; ?>" data-category="<?php echo strtolower($category->name); ?>"><i class="<?php echo $category_icon_class; ?>"></i><br><?php echo !empty($cat_name) ? $cat_name : ''; ?></a>
                                 </div>
                             <?php
                             }
@@ -45,7 +53,7 @@ get_header();
 
                     </div>
                     <div class="col-md-4 specify-service">
-                        <h3>Specify Your Car</h3>
+                        <h3>Specify Your <span class="mc-title-category">Car</span></h3>
                         <form>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Brand</label>
@@ -190,6 +198,7 @@ get_header();
                                         <?php
                                         $args = array(
                                             'post_type' => 'service',
+                                            'posts_per_page' => 50,
                                             'meta_query' => array(
                                                 array(
                                                     'key' => 'mc_service_type',
@@ -199,6 +208,7 @@ get_header();
                                             )
                                         );
                                         $repair_service_posts = get_posts($args);
+                                        
 
                                         if ($repair_service_posts) {
                                             foreach ($repair_service_posts as $repair_service_post) {
@@ -216,14 +226,21 @@ get_header();
                                                     $cost = get_field('service_amount', $id);
                                                 }
 
+                                                //service category lists
+                                                $service_cat_list = get_the_terms( $id, 'service_category' );
+                                                $service_cat_list = ( $service_cat_list && is_array($service_cat_list) ) ? wp_list_pluck( $service_cat_list, 'slug' ) : array();
+                                                $service_category =  implode( ',', $service_cat_list );
+                                                
+
                                         ?>
-                                                <tr data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
+                                                <tr data-category="<?php echo $service_category; ?>" data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
                                                     <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                                     <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
                                                     <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
                                                     
                                                 </tr>
                                         <?php
+                                            wp_reset_postdata();
                                             }
                                         }
                                         ?>
@@ -240,6 +257,7 @@ get_header();
                                 <?php
                                 $args = array(
                                     'post_type' => 'service',
+                                    'posts_per_page' => 50,
                                     'meta_query' => array(
                                         array(
                                             'key' => 'mc_service_type',
@@ -258,13 +276,19 @@ get_header();
                                         if( function_exists('get_field') ) {
                                             $cost = get_field('service_amount', $id);
                                         }
+
+                                        //service category lists
+                                        $service_cat_list = get_the_terms( $id, 'service_category' );
+                                        $service_cat_list = ( $service_cat_list && is_array($service_cat_list) ) ? wp_list_pluck( $service_cat_list, 'slug' ) : array();
+                                        $service_category =  implode( ',', $service_cat_list );
                                 ?>
-                                        <tr>
+                                        <tr data-category="<?php echo $service_category; ?>">
                                             <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                             <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
                                             <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
                                         </tr>
                                 <?php
+                                    wp_reset_postdata();
                                     }
                                 }
                                 ?>

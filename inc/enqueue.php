@@ -53,7 +53,7 @@ if ( ! function_exists( 'mc_admin_scripts' ) ) {
 		$the_theme     = wp_get_theme();
 		$theme_version = $the_theme->get( 'Version' );
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/admin.js' );
-		wp_enqueue_script( 'mc-admin-scripts', get_template_directory_uri() . '/js/admin.js', array(), $js_version, true );
+		wp_enqueue_script( 'mc-admin-scripts', get_template_directory_uri() . '/js/admin.js', array('wp-blocks'), $js_version, true );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'mc_admin_scripts' );

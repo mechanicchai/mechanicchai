@@ -77,6 +77,10 @@ hr {
     color: #ff4444;
 }
 
+.specify-service h3 {
+    font-size: 24px;
+}
+
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
@@ -1690,6 +1694,7 @@ h2.ssb-title {
 }
 .gform_wrapper ul.gform_fields li.gfield:first-child {
     margin-top: 0 !important;
+    padding: 0;
 }
 body .gform_wrapper .top_label div.ginput_container {
     margin-top: 0 !important;
@@ -1728,6 +1733,19 @@ body .gform_wrapper .top_label div.ginput_container {
     border-radius: 2rem!important;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+/* footer subscribe form */
+.f_subscribe_two .gform_wrapper ul.gform_fields li.gfield:first-child {
+    padding: 0;
+}
+.f_subscribe_two .gform_footer {
+    margin: 10px 0 !important;
+    padding: 0 !important;
+}
+.f_subscribe_two .gform_footer input[type="submit"] {
+    width: auto !important;
+    padding: 3px 25px;
+}
+
 .mc-submit-form-wrapper .gravity-form {
     float: right;
     margin-left: 10px;

@@ -6,7 +6,7 @@
 <?php 
     if( !is_user_logged_in() ) {
     ?>
-    <a href="<?php echo get_home_url(); ?>/log-in/" class="btn btn-primary btn-sm px-4"><i class="fas fa-user"></i> <span class="hide-con"><?php esc_html_e( 'Sign In', 'mechanic' ); ?></span></a>
+    <a href="<?php echo get_home_url(); ?>/signin/" class="btn btn-primary btn-sm px-4"><i class="fas fa-user"></i> <span class="hide-con"><?php esc_html_e( 'Sign In', 'mechanic' ); ?></span></a>
     
     <?php
         $parsed_url = mc_parse_current_url();
