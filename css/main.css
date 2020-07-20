@@ -405,7 +405,7 @@ header {
 }
 
 .head-wrap h3 strong {
-    font-size: 66px;
+    font-size: 46px;
     color: #57BE8F;
 }
 
@@ -2914,9 +2914,10 @@ h6 {
         padding: 15px 10px;
         font-size: 14px;
     }
+    .se-services a{
+        font-size: 12px;
+    }
 }
 @media only screen and (max-width:460px){
-    
-}
     
 }
