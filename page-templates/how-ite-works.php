@@ -185,7 +185,6 @@ get_header();
                                 $faq_answer = $faq['faq_answer'];
 
                                 if( $faq_question && $faq_answer ) { ?>
-                                    <option><?php echo esc_html__( $faq_name, 'mechanic' ); ?></option>
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="heading<?php echo $counter_id; ?>">
                                             <h4 class="panel-title">
