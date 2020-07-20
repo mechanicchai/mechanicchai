@@ -18,7 +18,11 @@ get_header();
                 <div class="row">
                     <div class="col-md-12">
                         <h2>How it Works</h2>
-                        <a href="Registration/User/service.html" class="btn btn-primary btn-lg px-5">Get a Quote</a>
+                        <?php
+                            mc_get_quote_button(
+                                home_url('service'), 'Get a Quote'
+                            );
+                        ?>
                     </div>
 
                 </div>
