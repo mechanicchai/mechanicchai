@@ -39,6 +39,17 @@ if( !function_exists( 'mc_get_service_locations' ) ) {
     }
 }
 
+// get all faqs
+if( !function_exists( 'mc_get_faqs' ) ) {
+    function mc_get_faqs() {
+        if( function_exists( 'get_field' ) ) {
+            $faqs = get_field( 'faq_items', 'option' );
+
+            return $faqs;
+        }
+    }
+}
+
 
 // get all service repair types
 if( !function_exists( 'mc_get_service_types' ) ) {
