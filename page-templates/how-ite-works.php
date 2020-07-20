@@ -134,7 +134,9 @@ get_header();
                     </div>
                     <div class="col-md-4 col-sm-12 text-center text-center">
                         <div class="single_mid">
-                            <img src="../img/mobile-pp.png" alt="">
+                            <?php
+                                echo $image = mc_display_mobile_app_img();
+                            ?>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
