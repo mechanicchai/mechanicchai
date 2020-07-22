@@ -39,6 +39,30 @@ if( !function_exists( 'mc_get_service_locations' ) ) {
     }
 }
 
+// get all faqs
+if( !function_exists( 'mc_get_faqs' ) ) {
+    function mc_get_faqs() {
+        if( function_exists( 'get_field' ) ) {
+            $faqs = get_field( 'faq_items', 'option' );
+
+            return $faqs;
+        }
+    }
+}
+
+// display mobile app
+// if( !function_exists( 'mc_display_mobile_app_img' ) ) {
+//     function mc_display_mobile_app_img() {
+//         if( function_exists( 'get_field' ) ) {
+//             $image = get_field( 'mobile_app_img', 'option' );
+//             $image_id = $image['ID'];
+//             if( $image_id ) {
+//                 return wp_get_attachment_image($image_id, 'app-thumbnail');
+//             }
+//         }
+//     }
+// }
+
 
 // get all service repair types
 if( !function_exists( 'mc_get_service_types' ) ) {
