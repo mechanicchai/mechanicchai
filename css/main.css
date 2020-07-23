@@ -384,7 +384,6 @@ header {
 
 .head-wrap {
     width: 100%;
-    background: rgba(21, 21, 14, 0.5);
     padding: 120px 0px;
 }
 
@@ -2554,94 +2553,36 @@ h6 {
 /*************footer End*****************/
 
 /****************User Dashboard start************************/
-.top-bar span.user-name{
-    color: #fff;
-}
-.dashboard ul.nav-tabs{
-    background-color: #eee;
-}
-.dashboard ul.nav-tabs li{
+.woocommerce{
     width: 100%;
-}
-.dashboard ul.nav-tabs li a{
     padding: 10px;
+}
+.woocommerce::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.woocommerce-MyAccount-navigation{
+    width: 20%;
+    float: left;
+}
+.woocommerce-MyAccount-navigation ul{
+    background-color: aliceblue;
+}
+.woocommerce-MyAccount-navigation ul li{
+    list-style: none;
+}
+.woocommerce-MyAccount-navigation ul li a{
+    padding: 7px 15px;
     display: block;
 }
-.user-pro .card {
-    text-align: center;
-}
-    
-    .user-pro .card .box .img {
-        width:120px;
-        height:120px;
-        margin:0 auto;
-        border-radius:50%;
-        overflow:hidden;
-    }
-    .user-pro .card .box .img img {
-        width:100%;
-        height:100%;
-    }
-  .rating {
-      float:left;
-    }
 
-    /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
-      follow these rules. Every browser that supports :checked also supports :not(), so
-      it doesn’t make the test unnecessarily selective */
-    .rating:not(:checked) > input {
-        position:absolute;
-        top:-9999px;
-        clip:rect(0,0,0,0);
-    }
-
-    .rating:not(:checked) > label {
-        float:right;
-        width:1em;
-        /* padding:0 .1em; */
-        overflow:hidden;
-        white-space:nowrap;
-        cursor:pointer;
-        font-size:300%;
-        /* line-height:1.2; */
-        color:#ddd;
-    }
-
-    .rating:not(:checked) > label:before {
-        content: '★ ';
-    }
-
-    .rating > input:checked ~ label {
-        color: dodgerblue;
-        
-    }
-
-    .rating:not(:checked) > label:hover,
-    .rating:not(:checked) > label:hover ~ label {
-        color: dodgerblue;
-        
-    }
-
-    .rating > input:checked + label:hover,
-    .rating > input:checked + label:hover ~ label,
-    .rating > input:checked ~ label:hover,
-    .rating > input:checked ~ label:hover ~ label,
-    .rating > label:hover ~ input:checked ~ label {
-        color: dodgerblue;
-        
-    }
-
-    .rating > label:active {
-        position:relative;
-        top:2px;
-        left:2px;
-    }
-.dashboard .nav a{
-    color: #000;
-}
-.dashboard .nav .active{
-    background-color:   #57BE8F;
-    color: #fff;
+.woocommerce-MyAccount-content{
+    width: 80%;
+    float: right;
+    background-color: #eee;
+    padding: 20px;
+    height: 400px;
 }
 
 /****************User Dashboard start************************/
