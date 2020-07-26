@@ -398,18 +398,18 @@ get_header();
                         <div class="card-title text-center">Order Overview</div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4 class="mc-checkout-brand">Corolla G</h4>
-                                <h5><span class="mc-checkout-model">Toyota</span> <span class="mc-checkout-year">- 2016</span></h5>
+                                <h5 class="mc-checkout-brand">Corolla G</h5>
+                                <h6><span class="mc-checkout-model">Toyota</span> <span class="mc-checkout-year">- 2016</span></h6>
                             </div>
                             <div class="col-md-6">
-                                <h4>Appointment Date/Time</h4>
-                                <h5 class="mc-checkout-appoint-date">1st April 2020</h5>
+                                <h5>Appointment Date/Time</h5>
+                                <h6 class="mc-checkout-appoint-date">1st April 2020</h6>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-12">
-                                <h4>Services</h4>
+                                <h5>Services</h5>
                                 <table class="table table-hover mt-4 mc-checkout-services-list">
                                     <tbody>
                                         <tr>
@@ -424,12 +424,12 @@ get_header();
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Address</h4>
+                                <h5>Address</h5>
                                 <p>Location : <span class="service-checkout-location">Rampura</span></p>
                                 <p>Address : <span class="service-checkout-address">House : 29, Road : 11, DIT Road, Rampura</span></p>
                             </div>
                             <div class="col-md-6">
-                                <h4>Contact Info</h4>
+                                <h5>Contact Info</h5>
                                 <p>Name : <span class="service-checkout-name">Rafel Chy</span></p>
                                 <p>Number : <span class="service-checkout-number">01992969618</span></p>
                             </div>
@@ -437,7 +437,7 @@ get_header();
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Payment Method</h4>
+                                <h5>Payment Method</h5>
                                 <p>Cash on Delivery</p>
                             </div>
                             <div class="col-md-6">

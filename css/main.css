@@ -157,6 +157,7 @@ iframe {
 .btn-secondary:hover{
     background-color: #15150E;
     border-color: #15150E;
+    color: #fff;
 }
 .top-bar .col-6 {
     padding-left: 0px !important;
@@ -1171,7 +1172,7 @@ box-shadow: 0px 0px 3px #000;
 
 /*service cart*/
 .service {
-    padding: 110px 0px;
+    padding: 45px 0px;
 }
 
 .service h2 {
@@ -2828,7 +2829,7 @@ h6 {
         padding-top: 20px;
     }
     .step-group{
-        top: 25%;
+        top: 35%;
     }
     .step-group .step{
         height: 50px;
