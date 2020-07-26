@@ -385,6 +385,7 @@ header {
 .head-wrap {
     width: 100%;
     padding: 120px 0px;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .head-wrap h2 {
@@ -1200,7 +1201,7 @@ box-shadow: 0px 0px 3px #000;
     border-radius: 3px;
     padding: 55px 15px;
     position: relative;
-    height: 350px;
+    height: 296px;
 }
 .serviceBox .service-content a.fas{
     font-size: 14px;
@@ -1242,9 +1243,8 @@ box-shadow: 0px 0px 3px #000;
 .serviceBox .description {
     font-size: 14px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 18px;
     margin-bottom: 0;
-    text-align: justify;
 }
 
 .serviceBox .read-more {
@@ -1446,7 +1446,7 @@ h2.ssb-title {
 }
 
 .reg-as-wrap {
-    background: rgba(21, 21, 14, 0.7);
+    background: rgba(21, 21, 14, 0.9);
     padding: 90px 0px;
 }
 
@@ -1970,14 +1970,14 @@ body .gform_wrapper .top_label div.ginput_container {
 
 /*how mobile app work*/
 .mobile-app-workflow{
-    background-image: url(../img/electronics-bg.jpg);
+    background-image: url(../img/10490.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
 .mobile-app-workflow .mobile-app-workflow-wrap{
     width: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px 0px;
 }
 p {
@@ -2306,8 +2306,10 @@ button:hover {
     display: block;
 }
 
-
-
+/*==========privacy policy============*/
+.privacy-con p{
+    padding-bottom: 30px;
+}
 /*footer style*/
 .new_footer_area {
     background: #fbfbfd;
@@ -2582,9 +2584,16 @@ h6 {
     float: right;
     background-color: #eee;
     padding: 20px;
-    height: 400px;
 }
-
+.woocommerce-MyAccount-content::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.col-1{
+    flex: none!important;
+    width: auto!important;
+}
 /****************User Dashboard start************************/
 
 /* ==========================================================================
