@@ -159,6 +159,9 @@ iframe {
     border-color: #15150E;
     color: #fff;
 }
+a:not([href]):hover{
+    color: #fff;
+}
 .top-bar .col-6 {
     padding-left: 0px !important;
     padding-right: 0px !important;
