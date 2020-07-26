@@ -27,6 +27,12 @@ function mc_rest_user_endpoints($request) {
     'callback' => 'mc_rest_service_category_api',
   ));
 
+  
+  register_rest_route('wp/v2', 'service-post-id', array(
+    'methods' => 'GET',
+    'callback' => 'mc_rest_get_service_post_id',
+  ));
+
   register_rest_route('wp/v2', 'service-post-meta-by-id', array(
     'methods' => 'POST',
     'callback' => 'mc_rest_service_posts_meta_by_id',
@@ -306,6 +312,35 @@ function mc_rest_get_service_posts( $request = null ) {
     $response['code'] = 200;
 
     return new WP_REST_Response($response, 123);
+}
+
+
+/**
+ * Get a single post id
+ */
+function mc_rest_get_service_post_id( $request = null ) {
+    $response = array();
+
+    $args = array(
+        'post_type' => 'service',
+        'posts_per_page' => 1,
+        'order_by' => 'DESC',
+        'order' => 'date'
+    );
+
+    $posts = get_posts( $args );
+
+    $id = '';
+    if( $posts ) {
+        $id = $posts[0]->ID;
+    }
+
+    $response['id'] = $id; 
+    $response['code'] = 200;
+
+    return new WP_REST_Response($response, 123);
+    
+
 }
 
 
