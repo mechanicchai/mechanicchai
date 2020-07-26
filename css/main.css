@@ -385,7 +385,7 @@ header {
 .head-wrap {
     width: 100%;
     padding: 120px 0px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .head-wrap h2 {
@@ -1363,7 +1363,7 @@ box-shadow: 0px 0px 3px #000;
 
 .abt-bg-wrap {
     padding: 300px 0px;
-    background: rgba(21, 21, 14, 0.8);
+    background: rgba(21, 21, 14, 0.9);
 }
 
 .about-con {
