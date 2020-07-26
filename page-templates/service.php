@@ -21,7 +21,7 @@ get_header();
                 <span class="step service-info"><span class="count"><i class="fas fa-map-marker-alt"></i></span><span class="name">Address and Appointment Time/Date</span></span>
                 <span class="step service-review"><span class="count"><i class="fas fa-eye"></i></span><span class="name">Review & Book</span></span>
             </div>
-            <h1>Answer a few simple questions to get a Service.</h1>
+<!--            <h5>Answer a few simple questions to get a Service.</h5>-->
             <hr>
             <!-- One "tab" for each step in the form: -->
             <div class="tab">
