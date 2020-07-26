@@ -154,7 +154,10 @@ iframe {
 .top-bar {
     background-color: #15150E;
 }
-
+.btn-secondary:hover{
+    background-color: #15150E;
+    border-color: #15150E;
+}
 .top-bar .col-6 {
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -2172,7 +2175,7 @@ p {
 }
 #regForm {
   background-color: #ffffff;
-  margin: 20px auto;
+  margin: 40px auto;
 }
 
 .step-group{
@@ -2343,6 +2346,7 @@ button:hover {
     padding-bottom: 30px;
 }
 /*footer style*/
+
 .new_footer_area {
     background: #fbfbfd;
 }
@@ -2824,7 +2828,7 @@ h6 {
         padding-top: 20px;
     }
     .step-group{
-        top: 30%;
+        top: 25%;
     }
     .step-group .step{
         height: 50px;
@@ -2846,6 +2850,7 @@ h6 {
     .specify-service{
         padding-top: 30px;
     }
+    
 }
 @media only screen and (max-width:512px) {
     .hide-con {
@@ -2898,6 +2903,9 @@ h6 {
     }
     .se-services a{
         font-size: 12px;
+    }
+    .footer-widget{
+        text-align: center;
     }
 }
 @media only screen and (max-width:460px){
