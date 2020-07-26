@@ -10,15 +10,51 @@ defined('ABSPATH') || exit;
 
 get_header();
 ?>
+<div class="service-cart">
+        <div class="cd-cart cd-cart--empty js-cd-cart">
+            <a href="#0" class="cd-cart__trigger text-replace">
+                
+                <ul class="cd-cart__count"> <!-- cart items count -->
+                    <li>0</li>
+                    <li>0</li>
+                </ul> <!-- .cd-cart__count -->
+            </a>
 
+            <div class="cd-cart__content">
+                <div class="cd-cart__layout">
+                    
+
+                    <div class="cd-cart__body">
+                        <header class="cd-cart__header p-2 pt-3">
+                            <h2>Selected Service</h2>
+                            <span class="cd-cart__undo">Item removed. <a href="#0">Undo</a></span>
+                        </header>
+                        <ul class="p-4">
+                            <!-- products added to the cart will be inserted here using JavaScript -->
+                        </ul>
+                    </div>
+
+                    <footer class="cd-cart__footer">
+                        <a href="#0" class="cd-cart__checkout">
+                  <em>Submit Order - Tk<span>0</span>
+                    <svg class="icon icon--sm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor"><line stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="12" x2="21" y2="12"/><polyline stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="15,6 21,12 15,18 "/></g>
+                    </svg>
+                  </em>
+                </a>
+                    </footer>
+                </div>
+            </div> <!-- .cd-cart__content -->
+        </div> <!-- cd-cart -->
+    </div>
 <div class="service">
+    
     <div class="container">
-
+        
         <form id="regForm" action="/action_page.php">
             <div class="step-group" style="text-align:center;">
                 <span class="step service-category"><span class="count"><i class="fas fa-clone"></i></span><span class="name">Category & Specification</span></span>
                 <span class="step service-select"><span class="count"><i class="fas fa-cog"></i></span><span class="name">Service</span></span>
-                <span class="step service-info"><span class="count"><i class="fas fa-map-marker-alt"></i></span><span class="name">Address and Appointment Time/Date</span></span>
+                <span class="step service-info"><span class="count"><i class="fas fa-map-marker-alt"></i></span><span class="name">Address and Time/Date</span></span>
                 <span class="step service-review"><span class="count"><i class="fas fa-eye"></i></span><span class="name">Review & Book</span></span>
             </div>
 <!--            <h5>Answer a few simple questions to get a Service.</h5>-->
@@ -285,7 +321,7 @@ get_header();
                                         <tr data-category="<?php echo $service_category; ?>">
                                             <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                             <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
-                                            <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
+                                            <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="25.99">Add</a></td>
                                         </tr>
                                 <?php
                                     wp_reset_postdata();
@@ -362,18 +398,18 @@ get_header();
                         <div class="card-title text-center">Order Overview</div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h3 class="mc-checkout-brand">Corolla G</h3>
+                                <h4 class="mc-checkout-brand">Corolla G</h4>
                                 <h5><span class="mc-checkout-model">Toyota</span> <span class="mc-checkout-year">- 2016</span></h5>
                             </div>
-                            <div class="col-md-6 text-right">
-                                <h3>Appointment Date/Time</h3>
+                            <div class="col-md-6">
+                                <h4>Appointment Date/Time</h4>
                                 <h5 class="mc-checkout-appoint-date">1st April 2020</h5>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-12">
-                                <h3>Services</h3>
+                                <h4>Services</h4>
                                 <table class="table table-hover mt-4 mc-checkout-services-list">
                                     <tbody>
                                         <tr>
@@ -388,12 +424,12 @@ get_header();
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <h3>Address</h3>
+                                <h4>Address</h4>
                                 <p>Location : <span class="service-checkout-location">Rampura</span></p>
                                 <p>Address : <span class="service-checkout-address">House : 29, Road : 11, DIT Road, Rampura</span></p>
                             </div>
-                            <div class="col-md-6 text-right">
-                                <h3>Contact Info</h3>
+                            <div class="col-md-6">
+                                <h4>Contact Info</h4>
                                 <p>Name : <span class="service-checkout-name">Rafel Chy</span></p>
                                 <p>Number : <span class="service-checkout-number">01992969618</span></p>
                             </div>
@@ -401,7 +437,7 @@ get_header();
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <h3>Payment Method</h3>
+                                <h4>Payment Method</h4>
                                 <p>Cash on Delivery</p>
                             </div>
                             <div class="col-md-6">
