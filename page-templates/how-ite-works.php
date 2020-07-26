@@ -135,7 +135,7 @@ get_header();
                     <div class="col-md-4 col-sm-12 text-center text-center">
                         <div class="single_mid">
                             <?php
-                                 echo $image = mc_display_mobile_app_img();
+                                // echo $image = mc_display_mobile_app_img();
                             ?>
                         </div>
                     </div>
