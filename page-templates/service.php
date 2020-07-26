@@ -272,7 +272,7 @@ get_header();
                                                 <tr data-category="<?php echo $service_category; ?>" data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
                                                     <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                                     <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
-                                                    <td class="text-right"><a class="btn btn-primary btn-sm mc-add-service-cart-btn">Add</a></td>
+                                                    <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="300.00">Add</a></td>
                                                     
                                                 </tr>
                                         <?php
@@ -321,7 +321,7 @@ get_header();
                                         <tr data-category="<?php echo $service_category; ?>">
                                             <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                             <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
-                                            <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="25.99">Add</a></td>
+                                            <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="300.00">Add</a></td>
                                         </tr>
                                 <?php
                                     wp_reset_postdata();
