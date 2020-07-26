@@ -302,10 +302,7 @@ function mc_rest_get_service_posts( $request = null ) {
         }
     }
 
-
-    
- 
-    // $response['current_type'] = $service_main_type; 
+    $response['posts'] = $post_arr; 
     $response['code'] = 200;
 
     return new WP_REST_Response($response, 123);
