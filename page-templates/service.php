@@ -10,7 +10,9 @@ defined('ABSPATH') || exit;
 
 get_header();
 ?>
-<div class="service-cart">
+
+<div class="service">
+    <div class="service-cart">
         <div class="cd-cart cd-cart--empty js-cd-cart">
             <a href="#0" class="cd-cart__trigger text-replace">
                 
@@ -46,8 +48,6 @@ get_header();
             </div> <!-- .cd-cart__content -->
         </div> <!-- cd-cart -->
     </div>
-<div class="service">
-    
     <div class="container">
         
         <form id="regForm" action="/action_page.php">
