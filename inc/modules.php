@@ -27,9 +27,20 @@ function mc_rest_user_endpoints($request) {
     'callback' => 'mc_rest_service_category_api',
   ));
 
+  
+  register_rest_route('wp/v2', 'service-post-id', array(
+    'methods' => 'GET',
+    'callback' => 'mc_rest_get_service_post_id',
+  ));
+
   register_rest_route('wp/v2', 'service-post-meta-by-id', array(
     'methods' => 'POST',
     'callback' => 'mc_rest_service_posts_meta_by_id',
+  ));
+
+  register_rest_route('wp/v2', 'service-posts', array(
+    'methods' => 'GET',
+    'callback' => 'mc_rest_get_service_posts',
   ));
 
 }
@@ -248,6 +259,87 @@ function mc_rest_service_posts_meta_by_id( $request = null ) {
     }
     
     return new WP_REST_Response($response, 123);
+
+}
+
+function mc_rest_get_service_posts( $request = null ) {
+    $response = array();
+
+    $args = array(
+        'post_type' => 'service',
+        'posts_per_page' => -1,
+        'order_by' => 'DESC',
+        'order' => 'date'
+    );
+
+    $posts = get_posts( $args );
+
+    $post_arr = [];
+    if( $posts ) {
+        foreach( $posts as $post ) {
+            setup_postdata($post);
+            $id = $post->ID;
+
+            $slug = get_post_field( 'post_name', $id );
+            $service_ammount = get_post_meta( $id, 'service_amount' );
+            $service_ammount = $service_ammount[0];
+
+
+            //get categories
+            $categories = get_the_terms( $id, 'service_category' );
+            $cat_ids = wp_list_pluck( $categories, 'term_id' );
+
+            $service_type = get_post_meta( $id, 'mc_service_type' );
+            $service_type_option = get_post_meta( $id, 'mc_service_type_option' );
+            
+
+            $new_post_arr = [
+                'id' => $id,
+                'slug' => $slug,
+                'acf' => [ 'service_ammount' => $service_ammount ],
+                'catgories' => $cat_ids,
+                'service_type' => $service_type,
+                'service_type_option' => $service_type_option
+            ];
+
+            array_push( $post_arr, $new_post_arr );
+
+            wp_reset_postdata();
+        }
+    }
+
+    $response['posts'] = $post_arr; 
+    $response['code'] = 200;
+
+    return new WP_REST_Response($response, 123);
+}
+
+
+/**
+ * Get a single post id
+ */
+function mc_rest_get_service_post_id( $request = null ) {
+    $response = array();
+
+    $args = array(
+        'post_type' => 'service',
+        'posts_per_page' => 1,
+        'order_by' => 'DESC',
+        'order' => 'date'
+    );
+
+    $posts = get_posts( $args );
+
+    $id = '';
+    if( $posts ) {
+        $id = $posts[0]->ID;
+    }
+
+    $response['id'] = $id; 
+    $response['code'] = 200;
+
+    return new WP_REST_Response($response, 123);
+    
 
 }
 

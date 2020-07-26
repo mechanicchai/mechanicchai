@@ -177,37 +177,37 @@ get_header();
                 <div class="col-md-12">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <?php
-                    $faqs = mc_get_faqs();
+                    // $faqs = mc_get_faqs();
                     
-                    if( $faqs ) {
-                        if( is_array( $faqs ) ) {
-                            $counter_id = 0;
-                            foreach( $faqs as $faq ) {
-                                $faq_question = $faq['faq_question'];
-                                $faq_answer = $faq['faq_answer'];
+                    // if( $faqs ) {
+                    //     if( is_array( $faqs ) ) {
+                    //         $counter_id = 0;
+                    //         foreach( $faqs as $faq ) {
+                    //             $faq_question = $faq['faq_question'];
+                    //             $faq_answer = $faq['faq_answer'];
 
-                                if( $faq_question && $faq_answer ) { ?>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="heading<?php echo $counter_id; ?>">
-                                            <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $counter_id; ?>" aria-expanded="true" aria-controls="collapseOne">
-                                                <?php echo esc_html__( $faq_question, 'mechanic' ); ?>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapse<?php echo $counter_id; ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                            <div class="panel-body">
-                                                <?php echo sprintf( '<p>%s</p>', esc_html($faq_answer) ); ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php 
-                                }
+                    //             if( $faq_question && $faq_answer ) { ?>
+                    //                 <div class="panel panel-default">
+                    //                     <div class="panel-heading" role="tab" id="heading<?php //echo $counter_id; ?>">
+                    //                         <h4 class="panel-title">
+                    //                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php //echo $counter_id; ?>" aria-expanded="true" aria-controls="collapseOne">
+                    //                             <?php // esc_html__( $faq_question, 'mechanic' ); ?>
+                    //                             </a>
+                    //                         </h4>
+                    //                     </div>
+                    //                     <div id="collapse<?php //echo $counter_id; ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    //                         <div class="panel-body">
+                    //                             <?php //echo sprintf( '<p>%s</p>', esc_html($faq_answer) ); ?>
+                    //                         </div>
+                    //                     </div>
+                    //                 </div>
+                    //                 <?php 
+                    //             }
 
-                                $counter_id++;
-                            }
-                        }
-                    }
+                    //             $counter_id++;
+                    //         }
+                    //     }
+                    // }
                     ?>
                         
                     </div>
