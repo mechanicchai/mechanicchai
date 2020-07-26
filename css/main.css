@@ -2823,7 +2823,7 @@ h6 {
         padding: 20px 0px;
     }
     .service{
-        padding: 20px 0px;
+        padding: 75px 0px;
     }
     .serviceBox .service-content{
         height: 255px;
@@ -2869,5 +2869,7 @@ h6 {
     }
 }
 @media only screen and (max-width:460px){
-    
+    .service{
+        padding: 80px 0px;
+    }
 }
