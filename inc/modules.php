@@ -306,7 +306,7 @@ function mc_rest_get_service_posts( $request = null ) {
     //     }
     // }
 
-    $response['posts'] = $post; 
+    $response['posts'] = $posts; 
     $response['code'] = 200;
 
     return new WP_REST_Response($response, 123);
