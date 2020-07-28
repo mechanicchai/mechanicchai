@@ -265,14 +265,12 @@ function mc_rest_service_posts_meta_by_id( $request = null ) {
 function mc_rest_get_service_posts( $request = null ) {
     $response = array();
 
-    // $args = array(
-    //     'post_type' => 'service',
-    //     'posts_per_page' => -1,
-    //     'order_by' => 'DESC',
-    //     'order' => 'date'
-    // );
+    $args = array(
+        'post_type' => 'service',
+        'posts_per_page' => -1,
+    );
 
-    // $posts = get_posts( $args );
+    $posts = get_posts( $args );
 
     // $post_arr = [];
     // if( $posts ) {
@@ -308,7 +306,7 @@ function mc_rest_get_service_posts( $request = null ) {
     //     }
     // }
 
-    $response['posts'] = 'hello service posts'; 
+    $response['posts'] = $post; 
     $response['code'] = 200;
 
     return new WP_REST_Response($response, 123);
