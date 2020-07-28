@@ -38,7 +38,7 @@ function mc_rest_user_endpoints($request) {
     'callback' => 'mc_rest_service_posts_meta_by_id',
   ));
 
-  register_rest_route('wp/v2', 'service-posts', array(
+  register_rest_route('wp/v2', 'all-services', array(
     'methods' => 'GET',
     'callback' => 'mc_rest_get_service_posts',
   ));
