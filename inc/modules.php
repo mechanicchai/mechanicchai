@@ -267,46 +267,46 @@ function mc_rest_get_service_posts( $request = null ) {
 
     $args = array(
         'post_type' => 'service',
-        'posts_per_page' => 50,
+        'posts_per_page' => 100,
     );
 
     $posts = get_posts( $args );
 
-    // $post_arr = [];
-    // if( $posts ) {
-    //     foreach( $posts as $post ) {
-    //         setup_postdata($post);
-    //         $id = $post->ID;
+    $post_arr = [];
+    if( $posts ) {
+        foreach( $posts as $post ) {
+            setup_postdata($post);
+            $id = $post->ID;
 
-    //         $slug = get_post_field( 'post_name', $id );
-    //         $service_ammount = get_post_meta( $id, 'service_amount' );
-    //         $service_ammount = $service_ammount[0];
+            $slug = get_post_field( 'post_name', $id );
+            $service_ammount = get_post_meta( $id, 'service_amount' );
+            $service_ammount = $service_ammount[0];
 
 
-    //         //get categories
-    //         $categories = get_the_terms( $id, 'service_category' );
-    //         $cat_ids = wp_list_pluck( $categories, 'term_id' );
+            //get categories
+            $categories = get_the_terms( $id, 'service_category' );
+            $cat_ids = wp_list_pluck( $categories, 'term_id' );
 
-    //         $service_type = get_post_meta( $id, 'mc_service_type' );
-    //         $service_type_option = get_post_meta( $id, 'mc_service_type_option' );
+            $service_type = get_post_meta( $id, 'mc_service_type' );
+            $service_type_option = get_post_meta( $id, 'mc_service_type_option' );
             
 
-    //         $new_post_arr = [
-    //             'id' => $id,
-    //             'slug' => $slug,
-    //             'acf' => [ 'service_ammount' => $service_ammount ],
-    //             'catgories' => $cat_ids,
-    //             'service_type' => $service_type,
-    //             'service_type_option' => $service_type_option
-    //         ];
+            $new_post_arr = [
+                'id' => $id,
+                'slug' => $slug,
+                'acf' => [ 'service_ammount' => $service_ammount ],
+                'catgories' => $cat_ids,
+                'service_type' => $service_type,
+                'service_type_option' => $service_type_option
+            ];
 
-    //         array_push( $post_arr, $new_post_arr );
+            array_push( $post_arr, $new_post_arr );
 
-    //         wp_reset_postdata();
-    //     }
-    // }
+            wp_reset_postdata();
+        }
+    }
 
-    $response['posts'] = $posts; 
+    $response['posts'] = $post_arr; 
     $response['code'] = 200;
 
     return new WP_REST_Response($response, 123);
