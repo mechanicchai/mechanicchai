@@ -315,6 +315,24 @@ function mc_rest_get_service_posts( $request = null ) {
 }
 
 
+function test_shortcode() {
+    $args = array(
+        'post_type' => 'service',
+        'posts_per_page' => -1,
+        'order_by' => 'DESC',
+        'order' => 'date'
+    );
+
+    $posts = get_posts( $args );
+
+    echo '<pre>';
+    print_r($posts);
+    echo '</pre>';
+    
+}
+add_shortcode( 'test_shortcode', 'test_shortcode' );
+
+
 /**
  * Get a single post id
  */
