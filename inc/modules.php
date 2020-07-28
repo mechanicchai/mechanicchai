@@ -266,7 +266,7 @@ function mc_rest_get_service_posts( $request = null ) {
     $response = array();
 
     $args = array(
-        'post_type' => 'service',
+        'post_type' => 'about',
         'posts_per_page' => -1,
     );
 
