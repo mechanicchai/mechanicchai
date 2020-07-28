@@ -266,8 +266,8 @@ function mc_rest_get_service_posts( $request = null ) {
     $response = array();
 
     $args = array(
-        'post_type' => 'book',
-        'posts_per_page' => -1,
+        'post_type' => 'service',
+        'posts_per_page' => 50,
     );
 
     $posts = get_posts( $args );
