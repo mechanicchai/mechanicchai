@@ -154,7 +154,14 @@ iframe {
 .top-bar {
     background-color: #15150E;
 }
-
+.btn-secondary:hover{
+    background-color: #15150E;
+    border-color: #15150E;
+    color: #fff;
+}
+a:not([href]):hover{
+    color: #fff;
+}
 .top-bar .col-6 {
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -385,6 +392,7 @@ header {
 .head-wrap {
     width: 100%;
     padding: 120px 0px;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .head-wrap h2 {
@@ -462,12 +470,21 @@ box-shadow: 0px 0px 3px #000;
 }
 @media (min-width: 80rem) {
     .cd-cart__trigger, .cd-cart__content {
-    bottom: 40px;
 }
 }.cd-cart__trigger {
     z-index: 9;
-    width: 125px;
+    width: 180px;
     overflow: visible;
+    padding: 13px;
+}
+.cd-cart__trigger ul li{
+    list-style: none;
+    font-size: 26px;
+    color: #fff;
+    padding-top: 75px;
+}
+.cd-cart__trigger ul li a{
+    color: #fff!important;
 }
 .cd-cart__trigger::after, .cd-cart__trigger::before {
     content: '';
@@ -509,6 +526,7 @@ box-shadow: 0px 0px 3px #000;
 .cd-cart__count {
     font-size: 14px;
     font-weight: bold;
+    width: 100%;
     display: inline-block;
     text-indent: 0;
     transition: -webkit-transform .2s .5s;
@@ -516,8 +534,7 @@ box-shadow: 0px 0px 3px #000;
     transition: transform .2s .5s,  -webkit-transform .2s .5s;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
-    background-color: red;
+    background-color: #57BE8F;
 }
 .cd-cart__count li {
     position: absolute;
@@ -567,28 +584,29 @@ box-shadow: 0px 0px 3px #000;
 }
 .cd-cart__layout {
     position: absolute;
-    bottom: 0;
+    bottom: -70px;
     right: 0;
     z-index: 2;
     overflow: hidden;
-    height: 26px;
-    width: 138px;
+    height: 85px;
+    width: 180px;
     border-radius: 0.25em;
     border-radius: var(--radius);
+    background-color: #57BE8F;
     transition: height .4s .1s,  width  .4s .1s,  box-shadow .3s;
     transition-timing-function: cubic-bezier(0.67,  0.17,  0.32,  0.95);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.17);
     pointer-events: auto;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
+    box-shadow: 0px 0px 20px #aaa;
 }
 .cd-cart--open .cd-cart__layout {
     height: 100%;
     width: 100%;
     transition-delay: 0s;
-    background-color: aliceblue;
+    color: #000;
 }
 .cd-cart__header, .cd-cart__body {
     opacity: 0;
@@ -631,6 +649,7 @@ box-shadow: 0px 0px 3px #000;
 }
 .cd-cart--open .cd-cart__header {
     transition: opacity .2s .2s;
+    background-color: ghostwhite;
 }
 .cd-cart__undo {
     opacity: 0;
@@ -668,7 +687,7 @@ box-shadow: 0px 0px 3px #000;
 }
 .cd-cart__body ul {
     position: relative;
-    padding-bottom: 60px;
+    padding-left: 0px;
 }
 @media (min-width: 64rem) {
     .cd-cart__body ul {
@@ -676,6 +695,7 @@ box-shadow: 0px 0px 3px #000;
 }
 }.cd-cart--open .cd-cart__body {
     transition: opacity 0s;
+    border-radius: 10px;
 }
 .cd-cart--open .cd-cart__body li {
     transition: opacity .3s .2s,  -webkit-transform .3s .2s;
@@ -706,6 +726,7 @@ box-shadow: 0px 0px 3px #000;
     transition: opacity 0s .2s,  transform 0s .2s,  -webkit-transform 0s .2s;
     display: -ms-flexbox;
     display: flex;
+    border-bottom: 0.5px solid #ddd;
 }
 .cd-cart__product:not(:last-of-type) {
     margin-bottom: 12px;
@@ -801,6 +822,22 @@ box-shadow: 0px 0px 3px #000;
     display: flex;
     font-size: 0.76388em;
     font-size: calc(var(--text-xs)*1.1);
+    position: relative;
+}
+.cd-cart__actions::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.cd-cart__quantity{
+    width: 50%;
+    display: block;
+    float: right;
+}
+.cd-cart__actions a{
+   position: absolute;
+    right: -300px;
+    color: red;
 }
 .cd-cart__delete-item, .cd-cart__quantity {
     color: hsl(210,  31%,  28.8%);
@@ -823,6 +860,7 @@ box-shadow: 0px 0px 3px #000;
 .cd-cart__quantity label {
     margin-right: 0.375em;
     margin-right: var(--space-xxs);
+    padding-right: 25px;
 }
 .cd-cart__select {
     position: relative;
@@ -864,12 +902,14 @@ box-shadow: 0px 0px 3px #000;
 }
 }.cd-cart__footer {
     position: absolute;
-    bottom: 0;
+    bottom: 32px;
+    left: -40px;
     width: 100%;
     border-radius: 0 0 0.25em 0.25em;
     border-radius: 0 0 var(--radius) var(--radius);
     background: hsl(0,  0%,  100%);
     background: var(--cd-color-3);
+    font-size: 12px;
 }
 .cd-cart__checkout {
     display: block;
@@ -1135,7 +1175,7 @@ box-shadow: 0px 0px 3px #000;
 
 /*service cart*/
 .service {
-    padding: 110px 0px;
+    padding: 45px 0px;
 }
 
 .service h2 {
@@ -1200,7 +1240,7 @@ box-shadow: 0px 0px 3px #000;
     border-radius: 3px;
     padding: 55px 15px;
     position: relative;
-    height: 350px;
+    height: 296px;
 }
 .serviceBox .service-content a.fas{
     font-size: 14px;
@@ -1242,9 +1282,8 @@ box-shadow: 0px 0px 3px #000;
 .serviceBox .description {
     font-size: 14px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 18px;
     margin-bottom: 0;
-    text-align: justify;
 }
 
 .serviceBox .read-more {
@@ -1331,7 +1370,7 @@ box-shadow: 0px 0px 3px #000;
 
 .abt-bg-wrap {
     padding: 300px 0px;
-    background: rgba(21, 21, 14, 0.8);
+    background: rgba(21, 21, 14, 0.9);
 }
 
 .about-con {
@@ -1446,7 +1485,7 @@ h2.ssb-title {
 }
 
 .reg-as-wrap {
-    background: rgba(21, 21, 14, 0.7);
+    background: rgba(21, 21, 14, 0.9);
     padding: 90px 0px;
 }
 
@@ -1647,20 +1686,20 @@ h2.ssb-title {
 
 
 .local-info-time-img{
-    background-image: url(../img/mobile-bg.jpg);
+    background-image: url(../img/bike-bg.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     padding-right: 0px;
 }
 .local-info-wrap{
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.9);
     width: 100%;
     height: 100%;
 }
 
 .remmember{
-    background-image: url(../img/mobile-bg.jpg);
+    background-image: url(../img/bike-bg.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -1670,7 +1709,7 @@ h2.ssb-title {
     color: #fff;
 }
 .remmember-wrap{
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.9);
     padding: 80px 0px;
     width: 100%;
     height: 100%;
@@ -1970,14 +2009,14 @@ body .gform_wrapper .top_label div.ginput_container {
 
 /*how mobile app work*/
 .mobile-app-workflow{
-    background-image: url(../img/electronics-bg.jpg);
+    background-image: url(../img/10490.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
 .mobile-app-workflow .mobile-app-workflow-wrap{
     width: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px 0px;
 }
 p {
@@ -2140,7 +2179,7 @@ p {
 }
 #regForm {
   background-color: #ffffff;
-  margin: 20px auto;
+  margin: 40px auto;
 }
 
 .step-group{
@@ -2306,9 +2345,12 @@ button:hover {
     display: block;
 }
 
-
-
+/*==========privacy policy============*/
+.privacy-con p{
+    padding-bottom: 30px;
+}
 /*footer style*/
+
 .new_footer_area {
     background: #fbfbfd;
 }
@@ -2582,9 +2624,16 @@ h6 {
     float: right;
     background-color: #eee;
     padding: 20px;
-    height: 400px;
 }
-
+.woocommerce-MyAccount-content::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.col-1{
+    flex: none!important;
+    width: auto!important;
+}
 /****************User Dashboard start************************/
 
 /* ==========================================================================
@@ -2805,6 +2854,7 @@ h6 {
     .specify-service{
         padding-top: 30px;
     }
+    
 }
 @media only screen and (max-width:512px) {
     .hide-con {
@@ -2814,7 +2864,7 @@ h6 {
         padding: 20px 0px;
     }
     .service{
-        padding: 20px 0px;
+        padding: 75px 0px;
     }
     .serviceBox .service-content{
         height: 255px;
@@ -2858,7 +2908,12 @@ h6 {
     .se-services a{
         font-size: 12px;
     }
+    .footer-widget{
+        text-align: center;
+    }
 }
 @media only screen and (max-width:460px){
-    
+    .service{
+        padding: 80px 0px;
+    }
 }

@@ -106,10 +106,7 @@
                             commitments and to strive for 100% customer satisfaction.</p>
                         <br>
                         <h3>Our Mission</h3>
-                        <p>Our local facilities are owned and operated by independent business owners, which means
-                            that in most cases, it's the actual owner themselves providing personalized service to their
-                            customers. This dedication separates us from our competitors as we continually strive to
-                            deliver an outstanding experience to each one of our customers.</p>
+                        <p>Our mission is to make a hassle free servicing system`and a vertual technical community to support all across the country. Mechanic Chai will be a platform that will connect common world to a whole new Digital Technical World </p>
                         <?php
                                 mc_get_quote_button(
                                     home_url('about'), 'Read More'
@@ -326,7 +323,7 @@
                                                 <div class="testimonial">My family has had two occasions to use this service. Both times the mechanics were on time, efficient, and knowledgeable. Great way to get many car repairs done!</div>
                                                 <div class="media">
                                                     <div class="media-left d-flex mr-3">
-                                                        <img src="img/user-1.jpg" alt="">
+                                                        <img src="img/user.png" alt="">
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="overview">
