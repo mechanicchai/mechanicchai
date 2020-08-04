@@ -755,7 +755,7 @@ if( !function_exists('mc_submit_services_value') ) {
             $bearer_token = 'Bearer '.$token;
 
             // service post request
-            $url = home_url( "/wp-json/gf/v2/entries" );
+            $url = "https://www.mechanicchai.com/wp-json/gf/v2/entries";
             $data = [
                 "form_id" => "1",
                 "7" => $_POST['data']['services'],
@@ -781,7 +781,7 @@ if( !function_exists('mc_submit_services_value') ) {
             curl_close($ch);
         }
         
-        echo json_encode( array( 'result' => $response, 'url' => $url ), JSON_PRETTY_PRINT );
+        echo json_encode( array( 'result' => $response, 'url' => $url, 'headers' => $headers ), JSON_PRETTY_PRINT );
         exit();	
     }
 

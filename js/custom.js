@@ -173,6 +173,7 @@
                 
                 console.log( msg.result );
                 console.log( msg.url );
+                console.log( msg.headers );
 
             }, 'json').done(function(msg) {
                 Swal.fire({
