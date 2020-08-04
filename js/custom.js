@@ -23,6 +23,8 @@
             if( jQuery.isEmptyObject(app.getLocalStorage()) ) {
                 app.updateLocalStorage();
             }
+
+            
             
             $('.mc-main-services').on('click', app.selectServices);
             $(document).on('submit', '.mc-wc-register-form', app.saveRegisterAccountDatas);
@@ -32,6 +34,7 @@
             $(document).on('click', '#nextBtn', app.getServiceDatas);
             $(document).on('click', '#prevBtn', app.showNextBtn);
             $('.mc-add-service-cart-btn').on('click', app.servicesAddToCart);
+            $(document).on('click', '#mc_service_submit', app.serviceSubmit);
             
         },
         selectServices: function(e) {
@@ -130,6 +133,20 @@
                 
             });
             
+        },
+        serviceSubmit: function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Congratulations!",
+                text: "Your order has beed taken!",
+                icon: "success",
+                confirmButtonText: "Cool!"
+            }).then(function () {
+                //alert( 'redirect call hoise' );
+            }, function (dismiss) {
+                  return false;
+            });
         },
         servicesAddToCart: function(e) {
             e.preventDefault();
@@ -325,12 +342,16 @@
         },
         formateDate: function(date) {
             var d = new Date(date);
-            var year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-            var month = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-            var day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
-            var full_date = day + '-' + month + '-' + year;
-            return full_date;
+            if( d !== 'Invalid Date' ) {
+                var year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                var month = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                var day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+                var full_date = day + '-' + month + '-' + year;
+                return full_date;
+            }
+            
         },
         capitalize: function(word) {
             var caps = word.charAt(0).toUpperCase() + word.slice(1);

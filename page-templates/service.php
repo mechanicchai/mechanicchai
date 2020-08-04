@@ -450,8 +450,9 @@ get_header();
                 <div style="float:right;">
                     <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                     <button type="button" id="nextBtn" onclick="nextPrev(1)">Order</button>
-                    <div class="gravity-form">
-                        <?php echo do_shortcode('[gravityform id="1"]'); ?>
+                    <div class="gravity-form service-form-submit">
+                        <input type="submit" id="mc_service_submit" value="Submit">
+                        <?php //echo do_shortcode('[gravityform id="1"]'); ?>
                     </div>
                 </div>
                 
