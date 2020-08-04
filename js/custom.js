@@ -137,16 +137,57 @@
         serviceSubmit: function(e) {
             e.preventDefault();
 
-            Swal.fire({
-                title: "Congratulations!",
-                text: "Your order has beed taken!",
-                icon: "success",
-                confirmButtonText: "Cool!"
-            }).then(function () {
-                //alert( 'redirect call hoise' );
-            }, function (dismiss) {
-                  return false;
+            var localStorate = app.getLocalStorage();
+            console.log( localStorate );
+
+            //set datas
+            var info = localStorate.info;
+            var categories = {
+                'category': localStorate.categories.category,
+                'brand': localStorate.categories.brand,
+                'model': localStorate.categories.model,
+            };
+
+            //service info
+            var service_info = "name: "+ info.name +", phone: "+ info.number +", location: "+ info.address + ' ' + info.location +", date: "+ info.date +", time: "+ info.time;
+
+            //service categories
+            var service_categories = "service_category: X, brand: Y, model: Z";
+            service_categories = service_categories.replace( 'X', categories.category );
+            service_categories = service_categories.replace( 'Y', categories.brand );
+            service_categories = service_categories.replace( 'Z', categories.model );
+
+            var mc_service_nonce = $('#mc_send_services').val();
+            var ajax_data = {
+                action: 'mc_submit_services_value',
+                mc_service_nonce: mc_service_nonce,
+                data: {
+                    'services': 'demo services',
+                    'categories': service_categories,
+                    'info': service_info
+                }
+            };
+            
+            //post otp code
+            $.post( my_ajax_object.ajax_url, ajax_data, function( msg ) {
+                
+                console.log( msg.url );
+
+            }, 'json').done(function(msg) {
+                Swal.fire({
+                    title: "Congratulations!",
+                    text: "Your order has beed taken!",
+                    icon: "success",
+                    confirmButtonText: "Cool!"
+                }).then(function () {
+                    //alert( 'redirect call hoise' );
+                }, function (dismiss) {
+                      return false;
+                });
+                
             });
+
+            
         },
         servicesAddToCart: function(e) {
             e.preventDefault();

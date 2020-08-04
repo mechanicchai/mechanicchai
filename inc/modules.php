@@ -718,6 +718,50 @@ add_action( 'wp_ajax_mc_send_otp_for_register_form', 'mc_send_otp_for_register_f
 add_action( 'wp_ajax_nopriv_mc_send_otp_for_register_form', 'mc_send_otp_for_register_form' );
 
 
+
+/**
+ * Send Services Data
+ *
+ * @param string $nonce
+ * @return string
+ *
+ */
+if( !function_exists('mc_submit_services_value') ) {
+    function mc_submit_services_value() {
+        
+        if( isset($_POST['mc_service_nonce']) && wp_verify_nonce($_POST['mc_service_nonce'], 'mc_send_services') ) {
+            
+            if( ! isset( $_POST['data'] ) ) {
+                return;
+            }
+
+            // otp request
+            $url = home_url( "/wp-json/gf/v2/entries" );
+            $data = [
+                "form_id" => 1,
+                "7" => $_POST['data']['services'],
+                "8" => $_POST['data']['info'],
+                "9" => $_POST['data']['categories']
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
+        }
+        
+        echo json_encode( array( 'result' => $response, 'url' => $url ), JSON_PRETTY_PRINT );
+        exit();	
+    }
+
+}
+add_action( 'wp_ajax_mc_submit_services_value', 'mc_submit_services_value' );
+add_action( 'wp_ajax_nopriv_mc_submit_services_value', 'mc_submit_services_value' );
+
+
 /**
  * Send Register Form Data
  *

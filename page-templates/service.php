@@ -451,6 +451,7 @@ get_header();
                     <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                     <button type="button" id="nextBtn" onclick="nextPrev(1)">Order</button>
                     <div class="gravity-form service-form-submit">
+                        <?php wp_nonce_field( 'mc_send_services', 'mc_send_services' ); ?>
                         <input type="submit" id="mc_service_submit" value="Submit">
                         <?php //echo do_shortcode('[gravityform id="1"]'); ?>
                     </div>
