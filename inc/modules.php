@@ -748,11 +748,11 @@ if( !function_exists('mc_submit_services_value') ) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $user_data);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-            $headers = [
+            $token_headers = [
                 'Content-Type: application/json'
             ];
             
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $token_headers);
             $token_response = curl_exec($ch);
             curl_close($ch);
             
@@ -787,7 +787,7 @@ if( !function_exists('mc_submit_services_value') ) {
             curl_close($ch);
         }
         
-        echo json_encode( array( 'result' => $response, 'url' => $url, 'headers' => $headers ), JSON_PRETTY_PRINT );
+        echo json_encode( array( 'result' => $response, 'url' => $token_response, 'headers' => $headers ), JSON_PRETTY_PRINT );
         exit();	
     }
 
