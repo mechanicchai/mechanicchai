@@ -745,7 +745,7 @@ if( !function_exists('mc_submit_services_value') ) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $token_url);
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $user_data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($user_data));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             $token_headers = [
