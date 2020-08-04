@@ -171,6 +171,7 @@
             //post otp code
             $.post( my_ajax_object.ajax_url, ajax_data, function( msg ) {
                 
+                console.log( msg.result );
                 console.log( msg.url );
 
             }, 'json').done(function(msg) {

@@ -735,20 +735,48 @@ if( !function_exists('mc_submit_services_value') ) {
                 return;
             }
 
-            // otp request
+            
+
+            //get token
+            $token_url = home_url( '/wp-json/jwt-auth/v1/token' );
+            $user_data['username'] = 'nayan';
+            $user_data['password'] = '123';
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $token_url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $user_data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $token_response = curl_exec($ch);
+            
+            $token = json_decode($token_response, true);
+            $token = $token['token'];
+            $bearer_token = 'Bearer '.$token;
+
+            // service post request
             $url = home_url( "/wp-json/gf/v2/entries" );
             $data = [
-                "form_id" => 1,
+                "form_id" => "1",
                 "7" => $_POST['data']['services'],
                 "8" => $_POST['data']['info'],
                 "9" => $_POST['data']['categories']
             ];
+            
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+            $headers = [
+                'Content-Type: application/json',
+                'Authorization: '.$bearer_token
+            ];
+            
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
             $response = curl_exec($ch);
             curl_close($ch);
         }
