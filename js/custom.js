@@ -176,6 +176,7 @@
                 console.log( msg.headers );
 
             }, 'json').done(function(msg) {
+                
                 Swal.fire({
                     title: "Congratulations!",
                     text: "Your order has beed taken!",
