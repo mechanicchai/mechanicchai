@@ -747,13 +747,14 @@ if( !function_exists('mc_submit_services_value') ) {
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $user_data);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             $headers = [
                 'Content-Type: application/json'
             ];
             
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             $token_response = curl_exec($ch);
+            curl_close($ch);
             
             $token = json_decode($token_response, true);
             $token = $token['token'];
