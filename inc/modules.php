@@ -739,8 +739,8 @@ if( !function_exists('mc_submit_services_value') ) {
 
             //get token
             $token_url = home_url( '/wp-json/jwt-auth/v1/token' );
-            $user_data['username'] = 'nayan';
-            $user_data['password'] = '123';
+            $user_data['username'] = 'mechanic';
+            $user_data['password'] = '08122059';
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $token_url);
