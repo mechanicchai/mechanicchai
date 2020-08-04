@@ -748,6 +748,11 @@ if( !function_exists('mc_submit_services_value') ) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $user_data);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $headers = [
+                'Content-Type: application/json'
+            ];
+            
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             $token_response = curl_exec($ch);
             
             $token = json_decode($token_response, true);
