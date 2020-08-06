@@ -232,16 +232,20 @@ get_header();
                                 <table class="table table-hover mt-4 mc-repair-services">
                                     <tbody>
                                         <?php
+                                        // $args = array(
+                                        //     'post_type' => 'service',
+                                        //     'posts_per_page' => -1,
+                                        //     'meta_query' => array(
+                                        //         array(
+                                        //             'key' => 'mc_service_type',
+                                        //             'value' => '1',
+                                        //             'compare' => '=',
+                                        //         )
+                                        //     )
+                                        // );
                                         $args = array(
                                             'post_type' => 'service',
-                                            'posts_per_page' => -1,
-                                            // 'meta_query' => array(
-                                            //     array(
-                                            //         'key' => 'mc_service_type',
-                                            //         'value' => '1',
-                                            //         'compare' => '=',
-                                            //     )
-                                            // )
+                                            'numberposts' => -1,
                                         );
                                         $repair_service_posts = get_posts($args);
 
