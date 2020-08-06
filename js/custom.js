@@ -232,7 +232,6 @@
                 price: cost,
             }
             app.cart_array.push(service_cart);
-            console.log(app.cart_array);
 
             $(this).addClass('mc-cart-active');
 

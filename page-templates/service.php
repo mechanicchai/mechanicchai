@@ -244,6 +244,11 @@ get_header();
                                             )
                                         );
                                         $repair_service_posts = get_posts($args);
+
+                                        echo '<pre>';
+                                        print_r($repair_service_posts);
+                                        echo '</pre>';
+                                        
                                         
 
                                         if ($repair_service_posts) {
@@ -303,6 +308,10 @@ get_header();
                                     )
                                 );
                                 $diagnosis_service_posts = get_posts($args);
+
+                                echo '<pre>';
+                                print_r($diagnosis_service_posts);
+                                echo '</pre>';
 
                                 if ($diagnosis_service_posts) {
                                     foreach ($diagnosis_service_posts as $diagnosis_service_post) {
