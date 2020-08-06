@@ -245,7 +245,7 @@ get_header();
                                         // );
                                         $args = array(
                                             'post_type' => 'service',
-                                            'numberposts' => -1,
+                                            'numberposts' => 60,
                                         );
                                         $repair_service_posts = get_posts($args);
 
