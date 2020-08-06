@@ -140,6 +140,8 @@
             var localStorate = app.getLocalStorage();
             console.log( localStorate );
 
+            var services = localStorate.services;
+
             //set datas
             var info = localStorate.info;
             var categories = {
@@ -147,6 +149,28 @@
                 'brand': localStorate.categories.brand,
                 'model': localStorate.categories.model,
             };
+
+            // make total ammount of services
+            var total = services.reduce(
+                (accumulator, currentValue) => accumulator + parseInt( currentValue.price )
+                , 0
+            )
+
+            //services
+            var services_list = "total: " + total + ", ";
+            
+            //make services list to string
+            services.forEach( function( service ) {
+                var services_item = JSON.stringify( service );
+                    services_item = services_item.replace("{", "");
+                    services_item = services_item.replace("}", "");
+                    services_list += "#" + services_item; 
+            });
+
+            console.log( services_list );
+            
+
+            
 
             //service info
             var service_info = "name: "+ info.name +", phone: "+ info.number +", location: "+ info.address + ' ' + info.location +", date: "+ info.date +", time: "+ info.time;
@@ -162,7 +186,7 @@
                 action: 'mc_submit_services_value',
                 mc_service_nonce: mc_service_nonce,
                 data: {
-                    'services': 'demo services',
+                    'services': services_list,
                     'categories': service_categories,
                     'info': service_info
                 }
