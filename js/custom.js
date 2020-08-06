@@ -163,7 +163,7 @@
             services.forEach( function( service ) {
                 var services_item = JSON.stringify( service );
                     services_item = services_item.replace("{", "");
-                    services_item = services_item.replace('"', "'");
+                    services_item = services_item.replace('"', "");
                     services_item = services_item.replace("}", "");
                     services_list += "#" + services_item; 
             });

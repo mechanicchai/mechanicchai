@@ -234,7 +234,7 @@ get_header();
                                         <?php
                                         $args = array(
                                             'post_type' => 'service',
-                                            'posts_per_page' => 50,
+                                            'posts_per_page' => 100,
                                             'meta_query' => array(
                                                 array(
                                                     'key' => 'mc_service_type',
@@ -298,7 +298,7 @@ get_header();
                                 <?php
                                 $args = array(
                                     'post_type' => 'service',
-                                    'posts_per_page' => 50,
+                                    'posts_per_page' => 100,
                                     'meta_query' => array(
                                         array(
                                             'key' => 'mc_service_type',
