@@ -234,7 +234,8 @@ get_header();
                                         <?php
                                         $args = array(
                                             'post_type' => 'service',
-                                            'posts_per_page' => 60,
+                                            'posts_per_page' => -1,
+                                            'nopaging' => true,
                                             'meta_query' => array(
                                                 array(
                                                     'key' => 'mc_service_type',
