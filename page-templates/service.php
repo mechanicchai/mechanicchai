@@ -234,14 +234,14 @@ get_header();
                                         <?php
                                         $args = array(
                                             'post_type' => 'service',
-                                            'posts_per_page' => 60,
-                                            'meta_query' => array(
-                                                array(
-                                                    'key' => 'mc_service_type',
-                                                    'value' => '1',
-                                                    'compare' => '=',
-                                                )
-                                            )
+                                            'posts_per_page' => -1,
+                                            // 'meta_query' => array(
+                                            //     array(
+                                            //         'key' => 'mc_service_type',
+                                            //         'value' => '1',
+                                            //         'compare' => '=',
+                                            //     )
+                                            // )
                                         );
                                         $repair_service_posts = get_posts($args);
 
