@@ -19,22 +19,27 @@
         }, // cart service information
         init: function () {
             
-            //initial update local storage if empty
+            //initial update local storage if emptyservicesAddToCart
+
             if( jQuery.isEmptyObject(app.getLocalStorage()) ) {
                 app.updateLocalStorage();
             }
 
-            
-            
-            $('.mc-main-services').on('click', app.selectServices);
+
+            //cart array with storage services
+            var service_data = app.getLocalStorage();
+            app.cart_array = service_data.services;
+
+            $(document).on('click', '.mc-main-services', app.selectServices);
             $(document).on('submit', '.mc-wc-register-form', app.saveRegisterAccountDatas);
             $(document).on('submit', '.mc-register-otp-form', app.otpRegisterWooAccount);
             $(document).on('change', '.mc-service-brand.mc-active' , app.changeModelByBrand);
             $(document).on('change', '.mc-service-types', app.changeServicesByType);
             $(document).on('click', '#nextBtn', app.getServiceDatas);
             $(document).on('click', '#prevBtn', app.showNextBtn);
-            $('.mc-add-service-cart-btn').on('click', app.servicesAddToCart);
+            $(document).on('click', '.mc-add-service-cart-btn', app.servicesAddToCart);
             $(document).on('click', '#mc_service_submit', app.serviceSubmit);
+            $(document).on('click', '.mc-btn-service-cancel', app.removeServices);
             
         },
         selectServices: function(e) {
@@ -219,25 +224,70 @@
         },
         servicesAddToCart: function(e) {
             e.preventDefault();
-            
-            if( $(this).is('.mc-cart-active') ) {
-                return;
-            }
+
+            var service_data = app.getLocalStorage();
 
             var service_title = $(this).parents('tr').find('.mc-service-title').text();
-            var id = $(this).parents('tr').find('.mc-service-title').data('id');
+            var id = $(this).data('id');
             var cost = $(this).parents('tr').find('.mc-service-cost').data('cost');
-            var service_cart = {
-                name: service_title,
-                id: id,
-                price: cost,
+            
+            if( $(this).is('.mc-cart-active') ) {
+                $(this).removeClass( 'mc-cart-active' );
+                $(this).text('Add');
+                app.removeServices(id);
+            }else {
+                $(this).text('Cancel');
+
+                $(this).addClass('mc-cart-active');
+
+                console.log( app.cart_array );
+                console.log( app.cart_array.filter(function(e) { return e.id === id; }).length );
+
+                if ( ! app.cart_array.filter(function(e) { return e.id === id; }).length > 0) {
+                    /* vendors contains the element we're looking for */
+                    console.log( 'nai' );
+
+                    var service_cart = {
+                        name: service_title,
+                        id: id,
+                        price: cost,
+                    }
+                    app.cart_array.push(service_cart);
+
+                    app.updateLocalStorage();
+
+                }else {
+                    console.log( 'ase' );
+                }
+               
+    
+                
+    
+                
             }
-            app.cart_array.push(service_cart);
+            
+        },
+        removeServices: function(id) {
 
-            $(this).addClass('mc-cart-active');
+            //when this is checkout cancel button, get it's service id
+            if( $(this).is('.mc-btn-service-cancel') ) {
+                id = $(this).parent().data('id');
+                $(this).parents('tr').hide();
+            }
 
-            //update local storage
-            app.updateLocalStorage();
+            var service_data = app.getLocalStorage();
+            var services  = service_data.services;
+
+            var filtered_services  = services.filter((service) => service.id !== id );
+                filtered_services === undefined ? [] : filtered_services;
+            
+            var service_data = {
+                'categories': app.cart_categories,
+                'info': app.service_info,
+                'services': filtered_services
+            };
+
+            localStorage.setItem("service_data", JSON.stringify(service_data));
         },
         getServiceDatas: function(e) {
             e.preventDefault();
@@ -287,6 +337,44 @@
             app.service_info.date = date ? date : service_data.info.date;
             app.service_info.time = time ? time : service_data.info.time;
             app.service_info.user = user ? user : service_data.info.user;
+
+            
+            //clear all services from checkout
+            if( $('.service-review').is('.active') ) {
+                $('.mc-checkout-services-list tbody').html('');
+            }
+
+            //add all services in checkout
+            var all_services = service_data.services;
+            all_services.forEach( function( item ) {
+
+                //create checkout service dom
+                var first_td = $('<td>', {
+                    'data-id': '1'
+                }).text( item.name );
+
+                var second_td = $('<td>', {
+                    'data-cost': item.price
+                }).text( item.price + 'tk' );
+
+                var button = $('<a>', {
+                    class: 'btn btn-primary btn-sm mc-btn-service-cancel'
+                }).text('Cancel');
+
+                var third_td = $('<td>', {
+                    'data-id': item.id,
+                    class: 'text-right'
+                }).append( button );
+
+
+
+                var all_services_tr = $('<tr>').append(first_td).append(second_td).append(third_td);
+
+                if( $('.service-review').is('.active') ) {
+                    $('.mc-checkout-services-list tbody').append( all_services_tr );
+                }
+
+            });
 
             if( $('.service-review').is('.active') ) {
                 $('#nextBtn').hide();
@@ -386,10 +474,6 @@
     
                 // });
             }
-
-            $('.mc-checkout-services-list tr').each(function() {
-
-            });
 
             //update form dom
             $('.service-info-name').val(name);
