@@ -1,7 +1,7 @@
 (function ($) {
     'use strict';
     var app = {
-        cart_array: [], // cart array for service,
+        service_cart_array: [],
         cart_categories: {
             'category': '',
             'brand': '',
@@ -25,10 +25,9 @@
                 app.updateLocalStorage();
             }
 
-
-            //cart array with storage services
-            var service_data = app.getLocalStorage();
-            app.cart_array = service_data.services;
+            //init service cart array
+            app.service_cart_array = app.cart_array();  
+            console.log( app.service_cart_array );
 
             $(document).on('click', '.mc-main-services', app.selectServices);
             $(document).on('submit', '.mc-wc-register-form', app.saveRegisterAccountDatas);
@@ -107,7 +106,7 @@
         },
         changeServicesByType: function(e) {
             var id = $(this).find('option:selected').attr('value');
-            $('.mc-repair-services tr').each(function() {
+            $('.mc-services-list-items tr').each(function() {
                 var service_option_value = $(this).data('service-option');
                 var data_cat = $(this).data('category');
                 var service_data = app.getLocalStorage();
@@ -222,6 +221,22 @@
 
             
         },
+        cart_array: function(newItem) {
+            //cart array with storage services
+            var service_data = app.getLocalStorage();
+            var services_datas = service_data.services;
+            
+
+            //when new item is not empty and this item is not exist as previous item, just add this item
+            if( newItem !== null && newItem !== undefined ) {
+                console.log( services_datas.filter(function(e) { return e.id === newItem.id; }).length  )
+                if ( ! services_datas.filter(function(e) { return e.id === newItem.id; }).length > 0 ) {
+                    services_datas.push( newItem );
+                }
+            }
+            
+            return services_datas;
+        },
         servicesAddToCart: function(e) {
             e.preventDefault();
 
@@ -238,31 +253,22 @@
             }else {
                 $(this).text('Cancel');
 
-                $(this).addClass('mc-cart-active');
-
-                console.log( app.cart_array );
-                console.log( app.cart_array.filter(function(e) { return e.id === id; }).length );
-
-                if ( ! app.cart_array.filter(function(e) { return e.id === id; }).length > 0) {
-                    /* vendors contains the element we're looking for */
-                    console.log( 'nai' );
-
-                    var service_cart = {
-                        name: service_title,
-                        id: id,
-                        price: cost,
-                    }
-                    app.cart_array.push(service_cart);
-
-                    app.updateLocalStorage();
-
-                }else {
-                    console.log( 'ase' );
+                //new item
+                var newItem = {
+                    name: service_title,
+                    id: id,
+                    price: cost,
                 }
+                app.cart_array(newItem);
+
+                //assign cart array
+                app.service_cart_array = app.cart_array(newItem);
+
+                //update localstorage
+                app.updateLocalStorage();
                
-    
                 
-    
+                $(this).addClass('mc-cart-active');
                 
             }
             
@@ -273,6 +279,8 @@
             if( $(this).is('.mc-btn-service-cancel') ) {
                 id = $(this).parent().data('id');
                 $(this).parents('tr').hide();
+
+                $('.mc-services-list-items .mc-add-service-cart-btn[data-id="'+ id +'"]').text('Add').removeClass('mc-cart-active');
             }
 
             var service_data = app.getLocalStorage();
@@ -300,7 +308,7 @@
             var year = $('.mc-service-year').val();
 
             // repair services matches category and show
-            $('.mc-repair-services tr').each(function(e) {
+            $('.mc-services-list-items tr').each(function(e) {
                 var data_cat = $(this).data('category');
 
                 if( data_cat !== '' ) {
@@ -523,8 +531,9 @@
             var service_data = {
                 'categories': app.cart_categories,
                 'info': app.service_info,
-                'services': app.cart_array
+                'services': app.service_cart_array
             };
+
             localStorage.setItem("service_data", JSON.stringify(service_data));
         },
         saveRegisterAccountDatas: function(e) {

@@ -229,7 +229,7 @@ get_header();
                         <div class="row">
 
                             <div class="col-12">
-                                <table class="table table-hover mt-4 mc-repair-services">
+                                <table class="table table-hover mt-4 mc-repair-services mc-services-list-items">
                                     <tbody>
                                         <?php
                                         $args = array(
@@ -289,7 +289,7 @@ get_header();
 
                     </div>
                     <div id="tab02" class="tab-contents">
-                        <table class="table table-hover mt-4">
+                        <table class="table table-hover mt-4 mc-services-list-items">
                             <tbody>
                                 <?php
                                 $args = array(
