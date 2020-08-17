@@ -380,6 +380,8 @@
             var model = $('.mc-service-model.mc-active').find('option:selected').data('model');
             var year = $('.mc-service-year').val();
 
+            console.log(category);
+
             //brand label
             var brand_label = $('.service_child_one_label').text();
             
@@ -394,9 +396,14 @@
                     var data_cat_arr = data_cat.split(',');
                     var service_data_cat = service_data.categories.category;
 
-                    if( !data_cat_arr.includes(service_data_cat) ) {
+                    if( ! data_cat_arr.includes(service_data_cat) ) {
                         $(this).hide();
-                    }
+
+                    }else {
+                        $(this).show();
+                        console.log( 'ase ase ase' );
+                    } 
+
                 }else {
                     $(this).hide();
                 }
