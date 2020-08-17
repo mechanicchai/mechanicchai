@@ -306,7 +306,7 @@ $('.list-group-item').click(function (e) {
 					toggleCart(true);
 				} else if (event.target.closest('.cd-cart__delete-item')) { // remove product from cart
 					event.preventDefault();
-					removeProduct(event.target.closest('.cd-cart__product'));
+					//removeProduct(event.target.closest('.cd-cart__product'));
 				}
 			});
 

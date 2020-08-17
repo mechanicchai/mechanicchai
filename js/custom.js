@@ -38,6 +38,7 @@
             $(document).on('click', '.mc-add-service-cart-btn', app.servicesAddToCart);
             $(document).on('click', '#mc_service_submit', app.serviceSubmit);
             $(document).on('click', '.mc-btn-service-cancel', app.removeServices);
+            $(document).on('click', '.cd-cart__actions .cd-cart__delete-item', app.removeServices);
             
         },
         getServicesClan: function() {
@@ -231,10 +232,7 @@
             };
 
             // make total ammount of services
-            var total = services.reduce(
-                (accumulator, currentValue) => accumulator + parseInt( currentValue.price )
-                , 0
-            )
+            var total = app.getTotal();
 
             //services
             var services_list = "total: " + total + ", ";
@@ -340,13 +338,82 @@
                 //update localstorage
                 app.updateLocalStorage();
                
-                
+                //add active class
                 $(this).addClass('mc-cart-active');
+
+
+                //get local storage services
+                var service_data = app.getLocalStorage();
+
+                // local services
+                var services = service_data.services;
+
+                //set to empty before pushing cart services
+                $('.cd-cart__body .p-4').html('');
+
+                // make total ammount of services
+                var total = app.getTotal();
+
+                //show total in cart
+                $('.cd-cart__checkout span').text(total);
+
+                //services loop
+                services.forEach(function(item) {
+                    var name = item.name;
+                    var price = item.price;
+
+                    //make services item html
+                    var service_name_anchor = $('<a>').text( name );
+                    var service_price = $('<span>', {
+                        "class": "cd-cart__price" 
+                    }).text( price );
+                    var action = $('<a>', {
+                        "class": "cd-cart__delete-item",
+                        "id": item.id
+                    }).text('Cancel');
+
+                    var h3 = $('<h3>', {
+                        "class": "truncate",
+                    }).append(service_name_anchor);
+
+                    var cart_action = $('<div>', {
+                        "class": 'cd-cart__actions'
+                    }).append(action);
+
+                    var card_details = $('<div>', {
+                        "class": 'cd-cart__details'
+                    }).append(h3).append(service_price).append(cart_action);
+
+                    var li = $('<li>').append(card_details);
+
+                    //append cart item
+                    $('.cd-cart__body .p-4').append(li);
+                });
                 
             }
             
         },
+        getTotal: function() {
+
+            var service_data = app.getLocalStorage();
+
+            // local services
+            var services = service_data.services;
+            
+            // make total ammount of services
+            var total = services.reduce(
+                (accumulator, currentValue) => accumulator + parseInt( currentValue.price )
+                , 0
+            );
+
+            return total;
+        },
         removeServices: function(id) {
+
+            var service_data = app.getLocalStorage();
+            var services  = service_data.services;
+            
+            
 
             //when this is checkout cancel button, get it's service id
             if( $(this).is('.mc-btn-service-cancel') ) {
@@ -354,13 +421,29 @@
                 $(this).parents('tr').hide();
 
                 $('.mc-services-list-items .mc-add-service-cart-btn[data-id="'+ id +'"]').text('Add').removeClass('mc-cart-active');
+            }else if( $(this).is('.cd-cart__delete-item') ) {
+                id = $(this).attr('id');
+                $(this).parents('li').hide();
+
+                $('.mc-services-list-items .mc-add-service-cart-btn[data-id="'+ id +'"]').text('Add').removeClass('mc-cart-active');
+            
             }
 
-            var service_data = app.getLocalStorage();
-            var services  = service_data.services;
-
-            var filtered_services  = services.filter((service) => service.id !== id );
+            //filter services
+            var filtered_services  = services.filter((service) => service.id !== parseInt(id) );
                 filtered_services === undefined ? [] : filtered_services;
+
+            //update cart total after filter services
+            if( $(this).is('.cd-cart__delete-item') ) {
+                // make total ammount of filtered services
+                var total = filtered_services.reduce(
+                    (accumulator, currentValue) => accumulator + parseInt( currentValue.price )
+                    , 0
+                );
+
+                //show total in cart
+                $('.cd-cart__checkout span').text(total);
+            }
             
             var service_data = {
                 'categories': app.cart_categories,
