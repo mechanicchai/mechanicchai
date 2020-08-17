@@ -38,7 +38,7 @@ function mc_rest_user_endpoints($request) {
     'callback' => 'mc_rest_service_posts_meta_by_id',
   ));
 
-  register_rest_route('wp/v2', 'service-posts', array(
+  register_rest_route('wp/v2', 'all-services', array(
     'methods' => 'GET',
     'callback' => 'mc_rest_get_service_posts',
   ));
@@ -267,9 +267,7 @@ function mc_rest_get_service_posts( $request = null ) {
 
     $args = array(
         'post_type' => 'service',
-        'posts_per_page' => -1,
-        'order_by' => 'DESC',
-        'order' => 'date'
+        'posts_per_page' => 50,
     );
 
     $posts = get_posts( $args );
@@ -313,6 +311,24 @@ function mc_rest_get_service_posts( $request = null ) {
 
     return new WP_REST_Response($response, 123);
 }
+
+
+function test_shortcode() {
+    $args = array(
+        'post_type' => 'service',
+        'posts_per_page' => -1,
+        'order_by' => 'DESC',
+        'order' => 'date'
+    );
+
+    $posts = get_posts( $args );
+
+    echo '<pre>';
+    print_r($posts);
+    echo '</pre>';
+    
+}
+add_shortcode( 'test_shortcode', 'test_shortcode' );
 
 
 /**
@@ -700,6 +716,84 @@ if( !function_exists('mc_send_otp_for_register_form') ) {
 }
 add_action( 'wp_ajax_mc_send_otp_for_register_form', 'mc_send_otp_for_register_form' );
 add_action( 'wp_ajax_nopriv_mc_send_otp_for_register_form', 'mc_send_otp_for_register_form' );
+
+
+
+/**
+ * Send Services Data
+ *
+ * @param string $nonce
+ * @return string
+ *
+ */
+if( !function_exists('mc_submit_services_value') ) {
+    function mc_submit_services_value() {
+        
+        if( isset($_POST['mc_service_nonce']) && wp_verify_nonce($_POST['mc_service_nonce'], 'mc_send_services') ) {
+            
+            if( ! isset( $_POST['data'] ) ) {
+                return;
+            }
+
+            
+
+            //get token
+            $token_url = 'https://www.mechanicchai.com/wp-json/jwt-auth/v1/token';
+            $user_data['username'] = 'mechanic';
+            $user_data['password'] = '08122059';
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $token_url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($user_data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            $token_headers = [
+                'Content-Type: application/json'
+            ];
+            
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $token_headers);
+            $token_response = curl_exec($ch);
+            curl_close($ch);
+            
+            $token = json_decode($token_response, true);
+            $token = $token['token'];
+            $bearer_token = 'Bearer '.$token;
+
+            // service post request
+            $url = "https://www.mechanicchai.com/wp-json/gf/v2/entries";
+            $data = [
+                "form_id" => "1",
+                "7" => $_POST['data']['services'],
+                "8" => $_POST['data']['info'],
+                "9" => $_POST['data']['categories']
+            ];
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+            $headers = [
+                'Content-Type: application/json',
+                'Authorization: '.$bearer_token
+            ];
+            
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $response = curl_exec($ch);
+            curl_close($ch);
+        }
+        
+        echo json_encode( array( 'result' => $response, 'url' => $token_response, 'headers' => $headers ), JSON_PRETTY_PRINT );
+        exit();	
+    }
+
+}
+add_action( 'wp_ajax_mc_submit_services_value', 'mc_submit_services_value' );
+add_action( 'wp_ajax_nopriv_mc_submit_services_value', 'mc_submit_services_value' );
 
 
 /**

@@ -64,7 +64,7 @@ get_header();
                 <div class="row">
                     <div class="col-md-8 select-service">
                         <h3>Select Service</h3>
-                        <?php $categories = mc_get_all_parent_categories('service_category'); ?>
+                        <?php $categories = mc_get_all_parent_categories('service_category', 'name', true); ?>
                         <div class="row se-services">
                             <?php
                             foreach ($categories as $category) {
@@ -92,7 +92,7 @@ get_header();
                         <h3>Specify Your <span class="mc-title-category">Car</span></h3>
                         <form>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Brand</label>
+                                <label for="exampleFormControlSelect1" class="service_child_one_label">Brand</label>
 
                                 <?php
                                 foreach ($categories as $category) {
@@ -105,7 +105,7 @@ get_header();
                                     if ($brands_as_child_categories) {
                                 ?>
 
-                                        <select name="" id="" class="form-control mc-service-brand <?php echo ($category->slug === 'car') ? 'mc-active' : ''; ?>" data-brand-category="<?php echo strtolower($category->name); ?>">
+                                        <select name="" class="form-control mc-service-brand <?php echo ($category->slug === 'car') ? 'mc-active' : ''; ?>" data-brand-category="<?php echo strtolower($category->name); ?>">
                                             <?php
                                             //default active brand id for getting model lists
                                             $default_active_brand_id = ($category->slug === 'car') ? $brands_as_child_categories[0]->term_id : '';
@@ -125,7 +125,7 @@ get_header();
                                 ?>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Model</label>
+                                <label for="exampleFormControlSelect1" class="service_child_two_label">Model</label>
                                 <?php
                                 foreach ($categories as $category) {
                                     $cat_id = $category->term_id;
@@ -229,12 +229,12 @@ get_header();
                         <div class="row">
 
                             <div class="col-12">
-                                <table class="table table-hover mt-4 mc-repair-services">
+                                <table class="table table-hover mt-4 mc-repair-services mc-services-list-items">
                                     <tbody>
                                         <?php
                                         $args = array(
                                             'post_type' => 'service',
-                                            'posts_per_page' => 50,
+                                            'posts_per_page' => 60,
                                             'meta_query' => array(
                                                 array(
                                                     'key' => 'mc_service_type',
@@ -244,6 +244,7 @@ get_header();
                                             )
                                         );
                                         $repair_service_posts = get_posts($args);
+                                        
                                         
 
                                         if ($repair_service_posts) {
@@ -272,7 +273,7 @@ get_header();
                                                 <tr data-category="<?php echo $service_category; ?>" data-service-type="<?php echo !empty($service_type) ? $service_type : ''; ?>" data-service-option="<?php echo !empty($service_type_option) ? $service_type_option : ''; ?>">
                                                     <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                                     <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
-                                                    <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="300.00">Add</a></td>
+                                                    <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="300.00" data-id="<?php echo $id; ?>">Add</a></td>
                                                     
                                                 </tr>
                                         <?php
@@ -288,12 +289,12 @@ get_header();
 
                     </div>
                     <div id="tab02" class="tab-contents">
-                        <table class="table table-hover mt-4">
+                        <table class="table table-hover mt-4 mc-services-list-items">
                             <tbody>
                                 <?php
                                 $args = array(
                                     'post_type' => 'service',
-                                    'posts_per_page' => 50,
+                                    'posts_per_page' => 40,
                                     'meta_query' => array(
                                         array(
                                             'key' => 'mc_service_type',
@@ -321,7 +322,7 @@ get_header();
                                         <tr data-category="<?php echo $service_category; ?>">
                                             <td class="mc-service-title" data-id="<?php echo $id; ?>"><?php echo get_the_title($id); ?></td>
                                             <td class="mc-service-cost" data-cost="<?php echo $cost ? $cost : ''; ?>"><?php echo $cost ? esc_html__( $cost, 'mechanic' ) : ''; ?>Tk</td>
-                                            <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="300.00">Add</a></td>
+                                            <td class="text-right"><a href="#0" class="btn btn-primary btn-sm mc-add-service-cart-btn cd-add-to-cart js-cd-add-to-cart" data-price="300.00" data-id="<?php echo $id; ?>">Add</a></td>
                                         </tr>
                                 <?php
                                     wp_reset_postdata();
@@ -411,13 +412,7 @@ get_header();
                             <div class="col-12">
                                 <h5>Services</h5>
                                 <table class="table table-hover mt-4 mc-checkout-services-list">
-                                    <tbody>
-                                        <tr>
-                                            <td data-id="1">ABS Speed Sensor Replacement</td>
-                                            <td data-cost="780">780Tk</td>
-                                            <td class="text-right"><a class="btn btn-primary btn-sm">Cancel</a></td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
@@ -450,8 +445,10 @@ get_header();
                 <div style="float:right;">
                     <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                     <button type="button" id="nextBtn" onclick="nextPrev(1)">Order</button>
-                    <div class="gravity-form">
-                        <?php echo do_shortcode('[gravityform id="1"]'); ?>
+                    <div class="gravity-form service-form-submit">
+                        <?php wp_nonce_field( 'mc_send_services', 'mc_send_services' ); ?>
+                        <input type="submit" id="mc_service_submit" value="Submit">
+                        <?php //echo do_shortcode('[gravityform id="1"]'); ?>
                     </div>
                 </div>
                 
