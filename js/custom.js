@@ -44,7 +44,7 @@
 
             var services_clan = [
                 {
-                    'name': 'air-condition',
+                    'name': 'ac',
                     'type_one': 'brand',
                     'type_two': 'ton'
                 },
