@@ -380,34 +380,11 @@
             var model = $('.mc-service-model.mc-active').find('option:selected').data('model');
             var year = $('.mc-service-year').val();
 
-            console.log(category);
-
             //brand label
             var brand_label = $('.service_child_one_label').text();
             
             //model label
             var model_label = $('.service_child_two_label').text();
-
-            // repair services matches category and show
-            $('.mc-services-list-items tr').each(function(e) {
-                var data_cat = $(this).data('category');
-
-                if( data_cat !== '' ) {
-                    var data_cat_arr = data_cat.split(',');
-                    var service_data_cat = service_data.categories.category;
-
-                    if( ! data_cat_arr.includes(service_data_cat) ) {
-                        $(this).hide();
-
-                    }else {
-                        $(this).show();
-                        console.log( 'ase ase ase' );
-                    } 
-
-                }else {
-                    $(this).hide();
-                }
-            });
             
 
             app.cart_categories.category = category ? category : service_data.categories.category;
@@ -482,6 +459,32 @@
 
             //update service checkout dom
             app.updateServiceDom();
+
+
+            var service_data = app.getLocalStorage();
+
+            // repair services matches category and show
+            $('.mc-services-list-items tr').each(function(e) {
+                var data_cat = $(this).data('category');
+
+                if( data_cat !== '' ) {
+                    var data_cat_arr = data_cat.split(',');
+                    var service_data_cat = service_data.categories.category;
+
+                    if( ! data_cat_arr.includes(service_data_cat) ) {
+                        $(this).hide();
+
+                    }else {
+                        $(this).show();
+                        console.log( 'ase ase ase' );
+                    } 
+
+                }else {
+                    $(this).hide();
+                }
+            });
+
+
         },
         updateServiceDom: function() {
             var service_data = app.getLocalStorage();
