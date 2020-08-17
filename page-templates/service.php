@@ -64,7 +64,7 @@ get_header();
                 <div class="row">
                     <div class="col-md-8 select-service">
                         <h3>Select Service</h3>
-                        <?php $categories = mc_get_all_parent_categories('service_category'); ?>
+                        <?php $categories = mc_get_all_parent_categories('service_category', 'name', true); ?>
                         <div class="row se-services">
                             <?php
                             foreach ($categories as $category) {
@@ -92,7 +92,7 @@ get_header();
                         <h3>Specify Your <span class="mc-title-category">Car</span></h3>
                         <form>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Brand</label>
+                                <label for="exampleFormControlSelect1" class="service_child_one_label">Brand</label>
 
                                 <?php
                                 foreach ($categories as $category) {
@@ -105,7 +105,7 @@ get_header();
                                     if ($brands_as_child_categories) {
                                 ?>
 
-                                        <select name="" id="" class="form-control mc-service-brand <?php echo ($category->slug === 'car') ? 'mc-active' : ''; ?>" data-brand-category="<?php echo strtolower($category->name); ?>">
+                                        <select name="" class="form-control mc-service-brand <?php echo ($category->slug === 'car') ? 'mc-active' : ''; ?>" data-brand-category="<?php echo strtolower($category->name); ?>">
                                             <?php
                                             //default active brand id for getting model lists
                                             $default_active_brand_id = ($category->slug === 'car') ? $brands_as_child_categories[0]->term_id : '';
@@ -125,7 +125,7 @@ get_header();
                                 ?>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Model</label>
+                                <label for="exampleFormControlSelect1" class="service_child_two_label">Model</label>
                                 <?php
                                 foreach ($categories as $category) {
                                     $cat_id = $category->term_id;

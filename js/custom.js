@@ -26,8 +26,7 @@
             }
 
             //init service cart array
-            app.service_cart_array = app.cart_array();  
-            console.log( app.service_cart_array );
+            app.service_cart_array = app.cart_array();
 
             $(document).on('click', '.mc-main-services', app.selectServices);
             $(document).on('submit', '.mc-wc-register-form', app.saveRegisterAccountDatas);
@@ -41,9 +40,86 @@
             $(document).on('click', '.mc-btn-service-cancel', app.removeServices);
             
         },
+        getServicesClan: function() {
+
+            var services_clan = [
+                {
+                    'name': 'air-condition',
+                    'type_one': 'brand',
+                    'type_two': 'ton'
+                },
+                {
+                    'name': 'car',
+                    'type_one': 'brand',
+                    'type_two': 'model'
+                },
+                {
+                    'name': 'cctv',
+                    'type_one': 'brand',
+                    'type_two': 'camera-type'
+                },
+                {
+                    'name': 'electricity',
+                    'type_one': 'user-type',
+                    'type_two': 'setup-type'
+                },
+                {
+                    'name': 'generator',
+                    'type_one': 'generator-type',
+                    'type_two': 'oil-type'
+                },
+                {
+                    'name': 'motorcycle',
+                    'type_one': 'brand',
+                    'type_two': 'model'
+                },
+                {
+                    'name': 'refrigerator',
+                    'type_one': 'brand',
+                    'type_two': 'type'
+                },
+                {
+                    'name': 'plumbing',
+                    'type_one': 'user-type',
+                    'type_two': 'setup-type'
+                },
+                {
+                    'name': 'computer',
+                    'type_one': 'brand',
+                    'type_two': 'processor'
+                }
+            ];
+
+            return services_clan;
+
+        },
         selectServices: function(e) {
             e.preventDefault();
 
+            //current category  
+            var current_category = $(this).data('category');
+
+            //get services type clan  
+            var clan = app.getServicesClan();
+
+            //get matched clan with selected category
+            var matched_clan = clan.filter( function(clan_item) {
+                return current_category === clan_item.name; 
+            }).shift();
+
+            //update the select labels
+            if( matched_clan !== undefined ) {
+                var matched_clan_type_one = matched_clan.type_one.split("-");
+                    matched_clan_type_one = matched_clan_type_one.join(" ");
+                    matched_clan_type_one = `${matched_clan_type_one[0].toUpperCase()}${matched_clan_type_one.slice(1)}`;
+                var matched_clan_type_two = matched_clan.type_two.split("-");
+                    matched_clan_type_two = matched_clan_type_two.join(" ");
+                    matched_clan_type_two = `${matched_clan_type_two[0].toUpperCase()}${matched_clan_type_two.slice(1)}`;
+                $('.service_child_one_label').text( matched_clan_type_one );
+                $('.service_child_two_label').text( matched_clan_type_two );
+            }
+
+            //select each main services
             $('.mc-main-services').each(function(e) {
                 if( $(this).is('.btn-primary') ) {
                     $(this).removeClass('btn-primary').addClass('btn-secondary');
@@ -57,7 +133,6 @@
             $(this).addClass('service-cat-active');
 
             // change brand
-            var current_category = $(this).data('category');
             var current_category_text = $(this).text();
             $('.mc-title-category').text( current_category_text );
             
@@ -114,6 +189,8 @@
                 if( data_cat == '' ) {
                     $(this).hide();
                 }else {
+                    console.log( 'id is : ' + id);
+                    
                     if( service_option_value == id ) {
                         $(this).show();
                     }else {
@@ -142,7 +219,6 @@
             e.preventDefault();
 
             var localStorate = app.getLocalStorage();
-            console.log( localStorate );
 
             var services = localStorate.services;
 
@@ -172,16 +248,13 @@
                     services_list += "#" + services_item; 
             });
 
-            console.log( services_list );
-            
-
-            
-
             //service info
             var service_info = "name: "+ info.name +", phone: "+ info.number +", location: "+ info.address + ' ' + info.location +", date: "+ info.date +", time: "+ info.time;
 
             //service categories
-            var service_categories = "service_category: X, brand: Y, model: Z";
+            var service_categories = "service_category: X, FBL: Y, FML: Z";
+            service_categories = service_categories.replace( 'FBL', categories.category.brand_label );
+            service_categories = service_categories.replace( 'FML', categories.category.model_label );
             service_categories = service_categories.replace( 'X', categories.category );
             service_categories = service_categories.replace( 'Y', categories.brand );
             service_categories = service_categories.replace( 'Z', categories.model );
@@ -307,6 +380,12 @@
             var model = $('.mc-service-model.mc-active').find('option:selected').data('model');
             var year = $('.mc-service-year').val();
 
+            //brand label
+            var brand_label = $('.service_child_one_label').text();
+            
+            //model label
+            var model_label = $('.service_child_two_label').text();
+
             // repair services matches category and show
             $('.mc-services-list-items tr').each(function(e) {
                 var data_cat = $(this).data('category');
@@ -325,7 +404,9 @@
             
 
             app.cart_categories.category = category ? category : service_data.categories.category;
-            app.cart_categories.brand = brand ? brand : service_data.categories.brand;
+            app.cart_categories.brand_label =  brand_label ? brand_label : service_data.categories.brand_label;
+            app.cart_categories.brand =  brand ? brand : service_data.categories.brand;
+            app.cart_categories.model_label = model_label ? model_label : service_data.categories.model_label;
             app.cart_categories.model = model ? model : service_data.categories.model;
             app.cart_categories.year = year ? year : service_data.categories.year;
 
