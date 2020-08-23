@@ -644,7 +644,11 @@
             }else {
                 $('.mc-checkout-year').text( "" );
             }
-            $('.mc-checkout-appoint-date').text( app.formateDate(date) );
+            if( $('.service-review').is('.active') ) {
+                if( date !== '' ) {
+                    $('.mc-checkout-appoint-date').text( app.formateDate(date) );
+                }
+            }
             $('.service-checkout-location').text( location );
             $('.service-checkout-address').text( address );
             $('.service-checkout-name').text( name );
